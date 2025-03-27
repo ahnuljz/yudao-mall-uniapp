@@ -68,10 +68,7 @@
 			},
 			/* SDK配置 */
 			"sdkConfigs": {
-				"speech": {
-					"ifly": {}
-				}
-			},
+				"speech": {},
 			"orientation": ["portrait-primary"]
 		}
 	},

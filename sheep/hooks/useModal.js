@@ -14,7 +14,7 @@ export function showAuthModal(type = 'smsLogin') {
       modal.$patch((state) => {
         state.auth = type;
       });
-    }, 500);
+    }, 200);
     closeAuthModal();
   } else {
     modal.$patch((state) => {
