@@ -31,6 +31,12 @@ const cart = defineStore({
       }
     },
 
+    // 提交订单更新购物车
+    submitUpdateList() {
+      this.selectedIds = [];
+      this.getList();
+    },
+
     // 添加购物车
     async add(goodsInfo) {
       // 添加购物项
