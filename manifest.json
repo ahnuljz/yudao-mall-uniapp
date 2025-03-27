@@ -89,9 +89,7 @@
           "idfa": true
         },
         "sdkConfigs": {
-          "speech": {
-            "ifly": {}
-          },
+          "speech": {},
           "ad": {},
           "oauth": {
             "apple": {},
