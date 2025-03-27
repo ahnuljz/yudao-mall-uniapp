@@ -25,7 +25,7 @@ const FileApi = {
           if (result.error === 1) {
             uni.showToast({
               icon: 'none',
-              title: result.msg,
+              title: result.message,
             });
           } else {
             return resolve(result);

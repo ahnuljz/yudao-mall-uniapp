@@ -51,7 +51,7 @@ const http = new Request({
   timeout: 8000,
   method: 'GET',
   header: {
-    Accept: 'text/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json;charset=UTF-8',
     platform: $platform.name,
   },
@@ -92,7 +92,7 @@ http.interceptors.request.use(
     // 增加 token 令牌、terminal 终端、tenant 租户的请求头
     const token = getAccessToken();
     if (token) {
-      config.header['Authorization'] = token;
+      config.header['authorization'] = token;
     }
     config.header['terminal'] = getTerminal();
 
@@ -126,10 +126,10 @@ http.interceptors.response.use(
       }
       // 特殊：处理分销用户绑定失败的提示
       if ((response.data.code + '').includes('1011007')) {
-        console.error(`分销用户绑定失败，原因：${response.data.msg}`);
+        console.error(`分销用户绑定失败，原因：${response.data.message}`);
       } else if (response.config.custom.showError) { // 错误提示
         uni.showToast({
-          title: response.data.msg || '服务器开小差啦,请稍后再试~',
+          title: response.data.message || '服务器开小差啦,请稍后再试~',
           icon: 'none',
           mask: true,
         });
@@ -205,7 +205,7 @@ http.interceptors.response.use(
     if (error && error.config) {
       if (error.config.custom.showError === false) {
         uni.showToast({
-          title: error.data?.msg || errorMessage,
+          title: error.data?.message || errorMessage,
           icon: 'none',
           mask: true,
         });

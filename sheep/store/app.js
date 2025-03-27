@@ -60,7 +60,7 @@ const app = defineStore({
       // TODO 芋艿：未来支持管理后台可配；对应 https://api.shopro.sheepjs.com/shop/api/init
       if (true) {
         this.info = {
-          name: '芋道商城',
+          name: '旅小助商城',
           logo: 'https://static.iocoder.cn/ruoyi-vue-pro-logo.png',
           version: '2.4.0',
           copyright: '全部开源，个人与企业可 100% 免费使用',
@@ -99,7 +99,7 @@ const app = defineStore({
         }
         return Promise.resolve(true);
       } else {
-        $router.error('InitError', res.msg || '加载失败');
+        $router.error('InitError', res.message || '加载失败');
       }
     },
   },
