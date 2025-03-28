@@ -6,12 +6,7 @@
       </view>
     </view>
     <view class="flex a-center" style="padding-right: 10rpx">
-      <view
-        class="progress-container"
-        id="container"
-        ref="progressContainer"
-        :style="{ background: inBgColor }"
-      >
+      <view class="progress-container" id="container" ref="progressContainer" :style="{ background: inBgColor }">
         <view
           class="progress-content flex j-end"
           id="content"
@@ -39,9 +34,7 @@
         </view>
       </view>
       <view>
-        <view class="percentage" v-if="!textInside && !lineData && !noData && !isAnimate"
-          >{{ percentage }}%
-        </view>
+        <view class="percentage" v-if="!textInside && !lineData && !noData && !isAnimate">{{ percentage }}% </view>
       </view>
     </view>
   </view>
@@ -122,8 +115,7 @@
           const container = uni.createSelectorQuery().in(this).selectAll('#container');
           const content = uni.createSelectorQuery().in(this).selectAll('#content');
           container.boundingClientRect().exec((res1) => {
-            this.contentWidth =
-              res1[0][0].width * 1 * ((this.percentage * 1) / 100).toFixed(2) + 'px';
+            this.contentWidth = res1[0][0].width * 1 * ((this.percentage * 1) / 100).toFixed(2) + 'px';
           });
         }
       },
@@ -170,7 +162,7 @@
     margin-left: 10rpx;
     font-size: 16rpx;
     width: 100rpx;
-    color: #FFB9B9;
+    color: #ffb9b9;
   }
 
   .percentage {

@@ -130,7 +130,8 @@
       },
       $uGetRect(selector, all) {
         return new Promise((resolve) => {
-          uni.createSelectorQuery()
+          uni
+            .createSelectorQuery()
             .in(this)
             [all ? 'selectAll' : 'select'](selector)
             .boundingClientRect((rect) => {
@@ -218,7 +219,8 @@
         // 方法内进行判断，避免在其他平台生成无用代码
         // #ifdef APP-VUE || MP-WEIXIN
         return new Promise((resolve) => {
-          uni.createSelectorQuery()
+          uni
+            .createSelectorQuery()
             .in(this)
             .select('.u-sticky')
             .fields({

@@ -3,8 +3,7 @@
   <view class="ss-flex ss-col-center">
     <view class="progress-title ss-m-r-10"> 已抢{{ percent }}% </view>
     <view class="progress-box ss-flex ss-col-center">
-      <view class="progerss-active" :style="{ width: percent < 10 ? '10%' : percent + '%' }">
-      </view>
+      <view class="progerss-active" :style="{ width: percent < 10 ? '10%' : percent + '%' }"> </view>
     </view>
   </view>
 </template>

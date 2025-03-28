@@ -12,11 +12,7 @@
           件商品
         </view>
         <view class="header-right">
-          <button
-            v-if="state.editMode && state.pagination.total"
-            class="ss-reset-button"
-            @tap="state.editMode = false"
-          >
+          <button v-if="state.editMode && state.pagination.total" class="ss-reset-button" @tap="state.editMode = false">
             取消
           </button>
           <button
@@ -30,17 +26,9 @@
       </view>
       <!-- 内容 -->
       <view class="cart-content">
-        <view
-          class="goods-box ss-r-10 ss-m-b-14"
-          v-for="item in state.pagination.list"
-          :key="item.id"
-        >
+        <view class="goods-box ss-r-10 ss-m-b-14" v-for="item in state.pagination.list" :key="item.id">
           <view class="ss-flex ss-col-center">
-            <label
-              class="check-box ss-flex ss-col-center ss-p-l-10"
-              v-if="state.editMode"
-              @tap="onSelect(item.spuId)"
-            >
+            <label class="check-box ss-flex ss-col-center ss-p-l-10" v-if="state.editMode" @tap="onSelect(item.spuId)">
               <radio
                 :checked="state.selectedSpuIdList.includes(item.spuId)"
                 color="var(--ui-BG-Main)"
@@ -92,10 +80,7 @@
             >
               删除足迹
             </button>
-            <button
-              class="ss-reset-button ui-BG-Main-Gradient pay-btn ss-font-28 ui-Shadow-Main ml-2"
-              @tap="onClean"
-            >
+            <button class="ss-reset-button ui-BG-Main-Gradient pay-btn ss-font-28 ui-Shadow-Main ml-2" @tap="onClean">
               清空
             </button>
           </view>
@@ -110,11 +95,7 @@
       }"
       @tap="loadMore"
     />
-    <s-empty
-      v-if="state.pagination.total === 0"
-      text="暂无浏览记录"
-      icon="/static/collect-empty.png"
-    />
+    <s-empty v-if="state.pagination.total === 0" text="暂无浏览记录" icon="/static/collect-empty.png" />
   </s-layout>
 </template>
 

@@ -5,21 +5,13 @@
       <view class="title ss-m-t-16 ss-m-l-20 ss-flex">优惠</view>
       <view v-if="state.rewardActivity && state.rewardActivity.id > 0">
         <view class="titleLi">促销</view>
-        <scroll-view
-          class="model-content"
-          scroll-y
-          :scroll-with-animation="false"
-          :enable-back-to-top="true"
-        >
+        <scroll-view class="model-content" scroll-y :scroll-with-animation="false" :enable-back-to-top="true">
           <view
             class="actBox"
             v-for="(item, index) in getRewardActivityRuleGroupDescriptions(state.rewardActivity)"
             :key="index"
           >
-            <view
-              class="boxCont ss-flex ss-col-top ss-m-b-40"
-              @tap="onGoodsList(state.rewardActivity)"
-            >
+            <view class="boxCont ss-flex ss-col-top ss-m-b-40" @tap="onGoodsList(state.rewardActivity)">
               <view class="model-content-tag ss-flex ss-row-center">{{ item.name }}</view>
               <view class="model-content-title">
                 <view class="contBu">

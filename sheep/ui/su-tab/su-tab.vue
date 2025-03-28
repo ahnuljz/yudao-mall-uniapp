@@ -40,8 +40,7 @@
                 :class="[props.mark, { 'ui-btn': props.tpl == 'btn' || props.tpl == 'subtitle' }]"
                 :style="[
                   {
-                    background:
-                      props.tpl == 'btn' || props.tpl == 'subtitle' ? titleStyle.activeBg : 'none',
+                    background: props.tpl == 'btn' || props.tpl == 'subtitle' ? titleStyle.activeBg : 'none',
                   },
                 ]"
               ></view>
@@ -84,16 +83,7 @@
    * 基础组件 - suTab
    */
 
-  import {
-    toRef,
-    ref,
-    reactive,
-    unref,
-    onMounted,
-    nextTick,
-    getCurrentInstance,
-    provide,
-  } from 'vue';
+  import { toRef, ref, reactive, unref, onMounted, nextTick, getCurrentInstance, provide } from 'vue';
   const vm = getCurrentInstance();
 
   // 数据
@@ -190,7 +180,8 @@
   });
 
   const computedQuery = () => {
-    uni.createSelectorQuery()
+    uni
+      .createSelectorQuery()
       .in(vm)
       .select('#tab-' + vm.uid)
       .boundingClientRect((data) => {

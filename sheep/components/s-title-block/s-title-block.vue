@@ -13,8 +13,8 @@
           fontSize: `${data.titleSize}px`,
           fontWeight: data.titleWeight,
           color: data.titleColor,
-          textAlign: data.textAlign
-      }"
+          textAlign: data.textAlign,
+        }"
         class="title-text"
       >
         {{ data.title }}
@@ -26,7 +26,7 @@
           fontSize: `${data.descriptionSize}px`,
           fontWeight: data.descriptionWeight,
           color: data.descriptionColor,
-          textAlign: data.textAlign
+          textAlign: data.textAlign,
         }"
         class="sub-title-text"
       >

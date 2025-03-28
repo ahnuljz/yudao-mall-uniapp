@@ -13,10 +13,7 @@
         </view>
         <view class="status-box item ss-flex ss-col-center ss-row-between">
           <view class="item-title">支付状态</view>
-          <view
-            class="status-text"
-            :class="item.refundStatus === 10 ? 'danger-color' : 'success-color'"
-          >
+          <view class="status-text" :class="item.refundStatus === 10 ? 'danger-color' : 'success-color'">
             {{ item.refundStatus === 10 ? '已退款' : '已支付' }}
           </view>
         </view>
@@ -30,17 +27,11 @@
         </view>
         <view class="time-box item ss-flex ss-col-center ss-row-between">
           <text class="item-title">充值时间</text>
-          <view class="time">
-            {{ sheep.$helper.timeFormat(item.payTime, 'yyyy-mm-dd hh:MM:ss') }}</view
-          >
+          <view class="time"> {{ sheep.$helper.timeFormat(item.payTime, 'yyyy-mm-dd hh:MM:ss') }}</view>
         </view>
       </view>
     </view>
-    <s-empty
-      v-if="state.pagination.total === 0"
-      icon="/static/comment-empty.png"
-      text="暂无充值记录"
-    />
+    <s-empty v-if="state.pagination.total === 0" icon="/static/comment-empty.png" text="暂无充值记录" />
     <uni-load-more
       v-if="state.pagination.total > 0"
       :status="state.loadStatus"

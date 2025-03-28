@@ -1,8 +1,5 @@
 <template>
-  <view
-    class="skeleton-wrap"
-    :class="['theme-' + sys.mode, 'main-' + sys.theme, 'font-' + sys.fontSize]"
-  >
+  <view class="skeleton-wrap" :class="['theme-' + sys.mode, 'main-' + sys.theme, 'font-' + sys.fontSize]">
     <view class="skeleton-banner"></view>
     <view class="container-box">
       <view class="container-box-strip title ss-m-b-58"></view>

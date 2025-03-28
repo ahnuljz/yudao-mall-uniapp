@@ -23,10 +23,7 @@
         >
         </image>
         <image
-          v-if="
-            state.orderInfo.status_code == 'completed' ||
-            state.orderInfo.status_code == 'refund_agree'
-          "
+          v-if="state.orderInfo.status_code == 'completed' || state.orderInfo.status_code == 'refund_agree'"
           class="state-img"
           :src="sheep.$url.static('/static/img/shop/order/order_success.png')"
         >
@@ -63,10 +60,7 @@
       </view>
     </view>
 
-    <view
-      class="detail-goods"
-      :style="[{ marginTop: state.orderInfo.receiverAreaId > 0 ? '0' : '-40rpx' }]"
-    >
+    <view class="detail-goods" :style="[{ marginTop: state.orderInfo.receiverAreaId > 0 ? '0' : '-40rpx' }]">
       <!-- 订单信 -->
       <view class="order-list" v-for="item in state.orderInfo.items" :key="item.goods_id">
         <view class="order-card">
@@ -127,11 +121,7 @@
     </view>
 
     <!--  自提核销  -->
-    <PickUpVerify
-      :order-info="state.orderInfo"
-      :systemStore="systemStore"
-      ref="pickUpVerifyRef"
-    ></PickUpVerify>
+    <PickUpVerify :order-info="state.orderInfo" :systemStore="systemStore" ref="pickUpVerifyRef"></PickUpVerify>
 
     <!-- 订单信息 -->
     <view class="notice-box">
@@ -194,10 +184,7 @@
         <text class="title">{{ state.orderInfo.payStatus ? '已付款' : '需付款' }}</text>
         <text class="detail all-price">￥{{ fen2yuan(state.orderInfo.payPrice) }}</text>
       </view>
-      <view
-        class="notice-item all-rpice-item ss-flex ss-m-t-20"
-        v-if="state.orderInfo.refundPrice > 0"
-      >
+      <view class="notice-item all-rpice-item ss-flex ss-m-t-20" v-if="state.orderInfo.refundPrice > 0">
         <text class="title">已退款</text>
         <text class="detail all-price">￥{{ fen2yuan(state.orderInfo.refundPrice) }}</text>
       </view>
@@ -432,7 +419,7 @@
   onShow(async () => {
     //onShow中获取订单列表,保证跳转后页面为最新状态
     await getOrderDetail(state.orderInfo.id);
-  })
+  });
 
   onLoad(async (options) => {
     let id = 0;
@@ -444,7 +431,7 @@
     if (state.comeinType === 'wechat') {
       state.merchantTradeNo = options.merchant_trade_no;
     }
-    state.orderInfo.id = id
+    state.orderInfo.id = id;
   });
 </script>
 
@@ -468,7 +455,8 @@
   .state-box {
     color: rgba(#fff, 0.9);
     width: 100%;
-    background: v-bind(headerBg) no-repeat,
+    background:
+      v-bind(headerBg) no-repeat,
       linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
     box-sizing: border-box;

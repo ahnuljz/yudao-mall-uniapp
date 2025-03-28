@@ -5,29 +5,17 @@
     <view class="ss-modal-box bg-white ss-flex-col">
       <view class="modal-header ss-flex ss-col-center">
         <view class="header-left ss-m-r-30">
-          <image
-            class="sku-image"
-            :src="state.selectedSku.picUrl || goodsInfo.picUrl"
-            mode="aspectFill"
-          />
+          <image class="sku-image" :src="state.selectedSku.picUrl || goodsInfo.picUrl" mode="aspectFill" />
         </view>
         <view class="header-right ss-flex-col ss-row-between ss-flex-1">
           <view class="goods-title ss-line-2">{{ goodsInfo.name }}</view>
           <view class="header-right-bottom ss-flex ss-col-center ss-row-between">
             <view class="ss-flex">
               <view class="price-text">
-                {{
-                  fen2yuan(
-                    state.selectedSku.promotionPrice || state.selectedSku.price || goodsInfo.price,
-                  )
-                }}
+                {{ fen2yuan(state.selectedSku.promotionPrice || state.selectedSku.price || goodsInfo.price) }}
                 <text v-if="state.selectedSku.promotionType > 0">
-                  <text class="iconBox" v-if="state.selectedSku.promotionType === 4">
-                    限时优惠
-                  </text>
-                  <text class="iconBox" v-else-if="state.selectedSku.promotionType === 6">
-                    会员价
-                  </text>
+                  <text class="iconBox" v-if="state.selectedSku.promotionType === 4"> 限时优惠 </text>
+                  <text class="iconBox" v-else-if="state.selectedSku.promotionType === 6"> 会员价 </text>
                   <text class="origin-price-text">
                     {{ fen2yuan(state.selectedSku.price) }}
                   </text>
@@ -82,9 +70,7 @@
       <!-- 操作区 -->
       <view class="modal-footer border-top">
         <view class="buy-box ss-flex ss-col-center ss-flex ss-col-center ss-row-center">
-          <button class="ss-reset-button add-btn ui-Shadow-Main" @tap="onAddCart"
-            >加入购物车</button
-          >
+          <button class="ss-reset-button add-btn ui-Shadow-Main" @tap="onAddCart">加入购物车</button>
           <button class="ss-reset-button buy-btn ui-Shadow-Main" @tap="onBuy">立即购买</button>
         </view>
       </view>
@@ -268,10 +254,7 @@
   function onSelectSku(propertyId, valueId) {
     // 清空已选择
     let isChecked = true; // 选中 or 取消选中
-    if (
-      state.currentPropertyArray[propertyId] !== undefined &&
-      state.currentPropertyArray[propertyId] === valueId
-    ) {
+    if (state.currentPropertyArray[propertyId] !== undefined && state.currentPropertyArray[propertyId] === valueId) {
       // 点击已被选中的，删除并填充 ''
       isChecked = false;
       state.currentPropertyArray.splice(propertyId, 1, '');

@@ -3,10 +3,7 @@
   <!-- 商品卡片 -->
   <view>
     <!-- 布局1. 单列大图（上图，下内容）-->
-    <view
-      v-if="layoutType === LayoutTypeEnum.ONE_COL_BIG_IMG && state.spuList.length"
-      class="goods-sl-box"
-    >
+    <view v-if="layoutType === LayoutTypeEnum.ONE_COL_BIG_IMG && state.spuList.length" class="goods-sl-box">
       <view
         class="goods-box"
         v-for="item in state.spuList"
@@ -36,10 +33,7 @@
     </view>
 
     <!-- 布局2. 单列小图（左图，右内容） -->
-    <view
-      v-if="layoutType === LayoutTypeEnum.ONE_COL_SMALL_IMG && state.spuList.length"
-      class="goods-lg-box"
-    >
+    <view v-if="layoutType === LayoutTypeEnum.ONE_COL_SMALL_IMG && state.spuList.length" class="goods-lg-box">
       <view
         class="goods-box"
         :style="[{ marginBottom: data.space + 'px' }]"
@@ -260,10 +254,10 @@
       // 查找对应的 spu 并更新价格
       const spu = state.spuList.find((spu) => activity.spuId === spu.id);
       if (spu) {
-        spu.pointStock = activity.stock
-        spu.pointTotalStock = activity.totalStock
-        spu.point = activity.point
-        spu.pointPrice = activity.price
+        spu.pointStock = activity.stock;
+        spu.pointTotalStock = activity.totalStock;
+        spu.point = activity.point;
+        spu.pointPrice = activity.price;
         // 赋值活动ID，为了点击跳转详情页
         spu.activityId = activity.id;
         // 赋值活动类型

@@ -129,10 +129,7 @@ export function divide(...nums) {
   checkBoundary(num1Changed);
   checkBoundary(num2Changed);
   // 重要，这里必须用strip进行修正
-  return times(
-    num1Changed / num2Changed,
-    strip(Math.pow(10, digitLength(num2) - digitLength(num1))),
-  );
+  return times(num1Changed / num2Changed, strip(Math.pow(10, digitLength(num2) - digitLength(num1))));
 }
 
 /**

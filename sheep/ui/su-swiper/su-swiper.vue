@@ -53,11 +53,7 @@
           ></view>
         </view>
         <view class="ui-swiper-dot" :class="props.dotStyle" v-if="props.dotStyle == 'tag'">
-          <view
-            class="ui-tag radius-lg"
-            :class="[props.dotCur]"
-            style="pointer-events: none; padding: 0 10rpx"
-          >
+          <view class="ui-tag radius-lg" :class="[props.dotCur]" style="pointer-events: none; padding: 0 10rpx">
             <view style="transform: scale(0.7)">{{ state.cur + 1 }} / {{ props.list.length }}</view>
           </view>
         </view>

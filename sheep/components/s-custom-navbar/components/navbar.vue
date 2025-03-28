@@ -19,9 +19,7 @@
     <view class="ui-navbar-box">
       <view
         class="ui-bar"
-        :class="
-          props.status == '' ? `text-a` : props.status == 'light' ? 'text-white' : 'text-black'
-        "
+        :class="props.status == '' ? `text-a` : props.status == 'light' ? 'text-white' : 'text-black'"
         :style="[{ height: sys_navBar - sys_statusBar + 'px' }]"
       >
         <slot name="item"></slot>

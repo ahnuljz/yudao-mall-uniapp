@@ -1,11 +1,6 @@
 <!-- 公告栏组件 -->
 <template>
-  <view
-    v-if="show"
-    class="uni-noticebar"
-    :style="{ backgroundColor: backgroundColor }"
-    @click="onClick"
-  >
+  <view v-if="show" class="uni-noticebar" :style="{ backgroundColor: backgroundColor }" @click="onClick">
     <slot name="icon">
       <uni-icons
         v-if="showIcon === true || showIcon === 'true'"
@@ -59,21 +54,14 @@
       class="uni-noticebar__more uni-cursor-point"
       @click="clickMore"
     >
-      <text
-        v-if="moreText.length > 0"
-        :style="{ color: moreColor }"
-        class="uni-noticebar__more-text"
-      >
+      <text v-if="moreText.length > 0" :style="{ color: moreColor }" class="uni-noticebar__more-text">
         {{ moreText }}
       </text>
       <uni-icons v-else type="right" :color="moreColor" size="16" />
     </view>
     <view
       class="uni-noticebar-close uni-cursor-point"
-      v-if="
-        (showClose === true || showClose === 'true') &&
-        (showGetMore === false || showGetMore === 'false')
-      "
+      v-if="(showClose === true || showClose === 'true') && (showGetMore === false || showGetMore === 'false')"
     >
       <view @click="close">
         <slot name="close">
@@ -214,7 +202,8 @@
             boxWidth = 0,
             textWidth = 0;
           let textQuery = new Promise((resolve, reject) => {
-            uni.createSelectorQuery()
+            uni
+              .createSelectorQuery()
               // #ifndef MP-ALIPAY
               .in(this)
               // #endif
@@ -226,7 +215,8 @@
               });
           });
           let boxQuery = new Promise((resolve, reject) => {
-            uni.createSelectorQuery()
+            uni
+              .createSelectorQuery()
               // #ifndef MP-ALIPAY
               .in(this)
               // #endif

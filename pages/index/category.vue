@@ -33,16 +33,9 @@
           />
           <first-one v-if="state.style === 'first_one'" :pagination="state.pagination" />
           <first-two v-if="state.style === 'first_two'" :pagination="state.pagination" />
-          <second-one
-            v-if="state.style === 'second_one'"
-            :data="state.categoryList"
-            :activeMenu="state.activeMenu"
-          />
+          <second-one v-if="state.style === 'second_one'" :data="state.categoryList" :activeMenu="state.activeMenu" />
           <uni-load-more
-            v-if="
-              (state.style === 'first_one' || state.style === 'first_two') &&
-              state.pagination.total > 0
-            "
+            v-if="(state.style === 'first_one' || state.style === 'first_two') && state.pagination.total > 0"
             :status="state.loadStatus"
             :content-text="{
               contentdown: '点击查看更多',
@@ -174,11 +167,7 @@
               content: '';
               width: 64rpx;
               height: 12rpx;
-              background: linear-gradient(
-                90deg,
-                var(--ui-BG-Main-gradient),
-                var(--ui-BG-Main-light)
-              ) !important;
+              background: linear-gradient(90deg, var(--ui-BG-Main-gradient), var(--ui-BG-Main-light)) !important;
               position: absolute;
               left: -64rpx;
               bottom: 0;

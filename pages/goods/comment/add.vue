@@ -60,9 +60,7 @@
     </view>
     <su-fixed bottom placeholder>
       <view class="foot_box ss-flex ss-row-center ss-col-center">
-        <button class="ss-reset-button post-btn ui-BG-Main-Gradient ui-Shadow-Main" @tap="onSubmit">
-          发布
-        </button>
+        <button class="ss-reset-button post-btn ui-BG-Main-Gradient ui-Shadow-Main" @tap="onSubmit"> 发布 </button>
       </view>
     </su-fixed>
   </s-layout>

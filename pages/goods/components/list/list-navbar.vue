@@ -1,14 +1,6 @@
 <!-- 页面；暂时没用到  -->
 <template>
-  <su-fixed
-    alway
-    :bgStyles="{ background: '#fff' }"
-    :val="0"
-    noNav
-    :opacity="false"
-    placeholder
-    index="10090"
-  >
+  <su-fixed alway :bgStyles="{ background: '#fff' }" :val="0" noNav :opacity="false" placeholder index="10090">
     <su-status-bar />
     <view
       class="ui-bar ss-flex ss-col-center ss-row-between ss-p-x-20"
@@ -16,11 +8,7 @@
     >
       <!-- 左 -->
       <view class="left-box">
-        <text
-          class="_icon-back back-icon"
-          @tap="toBack"
-          :style="[{ color: state.iconColor }]"
-        ></text>
+        <text class="_icon-back back-icon" @tap="toBack" :style="[{ color: state.iconColor }]"></text>
       </view>
       <!-- 中 -->
       <uni-search-bar

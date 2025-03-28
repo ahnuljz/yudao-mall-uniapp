@@ -140,14 +140,7 @@
     const dayOfWeek = today.getDay();
     return [
       new Date(today.getFullYear(), today.getMonth(), today.getDate() - dayOfWeek, 0, 0, 0),
-      new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() + (6 - dayOfWeek),
-        23,
-        59,
-        59,
-      ),
+      new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - dayOfWeek), 23, 59, 59),
     ];
   }
 

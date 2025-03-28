@@ -14,11 +14,7 @@
         !alway ? { opacity: state.opacityVal } : '',
       ]"
     >
-      <view
-        class="ui-fixed-content"
-        @tap="toTop"
-        :style="[{ zIndex: index + sheep.$zIndex.navbar }]"
-      >
+      <view class="ui-fixed-content" @tap="toTop" :style="[{ zIndex: index + sheep.$zIndex.navbar }]">
         <slot></slot>
         <view
           v-if="safeAreaInsets.bottom && bottom && isInset"
@@ -30,11 +26,7 @@
       <view
         class="ui-fixed-bg"
         :class="[ui, bg]"
-        :style="[
-          { zIndex: index + sheep.$zIndex.navbar - 1 },
-          bgStyles,
-          opacity ? { opacity: state.opacityVal } : '',
-        ]"
+        :style="[{ zIndex: index + sheep.$zIndex.navbar - 1 }, bgStyles, opacity ? { opacity: state.opacityVal } : '']"
       ></view>
     </view>
     <view
@@ -150,7 +142,8 @@
   });
 
   const computedQuery = () => {
-    uni.createSelectorQuery()
+    uni
+      .createSelectorQuery()
       .in(vm)
       .select(`#fixed-${uuid}`)
       .boundingClientRect((data) => {
@@ -167,16 +160,11 @@
   const setFixed = (value) => {
     if (unref(props.bottom)) {
       state.fixed =
-        value >=
-        state.content.bottom -
-          sheep.$platform.device.windowHeight +
-          state.content.height +
-          unref(props.val);
+        value >= state.content.bottom - sheep.$platform.device.windowHeight + state.content.height + unref(props.val);
     } else {
       state.fixed =
         value >=
-        state.content.top -
-          (unref(props.noNav) ? unref(props.val) : unref(props.val) + sheep.$platform.navbar);
+        state.content.top - (unref(props.noNav) ? unref(props.val) : unref(props.val) + sheep.$platform.navbar);
     }
   };
 

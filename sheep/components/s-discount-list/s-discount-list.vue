@@ -1,20 +1,8 @@
 <template>
-  <su-popup
-    :show="show"
-    type="bottom"
-    round="20"
-    @close="emits('close')"
-    showClose
-    backgroundColor="#f2f2f2"
-  >
+  <su-popup :show="show" type="bottom" round="20" @close="emits('close')" showClose backgroundColor="#f2f2f2">
     <view class="model-box">
       <view class="title ss-m-t-38 ss-m-l-20 ss-m-b-40">活动优惠</view>
-      <scroll-view
-        class="model-content ss-m-l-20"
-        scroll-y
-        :scroll-with-animation="false"
-        :enable-back-to-top="true"
-      >
+      <scroll-view class="model-content ss-m-l-20" scroll-y :scroll-with-animation="false" :enable-back-to-top="true">
         <view v-for="(item, index) in state.orderInfo.promotions" :key="index">
           <!-- 不展示积分、优惠劵、会员折扣，因为它们已经单独展示了 -->
           <view class="ss-flex ss-m-b-40 subtitle" v-if="[1, 2, 3, 4, 5].includes(item.type)">

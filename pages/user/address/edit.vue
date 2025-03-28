@@ -31,12 +31,7 @@
           >
           </uni-easyinput>
         </uni-forms-item>
-        <uni-forms-item
-          name="areaName"
-          label="省市区"
-          @tap="state.showRegion = true"
-          class="form-item"
-        >
+        <uni-forms-item name="areaName" label="省市区" @tap="state.showRegion = true" class="form-item">
           <uni-easyinput
             v-model="state.model.areaName"
             disabled
@@ -77,18 +72,12 @@
         <view class="ss-m-b-20">
           <button class="ss-reset-button save-btn ui-Shadow-Main" @tap="onSave">保存</button>
         </view>
-        <button v-if="state.model.id" class="ss-reset-button cancel-btn" @tap="onDelete">
-          删除
-        </button>
+        <button v-if="state.model.id" class="ss-reset-button cancel-btn" @tap="onDelete"> 删除 </button>
       </view>
     </su-fixed>
 
     <!-- 省市区弹窗 -->
-    <su-region-picker
-      :show="state.showRegion"
-      @cancel="state.showRegion = false"
-      @confirm="onRegionConfirm"
-    />
+    <su-region-picker :show="state.showRegion" @cancel="state.showRegion = false" @confirm="onRegionConfirm" />
   </s-layout>
 </template>
 
@@ -177,9 +166,7 @@
       ...state.model,
     };
     const { code } =
-      state.model.id > 0
-        ? await AddressApi.updateAddress(formData)
-        : await AddressApi.createAddress(formData);
+      state.model.id > 0 ? await AddressApi.updateAddress(formData) : await AddressApi.createAddress(formData);
     if (code === 0) {
       sheep.$router.back();
     }
@@ -227,9 +214,7 @@
       state.model = {
         ...state.model,
         areaId,
-        areaName: [data.province_name, data.city_name, data.district_name]
-          .filter(Boolean)
-          .join(' '),
+        areaName: [data.province_name, data.city_name, data.district_name].filter(Boolean).join(' '),
         defaultStatus: false,
         detailAddress: data.address,
         mobile: data.mobile,

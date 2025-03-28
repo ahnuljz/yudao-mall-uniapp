@@ -18,9 +18,7 @@ const isEscaped = (jsonString, quotePosition) => {
 
 export default function stripJsonComments(jsonString, { whitespace = true } = {}) {
   if (typeof jsonString !== 'string') {
-    throw new TypeError(
-      `Expected argument \`jsonString\` to be a \`string\`, got \`${typeof jsonString}\``,
-    );
+    throw new TypeError(`Expected argument \`jsonString\` to be a \`string\`, got \`${typeof jsonString}\``);
   }
 
   const strip = whitespace ? stripWithWhitespace : stripWithoutWhitespace;

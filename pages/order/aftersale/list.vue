@@ -3,12 +3,7 @@
   <s-layout title="售后列表">
     <!-- tab -->
     <su-sticky bgColor="#fff">
-      <su-tabs
-        :list="tabMaps"
-        :scrollable="false"
-        @change="onTabsChange"
-        :current="state.currentTab"
-      />
+      <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
     </su-sticky>
     <s-empty v-if="state.pagination.total === 0" icon="/static/data-empty.png" text="暂无数据" />
     <!-- 列表 -->

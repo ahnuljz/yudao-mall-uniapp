@@ -2,13 +2,7 @@
 <template>
   <s-layout :bgStyle="{ color: '#FFF' }" title="收货地址">
     <view v-if="state.list.length">
-      <s-address-item
-        hasBorderBottom
-        v-for="item in state.list"
-        :key="item.id"
-        :item="item"
-        @tap="onSelect(item)"
-      />
+      <s-address-item hasBorderBottom v-for="item in state.list" :key="item.id" :item="item" @tap="onSelect(item)" />
     </view>
 
     <su-fixed bottom placeholder>
@@ -22,19 +16,12 @@
           <text class="cicon-weixin ss-p-r-10" style="color: #09bb07; font-size: 40rpx"></text>
           导入微信地址
         </button>
-        <button
-          class="add-btn ss-reset-button ui-Shadow-Main"
-          @tap="sheep.$router.go('/pages/user/address/edit')"
-        >
+        <button class="add-btn ss-reset-button ui-Shadow-Main" @tap="sheep.$router.go('/pages/user/address/edit')">
           新增收货地址
         </button>
       </view>
     </su-fixed>
-    <s-empty
-      v-if="state.list.length === 0 && !state.loading"
-      text="暂无收货地址"
-      icon="/static/data-empty.png"
-    />
+    <s-empty v-if="state.list.length === 0 && !state.loading" text="暂无收货地址" icon="/static/data-empty.png" />
   </s-layout>
 </template>
 
@@ -54,8 +41,9 @@
 
   // 选择收货地址
   const onSelect = (addressInfo) => {
-    if (state.openType !== 'select'){ // 不作为选择组件时阻断操作
-      return
+    if (state.openType !== 'select') {
+      // 不作为选择组件时阻断操作
+      return;
     }
     uni.$emit('SELECT_ADDRESS', {
       addressInfo,

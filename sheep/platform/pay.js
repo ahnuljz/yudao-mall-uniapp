@@ -136,9 +136,7 @@ export default class SheepPay {
       },
       fail: (error) => {
         if (error.errMsg.indexOf('chooseWXPay:没有此SDK或暂不支持此SDK模拟') >= 0) {
-          sheep.$helper.toast(
-            '发起微信支付失败，原因：可能是微信开发者工具不支持，建议使用微信打开网页后支付',
-          );
+          sheep.$helper.toast('发起微信支付失败，原因：可能是微信开发者工具不支持，建议使用微信打开网页后支付');
           return;
         }
         this.payResult('fail');
@@ -150,9 +148,7 @@ export default class SheepPay {
   async wechatWapPay() {
     const { error, data } = await this.prepay();
     if (error === 0) {
-      const redirect_url = `${getRootUrl()}pages/pay/result?id=${this.id}&payment=${
-        this.payment
-      }&orderType=${this.orderType}`;
+      const redirect_url = `${getRootUrl()}pages/pay/result?id=${this.id}&payment=${this.payment}&orderType=${this.orderType}`;
       location.href = `${data.pay_data.h5_url}&redirect_url=${encodeURIComponent(redirect_url)}`;
     }
   }
@@ -235,7 +231,7 @@ export default class SheepPay {
     if (code !== 0) {
       return;
     }
-    
+
     uni.requestPayment({
       provider: 'alipay',
       orderInfo: data.displayContent, // 直接使用返回的支付参数
@@ -264,7 +260,7 @@ export default class SheepPay {
 
     // 解析支付参数
     const payConfig = JSON.parse(data.displayContent);
-    
+
     // 调用微信支付
     uni.requestPayment({
       provider: 'wxpay',
@@ -283,7 +279,7 @@ export default class SheepPay {
           sheep.$helper.toast('支付失败：' + err.errMsg);
           that.payResult('fail');
         }
-      }
+      },
     });
   }
 

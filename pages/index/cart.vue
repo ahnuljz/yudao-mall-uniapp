@@ -1,10 +1,6 @@
 <template>
   <s-layout :bgStyle="{ color: '#fff' }" tabbar="/pages/index/cart" title="购物车">
-    <s-empty
-      v-if="state.list.length === 0"
-      icon="/static/cart-empty.png"
-      text="购物车空空如也,快去逛逛吧~"
-    />
+    <s-empty v-if="state.list.length === 0" icon="/static/cart-empty.png" text="购物车空空如也,快去逛逛吧~" />
 
     <!-- 头部 -->
     <view v-if="state.list.length" class="cart-box ss-flex ss-flex-col ss-row-between">
@@ -15,12 +11,8 @@
           件商品
         </view>
         <view class="header-right">
-          <button v-if="state.editMode" class="ss-reset-button" @tap="state.editMode = false">
-            取消
-          </button>
-          <button v-else class="ss-reset-button ui-TC-Main" @tap="state.editMode = true">
-            编辑
-          </button>
+          <button v-if="state.editMode" class="ss-reset-button" @tap="state.editMode = false"> 取消 </button>
+          <button v-else class="ss-reset-button ui-TC-Main" @tap="state.editMode = true"> 编辑 </button>
         </view>
       </view>
       <!-- 内容 -->
@@ -40,9 +32,7 @@
               :price="item.sku.price"
               :skuText="
                 item.sku.properties.length > 1
-                  ? item.sku.properties.reduce(
-                      (items2, items) => items2.valueName + ' ' + items.valueName,
-                    )
+                  ? item.sku.properties.reduce((items2, items) => items2.valueName + ' ' + items.valueName)
                   : item.sku.properties[0].valueName
               "
               :title="item.spu.name"
@@ -88,11 +78,7 @@
             >
               删除
             </button>
-            <button
-              v-else
-              class="ss-reset-button ui-BG-Main-Gradient pay-btn ui-Shadow-Main"
-              @tap="onConfirm"
-            >
+            <button v-else class="ss-reset-button ui-BG-Main-Gradient pay-btn ui-Shadow-Main" @tap="onConfirm">
               去结算
               {{ state.selectedIds?.length ? `(${state.selectedIds.length})` : '' }}
             </button>
@@ -172,7 +158,7 @@
       throw new Error('未找到商品信息');
     }
     // 获取所有商品的配送方式列表
-    const deliveryTypesList = spuList.map(item => item.deliveryTypes);
+    const deliveryTypesList = spuList.map((item) => item.deliveryTypes);
     // 检查配送方式冲突
     const hasConflict = checkDeliveryConflicts(deliveryTypesList);
     if (hasConflict) {
@@ -202,9 +188,7 @@
       for (let j = i + 1; j < deliveryTypesList.length; j++) {
         const nextTypes = deliveryTypesList[j];
         // 检查是否没有交集（即冲突）
-        const hasNoIntersection = !currentTypes.some(type =>
-          nextTypes.includes(type),
-        );
+        const hasNoIntersection = !currentTypes.some((type) => nextTypes.includes(type));
         if (hasNoIntersection) {
           return true;
         }

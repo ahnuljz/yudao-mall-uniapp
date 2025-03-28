@@ -25,11 +25,7 @@
     <template #cell="{ item, index }">
       <view style="transform: scaleY(-1)">
         <!--  消息渲染  -->
-        <MessageListItem
-          :message="item"
-          :message-index="index"
-          :message-list="messageList"
-        ></MessageListItem>
+        <MessageListItem :message="item" :message-index="index" :message-list="messageList"></MessageListItem>
       </view>
     </template>
     <!-- 底部聊天输入框 -->

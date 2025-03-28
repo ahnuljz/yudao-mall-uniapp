@@ -1,36 +1,21 @@
 <template>
   <view class="ss-m-20" :style="{ opacity: disabled ? '0.5' : '1' }">
     <view class="content">
-      <view
-        class="tag ss-flex ss-row-center"
-        :class="isDisable ? 'disabled-bg-color' : 'info-bg-color'"
-      >
+      <view class="tag ss-flex ss-row-center" :class="isDisable ? 'disabled-bg-color' : 'info-bg-color'">
         {{ data.discountType === 1 ? '满减券' : '折扣券' }}
       </view>
       <view class="title ss-m-x-30 ss-p-t-18">
         <view class="ss-flex ss-row-between">
-          <view
-            class="value-text ss-flex-1 ss-m-r-10"
-            :class="isDisable ? 'disabled-color' : 'info-color'"
-          >
+          <view class="value-text ss-flex-1 ss-m-r-10" :class="isDisable ? 'disabled-color' : 'info-color'">
             {{ data.name }}
           </view>
           <view>
-            <view
-              class="ss-flex ss-col-bottom"
-              :class="isDisable ? 'disabled-color' : 'price-text'"
-            >
+            <view class="ss-flex ss-col-bottom" :class="isDisable ? 'disabled-color' : 'price-text'">
               <view class="value-reduce ss-m-b-10" v-if="data.discountType === 1">￥</view>
               <view class="value-price">
-                {{
-                  data.discountType === 1
-                    ? fen2yuan(data.discountPrice)
-                    : data.discountPercent / 10.0
-                }}
+                {{ data.discountType === 1 ? fen2yuan(data.discountPrice) : data.discountPercent / 10.0 }}
               </view>
-              <view class="value-discount ss-m-b-10 ss-m-l-4" v-if="data.discountType === 2"
-                >折</view
-              >
+              <view class="value-discount ss-m-b-10 ss-m-l-4" v-if="data.discountType === 2">折</view>
             </view>
           </view>
         </view>

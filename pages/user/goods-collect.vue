@@ -9,11 +9,7 @@
           <text class="goods-number ui-TC-Main ss-flex">{{ state.pagination.total }}</text> 件商品
         </view>
         <view class="header-right">
-          <button
-            v-if="state.editMode && state.pagination.total"
-            class="ss-reset-button"
-            @tap="state.editMode = false"
-          >
+          <button v-if="state.editMode && state.pagination.total" class="ss-reset-button" @tap="state.editMode = false">
             取消
           </button>
           <button
@@ -27,17 +23,9 @@
       </view>
       <!-- 内容 -->
       <view class="cart-content">
-        <view
-          class="goods-box ss-r-10 ss-m-b-14"
-          v-for="item in state.pagination.list"
-          :key="item.id"
-        >
+        <view class="goods-box ss-r-10 ss-m-b-14" v-for="item in state.pagination.list" :key="item.id">
           <view class="ss-flex ss-col-center">
-            <label
-              class="check-box ss-flex ss-col-center ss-p-l-10"
-              v-if="state.editMode"
-              @tap="onSelect(item.spuId)"
-            >
+            <label class="check-box ss-flex ss-col-center ss-p-l-10" v-if="state.editMode" @tap="onSelect(item.spuId)">
               <radio
                 :checked="state.selectedCollectList.includes(item.spuId)"
                 color="var(--ui-BG-Main)"
@@ -76,10 +64,7 @@
             </label>
           </view>
           <view class="footer-right">
-            <button
-              class="ss-reset-button ui-BG-Main-Gradient pay-btn ss-font-28 ui-Shadow-Main"
-              @tap="onCancel"
-            >
+            <button class="ss-reset-button ui-BG-Main-Gradient pay-btn ss-font-28 ui-Shadow-Main" @tap="onCancel">
               取消收藏
             </button>
           </view>

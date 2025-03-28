@@ -27,16 +27,10 @@
           </view>
           <view class="header-right-bottom ss-flex ss-col-center ss-row-between">
             <view class="price-text">
-              {{
-                fen2yuan(
-                  state.selectedSku.price || goodsInfo.price || state.selectedSku.marketPrice,
-                )
-              }}</view
+              {{ fen2yuan(state.selectedSku.price || goodsInfo.price || state.selectedSku.marketPrice) }}</view
             >
 
-            <view class="stock-text ss-m-l-20">
-              库存{{ state.selectedSku.stock || goodsInfo.stock }}件
-            </view>
+            <view class="stock-text ss-m-l-20"> 库存{{ state.selectedSku.stock || goodsInfo.stock }}件 </view>
           </view>
         </view>
       </view>
@@ -278,10 +272,7 @@
   function onSelectSku(propertyId, valueId) {
     // 清空已选择
     let isChecked = true; // 选中 or 取消选中
-    if (
-      state.currentPropertyArray[propertyId] !== undefined &&
-      state.currentPropertyArray[propertyId] === valueId
-    ) {
+    if (state.currentPropertyArray[propertyId] !== undefined && state.currentPropertyArray[propertyId] === valueId) {
       // 点击已被选中的，删除并填充 ''
       isChecked = false;
       state.currentPropertyArray.splice(propertyId, 1, '');

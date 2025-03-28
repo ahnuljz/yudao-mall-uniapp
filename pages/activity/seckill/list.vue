@@ -2,10 +2,7 @@
 <template>
   <s-layout :bgStyle="{ color: 'rgb(245,28,19)' }" navbar="inner">
     <!--顶部背景图-->
-    <view
-      class="page-bg"
-      :style="[{ marginTop: '-' + Number(statusBarHeight + 88) + 'rpx' }]"
-    ></view>
+    <view class="page-bg" :style="[{ marginTop: '-' + Number(statusBarHeight + 88) + 'rpx' }]"></view>
     <!-- 时间段轮播图 -->
     <view class="header" v-if="activeTimeConfig?.sliderPicUrls?.length > 0">
       <swiper
@@ -29,17 +26,9 @@
       <!-- 左侧图标 -->
       <view class="time-icon">
         <!-- TODO 芋艿：图片统一维护 -->
-        <image
-          class="ss-w-100 ss-h-100"
-          src="http://mall.yudao.iocoder.cn/static/images/priceTag.png"
-        />
+        <image class="ss-w-100 ss-h-100" src="http://mall.yudao.iocoder.cn/static/images/priceTag.png" />
       </view>
-      <scroll-view
-        class="time-list"
-        :scroll-into-view="activeTimeElId"
-        scroll-x
-        scroll-with-animation
-      >
+      <scroll-view class="time-list" :scroll-into-view="activeTimeElId" scroll-x scroll-with-animation>
         <view
           v-for="(config, index) in timeConfigList"
           :key="index"
@@ -60,10 +49,7 @@
       <!-- 活动倒计时 -->
       <view class="content-header ss-flex-col ss-col-center ss-row-center">
         <view class="content-header-box ss-flex ss-row-center">
-          <view
-            class="countdown-box ss-flex"
-            v-if="activeTimeConfig?.status === TimeStatusEnum.STARTED"
-          >
+          <view class="countdown-box ss-flex" v-if="activeTimeConfig?.status === TimeStatusEnum.STARTED">
             <view class="countdown-title ss-m-r-12">距结束</view>
             <view class="ss-flex countdown-time">
               <view class="ss-flex countdown-h">{{ countDown.h }}</view>
@@ -103,29 +89,20 @@
             <!-- 抢购按钮 -->
             <template #cart>
               <button
-                :class="[
-                  'ss-reset-button cart-btn',
-                  { disabled: activeTimeConfig?.status === TimeStatusEnum.END },
-                ]"
+                :class="['ss-reset-button cart-btn', { disabled: activeTimeConfig?.status === TimeStatusEnum.END }]"
                 v-if="activeTimeConfig?.status === TimeStatusEnum.WAIT_START"
               >
                 <span>未开始</span>
               </button>
               <button
-                :class="[
-                  'ss-reset-button cart-btn',
-                  { disabled: activeTimeConfig?.status === TimeStatusEnum.END },
-                ]"
+                :class="['ss-reset-button cart-btn', { disabled: activeTimeConfig?.status === TimeStatusEnum.END }]"
                 @click="sheep.$router.go('/pages/goods/seckill', { id: activity.id })"
                 v-else-if="activeTimeConfig?.status === TimeStatusEnum.STARTED"
               >
                 <span>马上抢</span>
               </button>
               <button
-                :class="[
-                  'ss-reset-button cart-btn',
-                  { disabled: activeTimeConfig?.status === TimeStatusEnum.END },
-                ]"
+                :class="['ss-reset-button cart-btn', { disabled: activeTimeConfig?.status === TimeStatusEnum.END }]"
                 v-else
               >
                 <span>已结束</span>
@@ -157,8 +134,7 @@
   // 计算页面高度
   const { safeAreaInsets, safeArea } = sheep.$platform.device;
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const pageHeight =
-    (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sheep.$platform.navbar - 350;
+  const pageHeight = (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sheep.$platform.navbar - 350;
   const headerBg = sheep.$url.css('/static/img/shop/goods/seckill-header.png');
 
   // 商品控件显示的字段（不显示库存、销量。改为显示自定义的进度条）
@@ -252,9 +228,7 @@
     const { data } = await SeckillApi.getSeckillActivityPage(activityPageParams);
     data.list.forEach((activity) => {
       // 计算抢购进度
-      activity.percent = parseInt(
-        (100 * (activity.totalStock - activity.stock)) / activity.totalStock,
-      );
+      activity.percent = parseInt((100 * (activity.totalStock - activity.stock)) / activity.totalStock);
     });
     activityList.value = activityList.value.concat(...data.list);
     activityTotal.value = data.total;

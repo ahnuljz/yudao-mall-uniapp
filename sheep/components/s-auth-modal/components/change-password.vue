@@ -38,24 +38,15 @@
       </uni-forms-item>
 
       <uni-forms-item name="reNewPassword" label="密码">
-        <uni-easyinput
-          type="password"
-          placeholder="请输入密码"
-          v-model="state.model.password"
-          :inputBorder="false"
-        >
+        <uni-easyinput type="password" placeholder="请输入密码" v-model="state.model.password" :inputBorder="false">
           <template v-slot:right>
-            <button class="ss-reset-button login-btn-start" @tap="changePasswordSubmit">
-              确认
-            </button>
+            <button class="ss-reset-button login-btn-start" @tap="changePasswordSubmit"> 确认 </button>
           </template>
         </uni-easyinput>
       </uni-forms-item>
     </uni-forms>
 
-    <button class="ss-reset-button type-btn" @tap="closeAuthModal">
-      取消修改
-    </button>
+    <button class="ss-reset-button type-btn" @tap="closeAuthModal"> 取消修改 </button>
   </view>
 </template>
 

@@ -1,11 +1,7 @@
 <template>
   <s-layout :bgStyle="{ color: '#fff' }" class="set-wrap" title="系统设置">
     <view class="header-box ss-flex-col ss-row-center ss-col-center">
-      <image
-        class="logo-img ss-m-b-46"
-        :src="sheep.$url.cdn(appInfo.logo)"
-        mode="aspectFit"
-      ></image>
+      <image class="logo-img ss-m-b-46" :src="sheep.$url.cdn(appInfo.logo)" mode="aspectFit"></image>
       <view class="name ss-m-b-24">{{ appInfo.name }}</view>
     </view>
 
@@ -20,13 +16,7 @@
           class="list-border"
           @tap="onCheckUpdate"
         />
-        <uni-list-item
-          title="本地缓存"
-          :rightText="storageSize"
-          showArrow
-          :border="false"
-          class="list-border"
-        />
+        <uni-list-item title="本地缓存" :rightText="storageSize" showArrow :border="false" class="list-border" />
         <uni-list-item
           title="关于我们"
           showArrow
@@ -35,7 +25,7 @@
           class="list-border"
           @tap="
             sheep.$router.go('/pages/public/richtext', {
-              title: '关于我们'
+              title: '关于我们',
             })
           "
         />
@@ -59,7 +49,7 @@
             class="tcp-text"
             @tap="
               sheep.$router.go('/pages/public/richtext', {
-                title: '用户协议'
+                title: '用户协议',
               })
             "
           >
@@ -70,7 +60,7 @@
             class="tcp-text"
             @tap="
               sheep.$router.go('/pages/public/richtext', {
-                title: '隐私协议'
+                title: '隐私协议',
               })
             "
           >
@@ -83,11 +73,7 @@
     </view>
     <su-fixed bottom placeholder>
       <view class="ss-p-x-20 ss-p-b-40">
-        <button
-          class="loginout-btn ss-reset-button ui-BG-Main ui-Shadow-Main"
-          @tap="onLogout"
-          v-if="isLogin"
-        >
+        <button class="loginout-btn ss-reset-button ui-BG-Main ui-Shadow-Main" @tap="onLogout" v-if="isLogin">
           退出登录
         </button>
       </view>

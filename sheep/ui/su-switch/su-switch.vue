@@ -71,7 +71,9 @@
       border-radius: 16px;
       box-sizing: border-box;
       background-color: rgba(119, 119, 119, 0.3);
-      transition: background-color 0.1s, border 0.1s;
+      transition:
+        background-color 0.1s,
+        border 0.1s;
       &:after {
         content: ' ';
         position: absolute;

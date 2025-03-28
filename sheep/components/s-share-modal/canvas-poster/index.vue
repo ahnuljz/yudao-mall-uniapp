@@ -7,33 +7,20 @@
         class="poster-img"
         :src="painterImageUrl"
         :style="{
-          height: poster.css.height+ 'px',
+          height: poster.css.height + 'px',
           width: poster.css.width + 'px',
         }"
         :show-menu-by-longpress="true"
       />
     </view>
-    <view
-      class="poster-btn-box ss-m-t-20 ss-flex ss-row-between ss-col-center"
-      v-if="!!painterImageUrl"
-    >
+    <view class="poster-btn-box ss-m-t-20 ss-flex ss-row-between ss-col-center" v-if="!!painterImageUrl">
       <button class="cancel-btn ss-reset-button" @tap="onClosePoster">取消</button>
       <button class="save-btn ss-reset-button ui-BG-Main" @tap="onSavePoster">
-        {{
-          ['wechatOfficialAccount', 'H5'].includes(sheep.$platform.name)
-            ? '长按图片保存'
-            : '保存图片'
-        }}
+        {{ ['wechatOfficialAccount', 'H5'].includes(sheep.$platform.name) ? '长按图片保存' : '保存图片' }}
       </button>
     </view>
     <!--  海报画板：默认隐藏只用来生成海报。生成方式为主动调用  -->
-    <l-painter
-      isCanvasToTempFilePath
-      pathType="url"
-      @success="setPainterImageUrl"
-      hidden
-      ref="painterRef"
-    />
+    <l-painter isCanvasToTempFilePath pathType="url" @success="setPainterImageUrl" hidden ref="painterRef" />
   </su-popup>
 </template>
 
@@ -57,8 +44,7 @@
     },
     shareInfo: {
       type: Object,
-      default: () => {
-      },
+      default: () => {},
     },
   });
 
@@ -110,7 +96,7 @@
 
   // 获得海报数据
   async function getPoster() {
-    painterImageUrl.value = undefined
+    painterImageUrl.value = undefined;
     poster.views = await getPosterData({
       width: poster.css.width,
       shareInfo: props.shareInfo,
@@ -164,5 +150,4 @@
   .poster-img {
     border-radius: 20rpx;
   }
-
 </style>

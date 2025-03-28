@@ -18,11 +18,7 @@
         <view class="item-title ss-m-b-20">售后类型</view>
         <view class="ss-flex-col">
           <radio-group @change="onRefundChange">
-            <label
-              class="ss-flex ss-col-center ss-p-y-10"
-              v-for="(item, index) in state.wayList"
-              :key="index"
-            >
+            <label class="ss-flex ss-col-center ss-p-y-10" v-for="(item, index) in state.wayList" :key="index">
               <radio
                 :checked="formData.type === item.value"
                 color="var(--ui-BG-Main)"
@@ -82,9 +78,7 @@
     <su-fixed bottom placeholder>
       <view class="foot-wrap">
         <view class="foot_box ss-flex ss-col-center ss-row-between ss-p-x-30">
-          <button class="ss-reset-button contcat-btn" @tap="sheep.$router.go('/pages/chat/index')">
-            联系客服
-          </button>
+          <button class="ss-reset-button contcat-btn" @tap="sheep.$router.go('/pages/chat/index')"> 联系客服 </button>
           <button class="ss-reset-button ui-BG-Main-Gradient sub-btn" @tap="submit">提交</button>
         </view>
       </view>
@@ -93,25 +87,17 @@
     <!-- 申请原因弹窗 -->
     <su-popup :show="state.showModal" round="10" :showClose="true" @close="state.showModal = false">
       <view class="modal-box page_box">
-        <view class="modal-head item-title head_box ss-flex ss-row-center ss-col-center">
-          申请原因
-        </view>
+        <view class="modal-head item-title head_box ss-flex ss-row-center ss-col-center"> 申请原因 </view>
         <view class="modal-content content_box">
           <radio-group @change="onChange">
             <label class="radio ss-flex ss-col-center" v-for="item in state.reasonList" :key="item">
               <view class="ss-flex-1 ss-p-20">{{ item }}</view>
-              <radio
-                :value="item"
-                color="var(--ui-BG-Main)"
-                :checked="item === state.currentValue"
-              />
+              <radio :value="item" color="var(--ui-BG-Main)" :checked="item === state.currentValue" />
             </label>
           </radio-group>
         </view>
         <view class="modal-foot foot_box ss-flex ss-row-center ss-col-center">
-          <button class="ss-reset-button close-btn ui-BG-Main-Gradient" @tap="onReason">
-            确定
-          </button>
+          <button class="ss-reset-button close-btn ui-BG-Main-Gradient" @tap="onReason"> 确定 </button>
         </view>
       </view>
     </su-popup>
@@ -180,9 +166,7 @@
     formData.way = e.detail.value;
     // 清理理由
     state.reasonList =
-      formData.way === '10'
-        ? state.config.afterSaleRefundReasons || []
-        : state.config.afterSaleReturnReasons || [];
+      formData.way === '10' ? state.config.afterSaleRefundReasons || [] : state.config.afterSaleReturnReasons || [];
     formData.applyReason = '';
     state.currentValue = '';
   }

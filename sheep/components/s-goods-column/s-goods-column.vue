@@ -2,12 +2,7 @@
 <template>
   <view class="ss-goods-wrap">
     <!-- xs卡片：横向紧凑型，一行放两个，图片左内容右边  -->
-    <view
-      v-if="size === 'xs'"
-      class="xs-goods-card ss-flex ss-col-stretch"
-      :style="[elStyles]"
-      @tap="onClick"
-    >
+    <view v-if="size === 'xs'" class="xs-goods-card ss-flex ss-col-stretch" :style="[elStyles]" @tap="onClick">
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)"></image>
       </view>
@@ -41,10 +36,7 @@
         >
           <!-- 活动价格 -->
           <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-            <image
-              :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-              class="point-img"
-            ></image>
+            <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
             <text class="point-text ss-m-r-16">
               {{ data.point }}
               {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -66,21 +58,14 @@
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)"></image>
       </view>
-      <image
-        class="sm-img-box"
-        :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      ></image>
+      <image class="sm-img-box" :src="sheep.$url.cdn(data.image || data.picUrl)" mode="aspectFill"></image>
 
       <view
         v-if="goodsFields.title?.show || goodsFields.name?.show || goodsFields.price?.show"
         class="sm-goods-content"
         :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]"
       >
-        <view
-          v-if="goodsFields.title?.show || goodsFields.name?.show"
-          class="sm-goods-title ss-line-1 ss-m-b-16"
-        >
+        <view v-if="goodsFields.title?.show || goodsFields.name?.show" class="sm-goods-title ss-line-1 ss-m-b-16">
           {{ data.title || data.name }}
         </view>
         <!-- 活动信息 -->
@@ -101,10 +86,7 @@
         >
           <!-- 活动价格 -->
           <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-            <image
-              :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-              class="point-img"
-            ></image>
+            <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
             <text class="point-text ss-m-r-16">
               {{ data.point }}
               {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -127,10 +109,7 @@
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)" />
       </view>
       <image class="md-img-box" :src="sheep.$url.cdn(data.image || data.picUrl)" mode="widthFix" />
-      <view
-        class="md-goods-content ss-flex-col ss-row-around ss-p-b-20 ss-p-t-20 ss-p-x-16"
-        :id="elId"
-      >
+      <view class="md-goods-content ss-flex-col ss-row-around ss-p-b-20 ss-p-t-20 ss-p-x-16" :id="elId">
         <view
           v-if="goodsFields.title?.show || goodsFields.name?.show"
           class="md-goods-title ss-line-1"
@@ -147,11 +126,7 @@
         </view>
         <slot name="activity">
           <view v-if="data.promos?.length" class="tag-box ss-flex-wrap ss-flex ss-col-center">
-            <view
-              class="activity-tag ss-m-r-10 ss-m-t-16"
-              v-for="item in data.promos"
-              :key="item.id"
-            >
+            <view class="activity-tag ss-m-r-10 ss-m-t-16" v-for="item in data.promos" :key="item.id">
               {{ item.title }}
             </view>
           </view>
@@ -174,11 +149,11 @@
             :style="[{ color: goodsFields.price.color }]"
           >
             <!-- 活动价格 -->
-            <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-              <image
-                :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-                class="point-img"
-              ></image>
+            <view
+              class="ss-flex"
+              v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
+            >
+              <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
               <text class="point-text ss-m-r-16">
                 {{ data.point }}
                 {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -218,12 +193,7 @@
     </view>
 
     <!-- lg卡片：横向型，一行放一个，图片左内容右边  -->
-    <view
-      v-if="size === 'lg'"
-      class="lg-goods-card ss-flex ss-col-stretch"
-      :style="[elStyles]"
-      @tap="onClick"
-    >
+    <view v-if="size === 'lg'" class="lg-goods-card ss-flex ss-col-stretch" :style="[elStyles]" @tap="onClick">
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)"></image>
       </view>
@@ -231,11 +201,7 @@
       <view v-if="grouponTag" class="groupon-tag ss-flex ss-row-center">
         <view class="tag-icon">拼团</view>
       </view>
-      <image
-        class="lg-img-box"
-        :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      />
+      <image class="lg-img-box" :src="sheep.$url.cdn(data.image || data.picUrl)" mode="aspectFill" />
       <view class="lg-goods-content ss-flex-1 ss-flex-col ss-row-between ss-p-b-10 ss-p-t-20">
         <view>
           <view
@@ -275,11 +241,11 @@
           <view v-if="goodsFields.price?.show" class="ss-flex ss-col-bottom font-OPPOSANS">
             <view class="sl-goods-price ss-m-r-12" :style="[{ color: goodsFields.price.color }]">
               <!-- 活动价格 -->
-              <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-                <image
-                  :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-                  class="point-img"
-                ></image>
+              <view
+                class="ss-flex"
+                v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
+              >
+                <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
                 <text class="point-text ss-m-r-16">
                   {{ data.point }}
                   {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -321,11 +287,7 @@
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)" />
       </view>
-      <image
-        class="sl-img-box"
-        :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      />
+      <image class="sl-img-box" :src="sheep.$url.cdn(data.image || data.picUrl)" mode="aspectFill" />
       <view class="sl-goods-content">
         <view>
           <view
@@ -346,11 +308,7 @@
         <view>
           <slot name="activity">
             <view v-if="data.promos?.length" class="tag-box ss-flex ss-col-center ss-flex-wrap">
-              <view
-                class="activity-tag ss-m-r-10 ss-m-t-16"
-                v-for="item in data.promos"
-                :key="item.id"
-              >
+              <view class="activity-tag ss-m-r-10 ss-m-t-16" v-for="item in data.promos" :key="item.id">
                 {{ item.title }}
               </view>
             </view>
@@ -369,11 +327,11 @@
           <view v-if="goodsFields.price?.show" class="ss-flex ss-col-bottom font-OPPOSANS">
             <view class="sl-goods-price ss-m-r-12" :style="[{ color: goodsFields.price.color }]">
               <!-- 活动价格 -->
-              <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-                <image
-                  :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-                  class="point-img"
-                ></image>
+              <view
+                class="ss-flex"
+                v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
+              >
+                <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
                 <text class="ss-m-r-16">
                   {{ data.point }}
                   {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -579,7 +537,9 @@
     let text = [];
     if (props.goodsFields.salesCount?.show) {
       if (props.data.activityType && props.data.activityType === PromotionActivityTypeEnum.POINT.type) {
-        text.push(formatExchange(props.data.sales_show_type, (props.data.pointTotalStock || 0) - (props.data.pointStock || 0)));
+        text.push(
+          formatExchange(props.data.sales_show_type, (props.data.pointTotalStock || 0) - (props.data.pointStock || 0)),
+        );
       } else {
         text.push(formatSales(props.data.sales_show_type, props.data.salesCount));
       }
@@ -616,9 +576,7 @@
         let totalHeight = 0;
         const goodsPriceCard = data[0];
         if (props.data.image_wh) {
-          totalHeight =
-            (goodsPriceCard.width / props.data.image_wh.w) * props.data.image_wh.h +
-            goodsPriceCard.height;
+          totalHeight = (goodsPriceCard.width / props.data.image_wh.w) * props.data.image_wh.h + goodsPriceCard.height;
         } else {
           totalHeight = goodsPriceCard.width;
         }

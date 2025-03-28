@@ -4,9 +4,7 @@
     <!-- 标题栏 -->
     <view class="head-box ss-m-b-60 ss-flex-col">
       <view class="ss-flex ss-m-b-20">
-        <view class="head-title-active head-title-line" @tap="showAuthModal('smsLogin')">
-          短信登录
-        </view>
+        <view class="head-title-active head-title-line" @tap="showAuthModal('smsLogin')"> 短信登录 </view>
         <view class="head-title ss-m-r-40 head-title-animation">账号登录</view>
       </view>
       <view class="head-subtitle">如果未设置过密码，请点击忘记密码</view>
@@ -24,20 +22,13 @@
       <uni-forms-item name="mobile" label="账号">
         <uni-easyinput placeholder="请输入账号" v-model="state.model.mobile" :inputBorder="false">
           <template v-slot:right>
-            <button class="ss-reset-button forgot-btn" @tap="showAuthModal('resetPassword')">
-              忘记密码
-            </button>
+            <button class="ss-reset-button forgot-btn" @tap="showAuthModal('resetPassword')"> 忘记密码 </button>
           </template>
         </uni-easyinput>
       </uni-forms-item>
 
       <uni-forms-item name="password" label="密码">
-        <uni-easyinput
-          type="password"
-          placeholder="请输入密码"
-          v-model="state.model.password"
-          :inputBorder="false"
-        >
+        <uni-easyinput type="password" placeholder="请输入密码" v-model="state.model.password" :inputBorder="false">
           <template v-slot:right>
             <button class="ss-reset-button login-btn-start" @tap="accountLoginSubmit">登录</button>
           </template>
@@ -89,7 +80,7 @@
 
     // 同意协议
     if (!props.agreeStatus) {
-      emits('onConfirm', true)
+      emits('onConfirm', true);
       sheep.$helper.toast('请勾选同意');
       return;
     }

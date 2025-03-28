@@ -8,18 +8,9 @@
         <text class="cicon-forward" />
       </view>
     </view>
-    <scroll-view
-      scroll-y="true"
-      @scrolltolower="loadmore"
-      class="scroll-box log-scroll"
-      scroll-with-animation="true"
-    >
+    <scroll-view scroll-y="true" @scrolltolower="loadmore" class="scroll-box log-scroll" scroll-with-animation="true">
       <view v-if="state.pagination.list">
-        <view
-          class="log-item-box ss-flex ss-row-between"
-          v-for="item in state.pagination.list"
-          :key="item.id"
-        >
+        <view class="log-item-box ss-flex ss-row-between" v-for="item in state.pagination.list" :key="item.id">
           <view class="log-item-wrap">
             <view class="log-item ss-flex ss-ellipsis-1 ss-col-center">
               <view class="ss-flex ss-col-center">
@@ -29,9 +20,7 @@
                   mode="aspectFill"
                 />
               </view>
-              <view class="log-text ss-ellipsis-1">
-                {{ item.title }} {{ fen2yuan(item.price) }} 元
-              </view>
+              <view class="log-text ss-ellipsis-1"> {{ item.title }} {{ fen2yuan(item.price) }} 元 </view>
             </view>
           </view>
           <text class="log-time">{{ dayjs(item.createTime).fromNow() }}</text>
@@ -39,12 +28,7 @@
       </view>
 
       <!-- 加载更多 -->
-      <uni-load-more
-        v-if="state.pagination.total > 0"
-        :status="state.loadStatus"
-        color="#333333"
-        @tap="loadmore"
-      />
+      <uni-load-more v-if="state.pagination.total > 0" :status="state.loadStatus" color="#333333" @tap="loadmore" />
     </scroll-view>
   </view>
 </template>

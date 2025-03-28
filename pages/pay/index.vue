@@ -28,12 +28,7 @@
                   :src="sheep.$url.static('/static/img/shop/pay/cod_disabled.png')"
                   mode="aspectFit"
                 />
-                <image
-                  class="pay-icon"
-                  v-else
-                  :src="sheep.$url.static(item.icon)"
-                  mode="aspectFit"
-                />
+                <image class="pay-icon" v-else :src="sheep.$url.static(item.icon)" mode="aspectFit" />
                 <text class="pay-title">{{ item.title }}</text>
               </view>
               <view class="check-box ss-flex ss-col-center ss-p-l-10">
@@ -55,12 +50,8 @@
 
       <!-- 工具 -->
       <view class="modal-footer ss-flex ss-row-center ss-col-center ss-m-t-80 ss-m-b-40">
-        <button v-if="state.payStatus === 0" class="ss-reset-button past-due-btn">
-          检测支付环境中
-        </button>
-        <button v-else-if="state.payStatus === -1" class="ss-reset-button past-due-btn" disabled>
-          支付已过期
-        </button>
+        <button v-if="state.payStatus === 0" class="ss-reset-button past-due-btn"> 检测支付环境中 </button>
+        <button v-else-if="state.payStatus === -1" class="ss-reset-button past-due-btn" disabled> 支付已过期 </button>
         <button
           v-else
           class="ss-reset-button save-btn"

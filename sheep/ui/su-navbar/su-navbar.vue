@@ -19,10 +19,7 @@
         }"
         class="uni-navbar__header"
       >
-        <view
-          class="uni-navbar__header-btns uni-navbar__header-btns-left"
-          :style="{ width: leftIconWidth }"
-        >
+        <view class="uni-navbar__header-btns uni-navbar__header-btns-left" :style="{ width: leftIconWidth }">
           <slot name="left">
             <view class="uni-navbar__content_view" v-if="leftIcon.length > 0">
               <view class="icon-box ss-flex">
@@ -31,10 +28,7 @@
                   <text class="sicon-home" v-else />
                 </view>
                 <view class="line"></view>
-                <view
-                  class="icon-button icon-button-right ss-flex ss-row-center"
-                  @tap="showMenuTools"
-                >
+                <view class="icon-button icon-button-right ss-flex ss-row-center" @tap="showMenuTools">
                   <text class="sicon-more" />
                 </view>
               </view>
@@ -42,11 +36,7 @@
             <view
               :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length > 0 }"
               class="uni-navbar-btn-text"
-              v-if="
-                titleAlign === 'left' &&
-                title.length &&
-                sheep.$platform.name !== 'WechatOfficialAccount'
-              "
+              v-if="titleAlign === 'left' && title.length && sheep.$platform.name !== 'WechatOfficialAccount'"
             >
               <text :style="{ color: themeColor, fontSize: '18px' }">{{ title }}</text>
             </view>
@@ -70,9 +60,7 @@
               v-if="tools === 'title' && titleAlign === 'center' && title.length"
               class="uni-navbar__header-container-inner"
             >
-              <text :style="{ color: themeColor, fontSize: '36rpx' }" class="ss-line-1">{{
-                title
-              }}</text>
+              <text :style="{ color: themeColor, fontSize: '36rpx' }" class="ss-line-1">{{ title }}</text>
             </view>
           </slot>
         </view>
@@ -212,8 +200,8 @@
   });
 
   const searchModel = computed(() => {
-		return props.defaultSearch
-	})
+    return props.defaultSearch;
+  });
 
   const themeBgColor = computed(() => {
     if (props.dark) {
@@ -282,7 +270,9 @@
   }
   .icon-box {
     background: #ffffff;
-    box-shadow: 0px 0px 4rpx rgba(51, 51, 51, 0.08), 0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
+    box-shadow:
+      0px 0px 4rpx rgba(51, 51, 51, 0.08),
+      0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
     border-radius: 30rpx;
     width: 134rpx;
     height: 56rpx;

@@ -19,12 +19,7 @@
       labelAlign="center"
     >
       <uni-forms-item name="mobile" label="手机号">
-        <uni-easyinput
-          placeholder="请输入手机号"
-          v-model="state.model.mobile"
-          :inputBorder="false"
-          type="number"
-        >
+        <uni-easyinput placeholder="请输入手机号" v-model="state.model.mobile" :inputBorder="false" type="number">
           <template v-slot:right>
             <button
               class="ss-reset-button code-btn-start"
@@ -47,9 +42,7 @@
           maxlength="4"
         >
           <template v-slot:right>
-            <button class="ss-reset-button login-btn-start" @tap="changeMobileSubmit">
-              确认
-            </button>
+            <button class="ss-reset-button login-btn-start" @tap="changeMobileSubmit"> 确认 </button>
           </template>
         </uni-easyinput>
       </uni-forms-item>

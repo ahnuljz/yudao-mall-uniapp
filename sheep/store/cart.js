@@ -90,7 +90,7 @@ const cart = defineStore({
     async selectAll(flag) {
       const { code } = await CartApi.updateCartSelected({
         ids: this.list.map((item) => item.id),
-        selected: flag
+        selected: flag,
       });
       if (code === 0) {
         await this.getList();

@@ -24,11 +24,7 @@
 
       <!-- 物流轨迹 -->
       <view class="log-content ss-m-20 ss-r-10">
-        <view
-          class="log-content-box ss-flex"
-          v-for="(item, index) in state.tracks"
-          :key="item.title"
-        >
+        <view class="log-content-box ss-flex" v-for="(item, index) in state.tracks" :key="item.title">
           <view class="log-icon ss-flex-col ss-col-center ss-m-r-20">
             <text class="cicon-title" />
             <view v-if="state.tracks.length - 1 !== index" class="line" />

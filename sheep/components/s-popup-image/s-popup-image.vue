@@ -12,12 +12,7 @@
         @close="onClose(index)"
       >
         <view class="img-box">
-          <image
-            class="modal-img"
-            :src="sheep.$url.cdn(item.imgUrl)"
-            mode="widthFix"
-            @tap.stop="onPopup(item.url)"
-          />
+          <image class="modal-img" :src="sheep.$url.cdn(item.imgUrl)" mode="widthFix" @tap.stop="onPopup(item.url)" />
         </view>
       </su-popup>
     </view>
@@ -34,12 +29,12 @@
     data: {
       type: Object,
       default() {},
-    }
-  })
+    },
+  });
 
   // const modalStore = sheep.$store('modal');
   const modalStore = JSON.parse(uni.getStorageSync('modal-store') || '{}');
-  console.log(modalStore)
+  console.log(modalStore);
   const advHistory = modalStore.advHistory || [];
   const currentIndex = ref(0);
   const popupList = computed(() => {

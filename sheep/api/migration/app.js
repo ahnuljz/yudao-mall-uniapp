@@ -10,12 +10,12 @@ export default {
         method: 'GET',
         params: {
           ids: ids.join(','),
-        }
+        },
       }),
     getMpLink: () =>
       request({
         url: 'app/mplive/getMpLink',
-        method: 'GET'
+        method: 'GET',
       }),
   },
 };

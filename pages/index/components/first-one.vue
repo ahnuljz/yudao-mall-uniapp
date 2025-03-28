@@ -2,11 +2,7 @@
 <template>
   <view class="ss-flex-col">
     <view class="goods-box" v-for="item in pagination.list" :key="item.id">
-      <s-goods-column
-        size="sl"
-        :data="item"
-        @click="sheep.$router.go('/pages/goods/index', { id: item.id })"
-      />
+      <s-goods-column size="sl" :data="item" @click="sheep.$router.go('/pages/goods/index', { id: item.id })" />
     </view>
   </view>
 </template>

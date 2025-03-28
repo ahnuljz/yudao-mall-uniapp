@@ -10,10 +10,7 @@
       <view class="img-box ss-m-r-24">
         <image class="order-img" :src="sheep.$url.cdn(img)" mode="aspectFill"></image>
       </view>
-      <view
-        class="box-right ss-flex-col ss-row-between"
-        :style="[{ width: titleWidth ? titleWidth + 'rpx' : '' }]"
-      >
+      <view class="box-right ss-flex-col ss-row-between" :style="[{ width: titleWidth ? titleWidth + 'rpx' : '' }]">
         <view class="title-text ss-line-2" v-if="title">{{ title }}</view>
         <view v-if="skuString" class="spec-text ss-m-t-8 ss-m-b-12">{{ skuString }}</view>
         <view class="groupon-box">
@@ -30,10 +27,7 @@
             </view>
             <view v-if="point && Number(price) > 0">+</view>
             <view class="price-text ss-flex ss-col-center" v-if="point">
-              <image
-                :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-                class="point-img"
-              ></image>
+              <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
               <view>{{ point }}</view>
             </view>
             <view v-if="num" class="total-text ss-flex ss-col-center">x {{ num }}</view>

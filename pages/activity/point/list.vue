@@ -9,11 +9,7 @@
       :enable-back-to-top="true"
     >
       <s-point-card ref="sPointCardRef" class="ss-p-x-20 ss-m-t-20" />
-      <s-empty
-        v-if="activityTotal === 0"
-        icon="/static/goods-empty.png"
-        text="暂无积分商品"
-      ></s-empty>
+      <s-empty v-if="activityTotal === 0" icon="/static/goods-empty.png" text="暂无积分商品"></s-empty>
       <uni-load-more
         v-if="activityTotal > 0"
         :status="loadStatus"
@@ -35,8 +31,7 @@
   // 计算页面高度
   const { safeAreaInsets, safeArea } = sheep.$platform.device;
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const pageHeight =
-    (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sheep.$platform.navbar - 350;
+  const pageHeight = (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sheep.$platform.navbar - 350;
 
   const sPointCardRef = ref();
   // 查询活动列表

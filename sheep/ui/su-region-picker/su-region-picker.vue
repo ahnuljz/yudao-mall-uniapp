@@ -132,10 +132,7 @@
 
   // 用户更改picker的列选项
   const change = (e) => {
-    if (
-      state.currentIndex[0] === e.detail.value[0] &&
-      state.currentIndex[1] === e.detail.value[1]
-    ) {
+    if (state.currentIndex[0] === e.detail.value[0] && state.currentIndex[1] === e.detail.value[1]) {
       // 不更改省市区列表
       state.currentIndex[2] = e.detail.value[2];
       return;

@@ -97,10 +97,7 @@
     },
     watch: {
       popover(val) {
-        this._computedQuery(
-          sheep.$platform.device.windowWidth,
-          sheep.$platform.device.windowHeight,
-        );
+        this._computedQuery(sheep.$platform.device.windowWidth, sheep.$platform.device.windowHeight);
         if (val) {
           if (this.tips != '' || this.time > 0) {
             setTimeout(
@@ -122,10 +119,7 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this._computedQuery(
-          sheep.$platform.device.windowWidth,
-          sheep.$platform.device.windowHeight,
-        );
+        this._computedQuery(sheep.$platform.device.windowWidth, sheep.$platform.device.windowHeight);
         // #ifdef H5
         uni.onWindowResize((res) => {
           this._computedQuery(res.size.windowWidth, res.size.windowHeight);
@@ -157,9 +151,7 @@
               //contentStyle
               let contentStyle = '';
               let arrowStyle = '';
-              this.BoxStyle = `width:${w}px; left:-${button.left}px;z-index: ${
-                this.index + this.sys_layer + 102
-              }`;
+              this.BoxStyle = `width:${w}px; left:-${button.left}px;z-index: ${this.index + this.sys_layer + 102}`;
               // 判断气泡在上面还是下面
               if (button.bottom < h / 2 || this.bottom) {
                 // '下';
@@ -174,10 +166,7 @@
               // 判断气泡箭头在左中右
               let btnCenter = button.right - button.width / 2;
               let contentCenter = content.right - content.width / 2;
-              if (
-                (btnCenter < w / 3 && content.width > btnCenter) ||
-                (content.width > w / 2 && btnCenter < w / 2)
-              ) {
+              if ((btnCenter < w / 3 && content.width > btnCenter) || (content.width > w / 2 && btnCenter < w / 2)) {
                 // '左';
                 contentStyle = contentStyle + `left:10px;`;
                 arrowStyle = arrowStyle + `left:${btnCenter - 17}px;`;
@@ -190,8 +179,7 @@
                 arrowStyle = arrowStyle + `right:${w - btnCenter - 17}px;`;
               } else {
                 // '中';
-                contentStyle =
-                  contentStyle + `left:${button.left - content.width / 2 + button.width / 2}px;`;
+                contentStyle = contentStyle + `left:${button.left - content.width / 2 + button.width / 2}px;`;
                 arrowStyle = arrowStyle + `left:0px;right:0px;margin:auto;`;
               }
 

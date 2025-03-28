@@ -34,13 +34,7 @@
             >
               <text v-if="state.id > 0">{{ state.coupon.canTake ? '立即领取' : '已领取' }}</text>
               <text v-else>
-                {{
-                  state.coupon.status === 1
-                    ? '可使用'
-                    : state.coupon.status === 2
-                    ? '已使用'
-                    : '已过期'
-                }}
+                {{ state.coupon.status === 1 ? '可使用' : state.coupon.status === 2 ? '已使用' : '已过期' }}
               </text>
             </button>
             <view class="time ss-m-y-30" v-if="state.coupon.validityType === 2">
@@ -69,10 +63,7 @@
       </view>
 
       <!-- 适用商品 -->
-      <view
-        class="all-user ss-flex ss-row-center ss-col-center"
-        v-if="state.coupon.productScope === 1"
-      >
+      <view class="all-user ss-flex ss-row-center ss-col-center" v-if="state.coupon.productScope === 1">
         全场通用
       </view>
 
@@ -205,9 +196,7 @@
 
   // 获得分类列表
   async function getCategoryList() {
-    const { data, code } = await CategoryApi.getCategoryListByIds(
-      state.coupon.productScopeValues.join(','),
-    );
+    const { data, code } = await CategoryApi.getCategoryListByIds(state.coupon.productScopeValues.join(','));
     if (code !== 0) {
       return;
     }
@@ -236,9 +225,7 @@
   // 加载优惠劵信息
   async function getCouponContent() {
     const { code, data } =
-      state.id > 0
-        ? await CouponApi.getCouponTemplate(state.id)
-        : await CouponApi.getCoupon(state.couponId);
+      state.id > 0 ? await CouponApi.getCouponTemplate(state.id) : await CouponApi.getCoupon(state.couponId);
     if (code !== 0) {
       return;
     }
@@ -280,13 +267,7 @@
   }
 
   .detail-wrap {
-    background: linear-gradient(
-      180deg,
-      var(--ui-BG-Main),
-      var(--ui-BG-Main-gradient),
-      var(--ui-BG-Main),
-      #fff
-    );
+    background: linear-gradient(180deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient), var(--ui-BG-Main), #fff);
   }
 
   .detail-box {

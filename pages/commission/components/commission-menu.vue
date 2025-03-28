@@ -15,11 +15,7 @@
         class="item-box ss-flex-col ss-col-center"
         @tap="sheep.$router.go(item.path)"
       >
-        <image
-          class="menu-icon ss-m-b-10"
-          :src="sheep.$url.static(item.img)"
-          mode="aspectFill"
-        ></image>
+        <image class="menu-icon ss-m-b-10" :src="sheep.$url.static(item.img)" mode="aspectFill"></image>
         <view>{{ item.title }}</view>
       </view>
     </view>

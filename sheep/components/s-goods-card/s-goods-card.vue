@@ -3,10 +3,7 @@
   <!-- 商品卡片 -->
   <view>
     <!-- 布局1. 单列大图（上图，下内容）-->
-    <view
-      v-if="layoutType === LayoutTypeEnum.ONE_COL_BIG_IMG && state.goodsList.length"
-      class="goods-sl-box"
-    >
+    <view v-if="layoutType === LayoutTypeEnum.ONE_COL_BIG_IMG && state.goodsList.length" class="goods-sl-box">
       <view
         class="goods-box"
         v-for="item in state.goodsList"
@@ -103,10 +100,7 @@
     </view>
 
     <!-- 布局3. 单列小图（左图，右内容） -->
-    <view
-      v-if="layoutType === LayoutTypeEnum.ONE_COL_SMALL_IMG && state.goodsList.length"
-      class="goods-lg-box"
-    >
+    <view v-if="layoutType === LayoutTypeEnum.ONE_COL_SMALL_IMG && state.goodsList.length" class="goods-lg-box">
       <view
         class="goods-box"
         :style="[{ marginBottom: data.space + 'px' }]"
@@ -241,14 +235,12 @@
     // 加载商品列表
     state.goodsList = await getGoodsListByIds(spuIds.join(','));
     // 拼接结算信息（营销）
-    await OrderApi.getSettlementProduct(state.goodsList.map((item) => item.id).join(',')).then(
-      (res) => {
-        if (res.code !== 0) {
-          return;
-        }
-        appendSettlementProduct(state.goodsList, res.data);
-      },
-    );
+    await OrderApi.getSettlementProduct(state.goodsList.map((item) => item.id).join(',')).then((res) => {
+      if (res.code !== 0) {
+        return;
+      }
+      appendSettlementProduct(state.goodsList, res.data);
+    });
     // 只有双列布局时需要
     if (layoutType === LayoutTypeEnum.TWO_COL) {
       // 分列

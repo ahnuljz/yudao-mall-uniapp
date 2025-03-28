@@ -2,12 +2,7 @@
 <template>
   <s-layout title="我的拼团">
     <su-sticky bgColor="#fff">
-      <su-tabs
-        :list="tabMaps"
-        :scrollable="false"
-        @change="onTabsChange"
-        :current="state.currentTab"
-      ></su-tabs>
+      <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab"></su-tabs>
     </su-sticky>
     <s-empty v-if="state.pagination.total === 0" icon="/static/goods-empty.png" />
     <view v-if="state.pagination.total > 0">
@@ -23,11 +18,7 @@
           </view>
         </view>
         <view class="border-bottom">
-          <s-goods-item
-            :img="record.picUrl"
-            :title="record.spuName"
-            :price="record.combinationPrice"
-          >
+          <s-goods-item :img="record.picUrl" :title="record.spuName" :price="record.combinationPrice">
             <template #groupon>
               <view class="ss-flex">
                 <view class="sales-title"> {{ record.userSize }} 人团 </view>

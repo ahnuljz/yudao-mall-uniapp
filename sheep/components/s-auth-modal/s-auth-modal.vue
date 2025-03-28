@@ -3,18 +3,10 @@
   <su-popup :show="authType !== ''" round="10" :showClose="true" @close="closeAuthModal">
     <view class="login-wrap">
       <!-- 1. 账号密码登录 accountLogin -->
-      <account-login
-        v-if="authType === 'accountLogin'"
-        :agreeStatus="state.protocol"
-        @onConfirm="onConfirm"
-      />
+      <account-login v-if="authType === 'accountLogin'" :agreeStatus="state.protocol" @onConfirm="onConfirm" />
 
       <!-- 2. 短信登录  smsLogin -->
-      <sms-login
-        v-if="authType === 'smsLogin'"
-        :agreeStatus="state.protocol"
-        @onConfirm="onConfirm"
-      />
+      <sms-login v-if="authType === 'smsLogin'" :agreeStatus="state.protocol" @onConfirm="onConfirm" />
 
       <!-- 3. 忘记密码 resetPassword-->
       <reset-password v-if="authType === 'resetPassword'" />
@@ -36,11 +28,7 @@
         <!-- 7.1 微信小程序的快捷登录 -->
         <view v-if="sheep.$platform.name === 'WechatMiniProgram'" class="ss-flex register-box">
           <view class="register-title">还没有账号?</view>
-          <button
-            class="ss-reset-button login-btn"
-            open-type="getPhoneNumber"
-            @getphonenumber="getPhoneNumber"
-          >
+          <button class="ss-reset-button login-btn" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
             快捷登录
           </button>
           <view class="circle" />
@@ -55,10 +43,7 @@
           @tap="thirdLogin('wechat')"
           class="ss-reset-button auto-login-btn"
         >
-          <image
-            class="auto-login-img"
-            :src="sheep.$url.static('/static/img/shop/platform/wechat.png')"
-          />
+          <image class="auto-login-img" :src="sheep.$url.static('/static/img/shop/platform/wechat.png')" />
         </button>
 
         <!-- 7.3 iOS 登录 TODO 芋艿：等后面搞 App 再弄 -->
@@ -67,10 +52,7 @@
           @tap="thirdLogin('apple')"
           class="ss-reset-button auto-login-btn"
         >
-          <image
-            class="auto-login-img"
-            :src="sheep.$url.static('/static/img/shop/platform/apple.png')"
-          />
+          <image class="auto-login-img" :src="sheep.$url.static('/static/img/shop/platform/apple.png')" />
         </button>
       </view>
 

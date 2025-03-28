@@ -21,13 +21,10 @@
 
   const elBackground = computed(() => {
     if (props.styles) {
-      if (props.styles.bgType === 'color')
-        return { background: props.styles.bgColor };
+      if (props.styles.bgType === 'color') return { background: props.styles.bgColor };
       if (props.styles.bgType === 'img')
         return {
-          background: `url(${sheep.$url.cdn(
-            props.styles.bgImage,
-          )}) no-repeat top center / 100% auto`,
+          background: `url(${sheep.$url.cdn(props.styles.bgImage)}) no-repeat top center / 100% auto`,
         };
     }
   });

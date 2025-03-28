@@ -11,12 +11,7 @@
     <su-sticky bgColor="#fff">
       <view class="ss-flex">
         <view class="ss-flex-1">
-          <su-tabs
-            :list="state.tabList"
-            :scrollable="false"
-            @change="onTabsChange"
-            :current="state.currentTab"
-          />
+          <su-tabs :list="state.tabList" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
         </view>
         <view class="list-icon" @tap="state.iconStatus = !state.iconStatus">
           <text v-if="state.iconStatus" class="sicon-goods-list" />
@@ -50,11 +45,7 @@
 
     <!-- 情况一：单列布局 -->
     <view v-if="state.iconStatus && state.pagination.total > 0" class="goods-list ss-m-t-20">
-      <view
-        class="ss-p-l-20 ss-p-r-20 ss-m-b-20"
-        v-for="item in state.pagination.list"
-        :key="item.id"
-      >
+      <view class="ss-p-l-20 ss-p-r-20 ss-m-b-20" v-for="item in state.pagination.list" :key="item.id">
         <s-goods-column
           class=""
           size="lg"

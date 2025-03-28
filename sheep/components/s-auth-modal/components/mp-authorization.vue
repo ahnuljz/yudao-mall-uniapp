@@ -20,11 +20,7 @@
     >
       <!-- 获取头像昵称：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/userProfile.html -->
       <uni-forms-item name="avatar" label="头像">
-        <button
-          class="ss-reset-button avatar-btn"
-          open-type="chooseAvatar"
-          @chooseavatar="onChooseAvatar"
-        >
+        <button class="ss-reset-button avatar-btn" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
           <image
             class="avatar-img"
             :src="sheep.$url.cdn(state.model.avatar)"
@@ -35,12 +31,7 @@
         </button>
       </uni-forms-item>
       <uni-forms-item name="nickname" label="昵称">
-        <uni-easyinput
-          type="nickname"
-          placeholder="请输入昵称"
-          v-model="state.model.nickname"
-          :inputBorder="false"
-        />
+        <uni-easyinput type="nickname" placeholder="请输入昵称" v-model="state.model.nickname" :inputBorder="false" />
       </uni-forms-item>
       <view class="foot-box">
         <button class="ss-reset-button authorization-btn" @tap="onConfirm"> 确认授权 </button>

@@ -17,11 +17,7 @@
         <view class="ui-label-text" :style="[labelStyle]">{{ label }}</view>
       </slot>
     </view>
-    <view
-      v-if="ui.includes('card')"
-      class="ui-radio-bg round"
-      :class="[isChecked ? 'cur ' + bg : '']"
-    ></view>
+    <view v-if="ui.includes('card')" class="ui-radio-bg round" :class="[isChecked ? 'cur ' + bg : '']"></view>
   </view>
 </template>
 

@@ -2,25 +2,13 @@
 <template>
   <s-layout :bgStyle="{ color: '#f2f2f2' }" title="优惠券">
     <su-sticky bgColor="#fff">
-      <su-tabs
-        :list="tabMaps"
-        :scrollable="false"
-        @change="onTabsChange"
-        :current="state.currentTab"
-      />
+      <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
     </su-sticky>
-    <s-empty
-      v-if="state.pagination.total === 0"
-      icon="/static/coupon-empty.png"
-      text="暂无优惠券"
-    />
+    <s-empty v-if="state.pagination.total === 0" icon="/static/coupon-empty.png" text="暂无优惠券" />
     <!-- 情况一：领劵中心 -->
     <template v-if="state.currentTab === 0">
       <view v-for="item in state.pagination.list" :key="item.id">
-        <s-coupon-list
-          :data="item"
-          @tap="sheep.$router.go('/pages/coupon/detail', { id: item.id })"
-        >
+        <s-coupon-list :data="item" @tap="sheep.$router.go('/pages/coupon/detail', { id: item.id })">
           <template #default>
             <button
               class="ss-reset-button card-btn ss-flex ss-row-center ss-col-center"
@@ -37,11 +25,7 @@
     <!-- 情况二：我的优惠劵 -->
     <template v-else>
       <view v-for="item in state.pagination.list" :key="item.id">
-        <s-coupon-list
-          :data="item"
-          type="user"
-          @tap="sheep.$router.go('/pages/coupon/detail', { couponId: item.id })"
-        >
+        <s-coupon-list :data="item" type="user" @tap="sheep.$router.go('/pages/coupon/detail', { couponId: item.id })">
           <template #default>
             <button
               class="ss-reset-button card-btn ss-flex ss-row-center ss-col-center"
@@ -186,8 +170,8 @@
       Option.type === 'geted'
         ? (state.currentTab = 1)
         : Option.type === 'used'
-        ? (state.currentTab = 2)
-        : (state.currentTab = 3);
+          ? (state.currentTab = 2)
+          : (state.currentTab = 3);
       state.type = state.currentTab;
       getCoupon();
     }

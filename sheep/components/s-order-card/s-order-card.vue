@@ -7,12 +7,7 @@
       :key="item.title"
       @tap="sheep.$router.go(item.path, { type: item.value })"
     >
-      <uni-badge
-        class="uni-badge-left-margin"
-        :text="numData.orderCount[item.count]"
-        absolute="rightTop"
-        size="small"
-      >
+      <uni-badge class="uni-badge-left-margin" :text="numData.orderCount[item.count]" absolute="rightTop" size="small">
         <image class="item-icon" :src="sheep.$url.static(item.icon)" mode="aspectFit" />
       </uni-badge>
       <view class="menu-title ss-m-t-28">{{ item.title }}</view>
@@ -69,29 +64,27 @@
   ];
   // 接收参数
   const props = defineProps({
-  	// 装修数据
-  	data: {
-  	  type: Object,
-  	  default: () => ({}),
-  	},
-  	// 装修样式
-  	styles: {
-  	  type: Object,
-  	  default: () => ({}),
-  	},
+    // 装修数据
+    data: {
+      type: Object,
+      default: () => ({}),
+    },
+    // 装修样式
+    styles: {
+      type: Object,
+      default: () => ({}),
+    },
   });
   // 设置角标
   const numData = computed(() => sheep.$store('user').numData);
   // 设置背景样式
   const style = computed(() => {
     // 直接从 props.styles 解构
-    const { bgType, bgImg, bgColor } = props.styles; 
+    const { bgType, bgImg, bgColor } = props.styles;
     // 根据 bgType 返回相应的样式
     return {
-  		background: bgType === 'img'
-  			? `url(${bgImg}) no-repeat top center / 100% 100%`
-  			: bgColor
-  	};
+      background: bgType === 'img' ? `url(${bgImg}) no-repeat top center / 100% 100%` : bgColor,
+    };
   });
 </script>
 

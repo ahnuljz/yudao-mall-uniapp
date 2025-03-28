@@ -76,9 +76,7 @@
           </view>
           <view class="countdown-title ss-flex" v-else>
             还差
-            <view class="num"
-              >{{ state.data.headRecord.userSize - state.data.headRecord.userCount }}人</view
-            >
+            <view class="num">{{ state.data.headRecord.userSize - state.data.headRecord.userCount }}人</view>
             拼团成功
             <view class="ss-flex countdown-time">
               <view class="countdown-h ss-flex ss-row-center">{{ endTime.h }}</view>
@@ -102,29 +100,13 @@
             <view class="header-tag ss-flex ss-col-center ss-row-center">团长</view>
           </view>
           <!-- 团员 -->
-          <view
-            class="header-avatar ss-m-r-24 ss-m-b-20"
-            v-for="item in state.data.memberRecords"
-            :key="item.id"
-          >
+          <view class="header-avatar ss-m-r-24 ss-m-b-20" v-for="item in state.data.memberRecords" :key="item.id">
             <image :src="sheep.$url.cdn(item.avatar)" class="avatar-img"></image>
-            <view
-              class="header-tag ss-flex ss-col-center ss-row-center"
-              v-if="item.is_leader == '1'"
-            >
-              团长
-            </view>
+            <view class="header-tag ss-flex ss-col-center ss-row-center" v-if="item.is_leader == '1'"> 团长 </view>
           </view>
           <!-- 还有几个坑位 -->
-          <view
-            class="default-avatar ss-m-r-24 ss-m-b-20"
-            v-for="item in state.remainNumber"
-            :key="item"
-          >
-            <image
-              :src="sheep.$url.static('/static/img/shop/avatar/unknown.png')"
-              class="avatar-img"
-            ></image>
+          <view class="default-avatar ss-m-r-24 ss-m-b-20" v-for="item in state.remainNumber" :key="item">
+            <image :src="sheep.$url.static('/static/img/shop/avatar/unknown.png')" class="avatar-img"></image>
           </view>
         </view>
       </view>
@@ -134,11 +116,7 @@
         v-if="state.data.headRecord.status === 1 || state.data.headRecord.status === 2"
         class="ss-m-t-40 ss-flex ss-row-center"
       >
-        <button
-          class="ss-reset-button order-btn"
-          v-if="state.data.orderId"
-          @tap="onDetail(state.data.orderId)"
-        >
+        <button class="ss-reset-button order-btn" v-if="state.data.orderId" @tap="onDetail(state.data.orderId)">
           查看订单
         </button>
         <button class="ss-reset-button join-btn" v-else @tap="onCreateGroupon"> 我要开团 </button>
@@ -147,19 +125,10 @@
       <!-- 情况三：拼团进行中，查看订单或参加或邀请好友或参加 -->
       <view v-if="state.data.headRecord.status === 0" class="ss-m-t-40 ss-flex ss-row-center">
         <view v-if="state.data.headRecord.expireTime <= new Date().getTime()">
-          <button
-            class="ss-reset-button join-btn"
-            v-if="state.data.orderId"
-            @tap="onDetail(state.data.orderId)"
-          >
+          <button class="ss-reset-button join-btn" v-if="state.data.orderId" @tap="onDetail(state.data.orderId)">
             查看订单
           </button>
-          <button
-            class="ss-reset-button disabled-btn"
-            v-else
-            disabled
-            @tap="onDetail(state.data.orderId)"
-          >
+          <button class="ss-reset-button disabled-btn" v-else disabled @tap="onDetail(state.data.orderId)">
             去参团
           </button>
         </view>
@@ -170,11 +139,7 @@
             </button>
           </view>
           <view v-else>
-            <button
-              class="ss-reset-button join-btn"
-              :disabled="endTime.ms <= 0"
-              @tap="onJoinGroupon()"
-            >
+            <button class="ss-reset-button join-btn" :disabled="endTime.ms <= 0" @tap="onJoinGroupon()">
               立即参团
             </button>
           </view>
@@ -193,7 +158,6 @@
           @close="state.showSelectSku = false"
         />
       </view>
-
     </view>
 
     <s-empty v-if="!state.data && !state.loading" icon="/static/goods-empty.png" />
@@ -306,9 +270,7 @@
       state.remainNumber = remainNumber > 0 ? remainNumber : 0;
 
       // 获取活动信息
-      const { data: activity } = await CombinationApi.getCombinationActivity(
-        data.headRecord.activityId,
-      );
+      const { data: activity } = await CombinationApi.getCombinationActivity(data.headRecord.activityId);
       state.activity = activity;
       state.grouponNum = activity.userSize;
       // 加载商品信息
@@ -348,7 +310,8 @@
   .recharge-box {
     position: relative;
     margin-bottom: 120rpx;
-    background: v-bind(headerBg) center/750rpx 100% no-repeat,
+    background:
+      v-bind(headerBg) center/750rpx 100% no-repeat,
       linear-gradient(115deg, #f44739 0%, #ff6600 100%);
     border-radius: 0 0 5% 5%;
     height: 100rpx;

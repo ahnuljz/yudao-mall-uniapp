@@ -14,13 +14,7 @@
         </view>
         <view
           class="list acea-row row-between-wrapper"
-          style="
-            padding: 0 30rpx;
-            height: 240rpx;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          "
+          style="padding: 0 30rpx; height: 240rpx; display: flex; justify-content: space-between; align-items: center"
         >
           <view class="item" v-for="(item, index) in state.signConfigList" :key="index">
             <view
@@ -41,22 +35,14 @@
               "
             >
             </view>
-            <view class="num" :class="state.signInfo.continuousDay >= item.day ? 'on' : ''">
-              + {{ item.point }}
-            </view>
+            <view class="num" :class="state.signInfo.continuousDay >= item.day ? 'on' : ''"> + {{ item.point }} </view>
           </view>
         </view>
 
         <!-- 签到按钮 -->
         <view class="myDateTable">
           <view class="ss-flex ss-col-center ss-row-center sign-box ss-m-y-40">
-            <button
-              class="ss-reset-button sign-btn"
-              v-if="!state.signInfo.todaySignIn"
-              @tap="onSign"
-            >
-              签到
-            </button>
+            <button class="ss-reset-button sign-btn" v-if="!state.signInfo.todaySignIn" @tap="onSign"> 签到 </button>
             <button class="ss-reset-button already-btn" v-else disabled> 已签到 </button>
           </view>
         </view>
@@ -66,9 +52,7 @@
       <view class="bg-white ss-m-t-16 ss-p-t-30 ss-p-b-60 ss-p-x-40">
         <view class="activity-title ss-m-b-30">签到说明</view>
         <view class="activity-des">1.已累计签到{{ state.signInfo.totalDay }}天</view>
-        <view class="activity-des">
-          2.据说连续签到第 {{ state.maxDay }} 天可获得超额积分，要坚持签到哦~~
-        </view>
+        <view class="activity-des"> 2.据说连续签到第 {{ state.maxDay }} 天可获得超额积分，要坚持签到哦~~ </view>
         <view class="activity-des"> 3.积分可以在购物时抵现金结算的哦 ~~</view>
       </view>
     </view>

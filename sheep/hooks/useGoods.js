@@ -299,9 +299,7 @@ export function useDurationTime(toTime, fromTime = '') {
 
   let durationTime = dayjs.duration(duration.value);
   return {
-    h: (durationTime.months() * 30 * 24 + durationTime.days() * 24 + durationTime.hours())
-      .toString()
-      .padStart(2, '0'),
+    h: (durationTime.months() * 30 * 24 + durationTime.days() * 24 + durationTime.hours()).toString().padStart(2, '0'),
     m: durationTime.minutes().toString().padStart(2, '0'),
     s: durationTime.seconds().toString().padStart(2, '0'),
     ms: durationTime.$ms,
@@ -477,8 +475,7 @@ export function getRewardActivityRuleItemDescriptions(activity) {
   }
   const result = [];
   activity.rules.forEach((rule) => {
-    const conditionTypeStr =
-      activity.conditionType === 10 ? `满${fen2yuanSimple(rule.limit)}元` : `满${rule.limit}件`;
+    const conditionTypeStr = activity.conditionType === 10 ? `满${fen2yuanSimple(rule.limit)}元` : `满${rule.limit}件`;
     // 满减
     if (rule.limit) {
       result.push(`${conditionTypeStr}减${fen2yuanSimple(rule.discountPrice)}元`);

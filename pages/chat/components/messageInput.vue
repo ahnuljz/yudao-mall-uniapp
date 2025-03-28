@@ -16,9 +16,7 @@
       :class="{ 'is-active': toolsMode === 'tools' }"
       @tap.stop="onTools('tools')"
     ></text>
-    <button v-if="message" class="ss-reset-button send-btn" @tap="sendMessage">
-      发送
-    </button>
+    <button v-if="message" class="ss-reset-button send-btn" @tap="sendMessage"> 发送 </button>
   </view>
 </template>
 
@@ -46,9 +44,8 @@
     },
     set(newValue) {
       emits(`update:modelValue`, newValue);
-    }
+    },
   });
-
 
   // 打开工具菜单
   function onTools(mode) {

@@ -103,15 +103,9 @@
     };
     return obj;
   };
-  const isAlways = computed(() =>
-    props.data.styleType === 'inner' ? Boolean(props.data.alwaysShow) : true,
-  );
+  const isAlways = computed(() => (props.data.styleType === 'inner' ? Boolean(props.data.alwaysShow) : true));
   const isOpacity = computed(() =>
-    props.data.styleType === 'normal'
-      ? false
-      : props.showLeftButton
-      ? false
-      : props.data.styleType === 'inner',
+    props.data.styleType === 'normal' ? false : props.showLeftButton ? false : props.data.styleType === 'inner',
   );
   const isPlaceholder = computed(() => props.data.styleType === 'normal');
   const bgStyles = computed(() => {
@@ -163,7 +157,9 @@
 
       .icon-box {
         background: #ffffff;
-        box-shadow: 0px 0px 4rpx rgba(51, 51, 51, 0.08), 0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
+        box-shadow:
+          0px 0px 4rpx rgba(51, 51, 51, 0.08),
+          0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
         border-radius: 30rpx;
         width: 134rpx;
         height: 56rpx;

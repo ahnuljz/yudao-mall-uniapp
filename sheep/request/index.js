@@ -80,13 +80,13 @@ http.interceptors.request.use(
     if (config.custom.showLoading) {
       LoadingInstance.count++;
       LoadingInstance.count === 1 &&
-      uni.showLoading({
-        title: config.custom.loadingMsg,
-        mask: true,
-        fail: () => {
-          uni.hideLoading();
-        },
-      });
+        uni.showLoading({
+          title: config.custom.loadingMsg,
+          mask: true,
+          fail: () => {
+            uni.hideLoading();
+          },
+        });
     }
 
     // 增加 token 令牌、terminal 终端、tenant 租户的请求头
@@ -98,6 +98,9 @@ http.interceptors.request.use(
 
     config.header['Accept'] = '*/*';
     config.header['tenant-id'] = tenantId;
+
+    console.info(`==========>>>：${JSON.stringify(config)}`);
+
     return config;
   },
   (error) => {
@@ -110,6 +113,8 @@ http.interceptors.request.use(
  */
 http.interceptors.response.use(
   (response) => {
+    console.warn(`==========<<<：${JSON.stringify(response.data)}`);
+
     // 约定：如果是 /auth/ 下的 URL 地址，并且返回了 accessToken 说明是登录相关的接口，则自动设置登陆令牌
     if (response.config.url.indexOf('/member/auth/') >= 0 && response.data?.data?.accessToken) {
       $store('user').setToken(response.data.data.accessToken, response.data.data.refreshToken);
@@ -127,7 +132,8 @@ http.interceptors.response.use(
       // 特殊：处理分销用户绑定失败的提示
       if ((response.data.code + '').includes('1011007')) {
         console.error(`分销用户绑定失败，原因：${response.data.message}`);
-      } else if (response.config.custom.showError) { // 错误提示
+      } else if (response.config.custom.showError) {
+        // 错误提示
         uni.showToast({
           title: response.data.message || '服务器开小差啦,请稍后再试~',
           icon: 'none',
@@ -137,11 +143,7 @@ http.interceptors.response.use(
     }
 
     // 自定义处理【showSuccess 成功提示】：如果需要显示成功提示，则显示成功提示
-    if (
-      response.config.custom.showSuccess &&
-      response.config.custom.successMsg !== '' &&
-      response.data.code === 0
-    ) {
+    if (response.config.custom.showSuccess && response.config.custom.successMsg !== '' && response.data.code === 0) {
       uni.showToast({
         title: response.config.custom.successMsg,
         icon: 'none',

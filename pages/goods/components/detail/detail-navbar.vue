@@ -98,7 +98,8 @@
 
   function getCommentCardNode() {
     return new Promise((res, rej) => {
-      uni.createSelectorQuery()
+      uni
+        .createSelectorQuery()
         .select('.detail-comment-selector')
         .boundingClientRect((data) => {
           if (data) {
@@ -136,10 +137,7 @@
 
     if (e.scrollTop < commentCard.top - sys_navBar) {
       state.curTab = 'goods';
-    } else if (
-      e.scrollTop >= commentCard.top - sys_navBar &&
-      e.scrollTop <= commentCard.bottom - sys_navBar
-    ) {
+    } else if (e.scrollTop >= commentCard.top - sys_navBar && e.scrollTop <= commentCard.bottom - sys_navBar) {
       state.curTab = 'comment';
     } else {
       state.curTab = 'detail';
@@ -149,7 +147,9 @@
 
 <style lang="scss" scoped>
   .icon-box {
-    box-shadow: 0px 0px 4rpx rgba(51, 51, 51, 0.08), 0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
+    box-shadow:
+      0px 0px 4rpx rgba(51, 51, 51, 0.08),
+      0px 4rpx 6rpx 2rpx rgba(102, 102, 102, 0.12);
     border-radius: 30rpx;
     width: 134rpx;
     height: 56rpx;

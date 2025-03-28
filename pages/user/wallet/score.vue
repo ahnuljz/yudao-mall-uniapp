@@ -24,12 +24,7 @@
     <su-sticky :customNavHeight="sys_navBar">
       <!-- 统计 -->
       <view class="filter-box ss-p-x-30 ss-flex ss-col-center ss-row-between">
-        <uni-datetime-picker
-          v-model="state.date"
-          type="daterange"
-          @change="onChangeTime"
-          :end="state.today"
-        >
+        <uni-datetime-picker v-model="state.date" type="daterange" @change="onChangeTime" :end="state.today">
           <button class="ss-reset-button date-btn">
             <text>{{ dateFilterText }}</text>
             <text class="cicon-drop-down ss-seldate-icon"></text>
@@ -42,12 +37,7 @@
         <!--					<view>总支出￥{{ -state.pagination.expense }}</view>-->
         <!--				</view>-->
       </view>
-      <su-tabs
-        :list="tabMaps"
-        @change="onChange"
-        :scrollable="false"
-        :current="state.currentTab"
-      ></su-tabs>
+      <su-tabs :list="tabMaps" @change="onChange" :scrollable="false" :current="state.currentTab"></su-tabs>
     </su-sticky>
 
     <!-- list -->
@@ -59,12 +49,8 @@
           :key="item.id"
         >
           <view class="ss-flex-col">
-            <view class="name"
-              >{{ item.title }}{{ item.description ? ' - ' + item.description : '' }}</view
-            >
-            <view class="time">{{
-              sheep.$helper.timeFormat(item.createTime, 'yyyy-mm-dd hh:MM:ss')
-            }}</view>
+            <view class="name">{{ item.title }}{{ item.description ? ' - ' + item.description : '' }}</view>
+            <view class="time">{{ sheep.$helper.timeFormat(item.createTime, 'yyyy-mm-dd hh:MM:ss') }}</view>
           </view>
           <view class="add" v-if="item.point > 0">+{{ item.point }}</view>
           <view class="minus" v-else>{{ item.point }}</view>
@@ -185,8 +171,7 @@
 <style lang="scss" scoped>
   .header-box {
     width: 100%;
-    background: linear-gradient(180deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%)
-      no-repeat;
+    background: linear-gradient(180deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%) no-repeat;
     background-size: 750rpx 100%;
     padding: 0 0 120rpx 0;
     box-sizing: border-box;

@@ -30,11 +30,7 @@
           class="detail-tabbar-item ss-flex ss-flex-col ss-row-center ss-col-center"
           @tap="onChat"
         >
-          <image
-            class="item-icon"
-            :src="sheep.$url.static('/static/img/shop/goods/message.png')"
-            mode="aspectFit"
-          />
+          <image class="item-icon" :src="sheep.$url.static('/static/img/shop/goods/message.png')" mode="aspectFit" />
           <view class="item-title">客服</view>
         </view>
         <view
@@ -42,11 +38,7 @@
           class="detail-tabbar-item ss-flex ss-flex-col ss-row-center ss-col-center"
           @tap="showShareModal"
         >
-          <image
-            class="item-icon"
-            :src="sheep.$url.static('/static/img/shop/goods/share.png')"
-            mode="aspectFit"
-          />
+          <image class="item-icon" :src="sheep.$url.static('/static/img/shop/goods/share.png')" mode="aspectFit" />
           <view class="item-title">分享</view>
         </view>
         <slot></slot>
@@ -119,15 +111,15 @@
     if (props.modelValue.favorite) {
       const { code } = await FavoriteApi.deleteFavorite(props.modelValue.id);
       if (code !== 0) {
-        return
+        return;
       }
       sheep.$helper.toast('取消收藏');
       props.modelValue.favorite = false;
-    // 情况二：添加收藏
+      // 情况二：添加收藏
     } else {
       const { code } = await FavoriteApi.createFavorite(props.modelValue.id);
       if (code !== 0) {
-        return
+        return;
       }
       sheep.$helper.toast('收藏成功');
       props.modelValue.favorite = true;

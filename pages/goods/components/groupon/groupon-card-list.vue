@@ -37,7 +37,7 @@
   import { onMounted, reactive } from 'vue';
   import sheep from '@/sheep';
   import { useDurationTime } from '@/sheep/hooks/useGoods';
-  import CombinationApi from "@/sheep/api/promotion/combination";
+  import CombinationApi from '@/sheep/api/promotion/combination';
 
   const props = defineProps({
     modelValue: {
@@ -74,7 +74,7 @@
   onMounted(async () => {
     // 查询参团记录
     // status = 0 表示未成团
-    const { data } = await CombinationApi.getHeadCombinationRecordList(props.modelValue.id, 0 , 10);
+    const { data } = await CombinationApi.getHeadCombinationRecordList(props.modelValue.id, 0, 10);
     state.list = data;
   });
 </script>

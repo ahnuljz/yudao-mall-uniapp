@@ -15,10 +15,7 @@
         <view class="num-title">可提现金额（元）</view>
         <view class="wallet-num">{{ fen2yuan(state.brokerageInfo.brokeragePrice) }}</view>
       </view>
-      <button
-        class="ss-reset-button log-btn"
-        @tap="sheep.$router.go('/pages/commission/wallet', { type: 2 })"
-      >
+      <button class="ss-reset-button log-btn" @tap="sheep.$router.go('/pages/commission/wallet', { type: 2 })">
         提现记录
       </button>
     </view>
@@ -49,9 +46,7 @@
         />
       </view>
       <!-- 提现账号 -->
-      <view class="card-title" v-show="['2', '3', '4', '5'].includes(state.accountInfo.type)">
-        提现账号
-      </view>
+      <view class="card-title" v-show="['2', '3', '4', '5'].includes(state.accountInfo.type)"> 提现账号 </view>
       <view
         class="input-box ss-flex ss-col-center border-bottom"
         v-show="['2', '3', '4'].includes(state.accountInfo.type)"
@@ -66,10 +61,7 @@
       </view>
       <!-- 收款码 -->
       <view class="card-title" v-show="['3', '4'].includes(state.accountInfo.type)">收款码</view>
-      <view
-        class="input-box ss-flex ss-col-center"
-        v-show="['3', '4'].includes(state.accountInfo.type)"
-      >
+      <view class="input-box ss-flex ss-col-center" v-show="['3', '4'].includes(state.accountInfo.type)">
         <view class="unit" />
         <view class="upload-img">
           <s-uploader
@@ -78,16 +70,13 @@
             limit="1"
             mode="grid"
             :imageStyles="{ width: '168rpx', height: '168rpx' }"
-            @success="(payload) => state.accountInfo.accountQrCodeUrl = payload.tempFilePaths[0]"
+            @success="(payload) => (state.accountInfo.accountQrCodeUrl = payload.tempFilePaths[0])"
           />
         </view>
       </view>
       <!-- 持卡人姓名 -->
       <view class="card-title" v-show="state.accountInfo.type === '2'">持卡人</view>
-      <view
-        class="input-box ss-flex ss-col-center border-bottom"
-        v-show="state.accountInfo.type === '2'"
-      >
+      <view class="input-box ss-flex ss-col-center border-bottom" v-show="state.accountInfo.type === '2'">
         <view class="unit" />
         <uni-easyinput
           :inputBorder="false"
@@ -98,10 +87,7 @@
       </view>
       <!-- 提现银行 -->
       <view class="card-title" v-show="state.accountInfo.type === '2'">提现银行</view>
-      <view
-        class="input-box ss-flex ss-col-center border-bottom"
-        v-show="state.accountInfo.type === '2'"
-      >
+      <view class="input-box ss-flex ss-col-center border-bottom" v-show="state.accountInfo.type === '2'">
         <view class="unit" />
         <!--银行改为下拉选择-->
         <picker
@@ -123,10 +109,7 @@
       </view>
       <!-- 开户地址 -->
       <view class="card-title" v-show="state.accountInfo.type === '2'">开户地址</view>
-      <view
-        class="input-box ss-flex ss-col-center border-bottom"
-        v-show="state.accountInfo.type === '2'"
-      >
+      <view class="input-box ss-flex ss-col-center border-bottom" v-show="state.accountInfo.type === '2'">
         <view class="unit" />
         <uni-easyinput
           :inputBorder="false"
@@ -135,9 +118,7 @@
           placeholder="请输入开户地址"
         />
       </view>
-      <button class="ss-reset-button save-btn ui-BG-Main-Gradient ui-Shadow-Main" @tap="onConfirm">
-        确认提现
-      </button>
+      <button class="ss-reset-button save-btn ui-BG-Main-Gradient ui-Shadow-Main" @tap="onConfirm"> 确认提现 </button>
     </view>
 
     <!-- 提现说明 -->
@@ -145,8 +126,8 @@
       <view class="title ss-m-b-30">提现说明</view>
       <view class="draw-list"> 最低提现金额 {{ fen2yuan(state.minPrice) }} 元 </view>
       <view class="draw-list">
-        冻结佣金：<text>￥{{ fen2yuan(state.brokerageInfo.frozenPrice) }}</text>
-        （每笔佣金的冻结期为 {{ state.frozenDays }} 天，到期后可提现）
+        冻结佣金：<text>￥{{ fen2yuan(state.brokerageInfo.frozenPrice) }}</text> （每笔佣金的冻结期为
+        {{ state.frozenDays }} 天，到期后可提现）
       </view>
     </view>
 

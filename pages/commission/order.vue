@@ -25,13 +25,7 @@
 
     <!-- tab -->
     <su-sticky bgColor="#fff">
-      <su-tabs
-        :list="tabMaps"
-        :scrollable="false"
-        :current="state.currentTab"
-        @change="onTabsChange"
-      >
-      </su-tabs>
+      <su-tabs :list="tabMaps" :scrollable="false" :current="state.currentTab" @change="onTabsChange"> </su-tabs>
     </su-sticky>
 
     <!-- 订单 -->
@@ -131,7 +125,7 @@
       pageNo: state.pagination.pageNo,
       bizType: 1, // 获得推广佣金
       status: tab.value,
-    }
+    };
     if (tab.value < 0) {
       delete queryParams.status;
     }
@@ -171,7 +165,8 @@
     box-sizing: border-box;
     padding: 0 20rpx 20rpx 20rpx;
     width: 750rpx;
-    background: v-bind(headerBg) no-repeat,
+    background:
+      v-bind(headerBg) no-repeat,
       linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
 

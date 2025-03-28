@@ -45,16 +45,9 @@
           >
             <view class="checkbox__inner-icon"></view>
           </view>
-          <view
-            class="checklist-content"
-            :class="{ 'list-content': mode === 'list' && icon === 'left' }"
-          >
+          <view class="checklist-content" :class="{ 'list-content': mode === 'list' && icon === 'left' }">
             <text class="checklist-text" :style="item.styleIconText">{{ item[map.text] }}</text>
-            <view
-              v-if="mode === 'list' && icon === 'right'"
-              class="checkobx__list"
-              :style="item.styleBackgroud"
-            ></view>
+            <view v-if="mode === 'list' && icon === 'right'" class="checkobx__list" :style="item.styleBackgroud"></view>
           </view>
         </label>
       </checkbox-group>
@@ -91,16 +84,9 @@
           >
             <view class="radio__inner-icon" :style="item.styleIcon"></view>
           </view>
-          <view
-            class="checklist-content"
-            :class="{ 'list-content': mode === 'list' && icon === 'left' }"
-          >
+          <view class="checklist-content" :class="{ 'list-content': mode === 'list' && icon === 'left' }">
             <text class="checklist-text" :style="item.styleIconText">{{ item[map.text] }}</text>
-            <view
-              v-if="mode === 'list' && icon === 'right'"
-              :style="item.styleRightIcon"
-              class="checkobx__list"
-            ></view>
+            <view v-if="mode === 'list' && icon === 'right'" :style="item.styleRightIcon" class="checkobx__list"></view>
           </view>
         </label>
       </radio-group>
@@ -488,17 +474,9 @@
         let classles = '';
         let selectedColor = this.selectedColor ? this.selectedColor : '#2979ff';
         if (this.mode === 'tag') {
-          styles.color = item.selected
-            ? this.selectedTextColor
-              ? this.selectedTextColor
-              : '#fff'
-            : '#666';
+          styles.color = item.selected ? (this.selectedTextColor ? this.selectedTextColor : '#fff') : '#666';
         } else {
-          styles.color = item.selected
-            ? this.selectedTextColor
-              ? this.selectedTextColor
-              : selectedColor
-            : '#666';
+          styles.color = item.selected ? (this.selectedTextColor ? this.selectedTextColor : selectedColor) : '#666';
         }
         if (!item.selected && item.disabled) {
           styles.color = '#999';

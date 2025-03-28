@@ -18,10 +18,7 @@
       </view>
       <view class="notice-title"> 抱歉！您没有分销权限 </view>
       <view class="notice-detail"> 该功能暂不可用 </view>
-      <button
-        class="ss-reset-button notice-btn ui-Shadow-Main ui-BG-Main-Gradient"
-        @tap="sheep.$router.back()"
-      >
+      <button class="ss-reset-button notice-btn ui-Shadow-Main ui-BG-Main-Gradient" @tap="sheep.$router.back()">
         知道了
       </button>
       <button class="ss-reset-button back-btn" @tap="sheep.$router.back()"> 返回 </button>

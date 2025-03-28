@@ -7,10 +7,7 @@
       <view class="container-list ss-flex ss-flex-wrap">
         <view class="list-item ss-m-b-24" v-for="item in list" :key="item.title">
           <view class="ss-flex-col ss-col-center">
-            <button
-              class="ss-reset-button list-image ss-flex ss-row-center ss-col-center"
-              @tap="onClick(item)"
-            >
+            <button class="ss-reset-button list-image ss-flex ss-row-center ss-col-center" @tap="onClick(item)">
               <image v-if="show" :src="sheep.$url.static(item.icon)" class="list-icon" />
             </button>
             <view class="list-title ss-m-t-20">{{ item.title }}</view>

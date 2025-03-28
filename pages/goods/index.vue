@@ -30,28 +30,20 @@
           <!-- 限时折扣/会员价的优惠信息 -->
           <view
             class="discount"
-            v-if="
-              state.settlementSku && state.settlementSku.id && state.settlementSku.promotionPrice
-            "
+            v-if="state.settlementSku && state.settlementSku.id && state.settlementSku.promotionPrice"
           >
             <image class="disImg" :src="sheep.$url.static('/static/img/shop/goods/dis.png')" />
             <view class="discountCont">
               <view class="disContT">
                 <view class="disContT1">
-                  <view class="disContT1P">
-                    ￥{{ fen2yuan(state.settlementSku.promotionPrice) }}
-                  </view>
+                  <view class="disContT1P"> ￥{{ fen2yuan(state.settlementSku.promotionPrice) }} </view>
                   <view class="disContT1End">
                     直降￥
                     {{ fen2yuan(state.settlementSku.price - state.settlementSku.promotionPrice) }}
                   </view>
                 </view>
-                <view class="disContT2" v-if="state.settlementSku.promotionType === 4">
-                  限时折扣
-                </view>
-                <view class="disContT2" v-else-if="state.settlementSku.promotionType === 6">
-                  会员折扣
-                </view>
+                <view class="disContT2" v-if="state.settlementSku.promotionType === 4"> 限时折扣 </view>
+                <view class="disContT2" v-else-if="state.settlementSku.promotionType === 6"> 会员折扣 </view>
               </view>
               <view class="disContB">
                 <view class="disContB1">
@@ -77,10 +69,7 @@
           <!-- 价格+标题 -->
           <view class="title-card detail-card ss-p-y-30 ss-p-x-20">
             <!-- 没有限时折扣/会员价的优惠信息时，展示的价格信息 -->
-            <view
-              class="ss-flex ss-row-between ss-col-center ss-m-b-26"
-              v-if="!state.settlementSku.promotionPrice"
-            >
+            <view class="ss-flex ss-row-between ss-col-center ss-m-b-26" v-if="!state.settlementSku.promotionPrice">
               <view class="price-box ss-flex ss-col-bottom">
                 <view class="price-text ss-m-r-16">
                   {{ fen2yuan(state.selectedSku.price || state.goodsInfo.price) }}
@@ -112,9 +101,10 @@
                 <view class="tag-box ss-flex">
                   <!-- 最多打印 3 条，所以需要扣除优惠劵已打印的 -->
                   <view
-                    v-for="item in getRewardActivityRuleItemDescriptions(
-                      state.rewardActivity,
-                    ).slice(0, 3 - state.couponInfo.slice(0, 1).length)"
+                    v-for="item in getRewardActivityRuleItemDescriptions(state.rewardActivity).slice(
+                      0,
+                      3 - state.couponInfo.slice(0, 1).length,
+                    )"
                     :key="item"
                     class="tag ss-m-r-10"
                     @tap="onOpenActivity"
@@ -160,32 +150,18 @@
         <!-- 评价 -->
         <detail-comment-card class="detail-comment-selector" :goodsId="state.goodsId" />
         <!-- 详情 -->
-        <detail-content-card
-          class="detail-content-selector"
-          :content="state.goodsInfo.description"
-        />
+        <detail-content-card class="detail-content-selector" :content="state.goodsInfo.description" />
 
         <!-- 活动跳转：拼团/秒杀/砍价活动 -->
-        <detail-activity-tip
-          v-if="state.activityList.length > 0"
-          :activity-list="state.activityList"
-        />
+        <detail-activity-tip v-if="state.activityList.length > 0" :activity-list="state.activityList" />
 
         <!-- 详情 tabbar -->
         <detail-tabbar v-model="state.goodsInfo">
           <view class="buy-box ss-flex ss-col-center ss-p-r-20" v-if="state.goodsInfo.stock > 0">
-            <button
-              class="ss-reset-button add-btn ui-Shadow-Main"
-              @tap="state.showSelectSku = true"
-            >
+            <button class="ss-reset-button add-btn ui-Shadow-Main" @tap="state.showSelectSku = true">
               加入购物车
             </button>
-            <button
-              class="ss-reset-button buy-btn ui-Shadow-Main"
-              @tap="state.showSelectSku = true"
-            >
-              立即购买
-            </button>
+            <button class="ss-reset-button buy-btn ui-Shadow-Main" @tap="state.showSelectSku = true"> 立即购买 </button>
           </view>
           <view class="buy-box ss-flex ss-col-center ss-p-r-20" v-else>
             <button class="ss-reset-button disabled-btn" disabled> 已售罄 </button>

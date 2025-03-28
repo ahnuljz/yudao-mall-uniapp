@@ -8,9 +8,7 @@
     <!-- 下架/售罄提醒 -->
     <s-empty
       v-else-if="
-        state.goodsInfo === null ||
-        state.activity.status !== 0 ||
-        state.activity.endTime < new Date().getTime()
+        state.goodsInfo === null || state.activity.status !== 0 || state.activity.endTime < new Date().getTime()
       "
       text="活动不存在或已结束"
       icon="/static/soldout-empty.png"
@@ -42,9 +40,7 @@
                 <view class="tig ss-flex ss-col-center">
                   <view class="tig-icon ss-flex ss-col-center ss-row-center">
                     <view class="groupon-tag">
-                      <image
-                        :src="sheep.$url.static('/static/img/shop/goods/groupon-tag.png')"
-                      ></image>
+                      <image :src="sheep.$url.static('/static/img/shop/goods/groupon-tag.png')"></image>
                     </view>
                   </view>
                   <view class="tig-title">拼团价</view>
@@ -116,11 +112,7 @@
           <button
             class="ss-reset-button btn-tox ss-flex-col"
             @tap="onCreateGroupon"
-            :class="
-              state.activity.status === 0 && state.goodsInfo.stock !== 0
-                ? 'check-btn-box'
-                : 'disabled-btn-box'
-            "
+            :class="state.activity.status === 0 && state.goodsInfo.stock !== 0 ? 'check-btn-box' : 'disabled-btn-box'"
             :disabled="state.goodsInfo.stock === 0 || state.activity.status !== 0"
           >
             <view class="btn-price">{{

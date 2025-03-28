@@ -1,8 +1,5 @@
 <template>
-  <su-popup
-    :show="showTools"
-    @close="handleClose"
-  >
+  <su-popup :show="showTools" @close="handleClose">
     <view class="ss-modal-box ss-flex-col">
       <slot></slot>
       <view class="content ss-flex ss-flex-1">
@@ -20,7 +17,8 @@
             <swiper-item v-for="emoji in emojiPage" :key="emoji">
               <view class="ss-flex ss-flex-wrap">
                 <image
-                  v-for="item in emoji" :key="item"
+                  v-for="item in emoji"
+                  :key="item"
                   class="emoji-img"
                   :src="sheep.$url.cdn(`/static/img/chat/emoji/${item.file}`)"
                   @tap="onEmoji(item)"
@@ -37,28 +35,16 @@
               :imageStyles="{ width: 50, height: 50, border: false }"
               @select="imageSelect({ type: 'image', data: $event })"
             >
-              <image
-                class="icon"
-                :src="sheep.$url.static('/static/img/shop/chat/image.png')"
-                mode="aspectFill"
-              ></image>
+              <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/image.png')" mode="aspectFill"></image>
             </s-uploader>
             <view>图片</view>
           </view>
           <view class="goods" @tap="onShowSelect('goods')">
-            <image
-              class="icon"
-              :src="sheep.$url.static('/static/img/shop/chat/goods.png')"
-              mode="aspectFill"
-            ></image>
+            <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/goods.png')" mode="aspectFill"></image>
             <view>商品</view>
           </view>
           <view class="order" @tap="onShowSelect('order')">
-            <image
-              class="icon"
-              :src="sheep.$url.static('/static/img/shop/chat/order.png')"
-              mode="aspectFill"
-            ></image>
+            <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/order.png')" mode="aspectFill"></image>
             <view>订单</view>
           </view>
         </template>

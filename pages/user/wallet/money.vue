@@ -13,12 +13,8 @@
           />
         </view>
         <view class="ss-flex ss-row-between ss-col-center ss-m-t-64">
-          <view class="money-num">{{
-            state.showMoney ? fen2yuan(userWallet.balance) : '*****'
-          }}</view>
-          <button class="ss-reset-button topup-btn" @tap="sheep.$router.go('/pages/pay/recharge')">
-            充值
-          </button>
+          <view class="money-num">{{ state.showMoney ? fen2yuan(userWallet.balance) : '*****' }}</view>
+          <button class="ss-reset-button topup-btn" @tap="sheep.$router.go('/pages/pay/recharge')"> 充值 </button>
         </view>
       </view>
     </view>
@@ -26,12 +22,7 @@
     <su-sticky>
       <!-- 统计 -->
       <view class="filter-box ss-p-x-30 ss-flex ss-col-center ss-row-between">
-        <uni-datetime-picker
-          v-model="state.data"
-          type="daterange"
-          @change="onChangeTime"
-          :end="state.today"
-        >
+        <uni-datetime-picker v-model="state.data" type="daterange" @change="onChangeTime" :end="state.today">
           <button class="ss-reset-button date-btn">
             <text>{{ dateFilterText }}</text>
             <text class="cicon-drop-down ss-seldate-icon"></text>
@@ -42,22 +33,13 @@
           <view>总支出￥{{ fen2yuan(state.summary.totalExpense) }}</view>
         </view>
       </view>
-      <su-tabs
-        :list="tabMaps"
-        @change="onChange"
-        :scrollable="false"
-        :current="state.currentTab"
-      ></su-tabs>
+      <su-tabs :list="tabMaps" @change="onChange" :scrollable="false" :current="state.currentTab"></su-tabs>
     </su-sticky>
     <s-empty v-if="state.pagination.total === 0" text="暂无数据" icon="/static/data-empty.png" />
 
     <!-- 钱包记录 -->
     <view v-if="state.pagination.total > 0">
-      <view
-        class="wallet-list ss-flex border-bottom"
-        v-for="item in state.pagination.list"
-        :key="item.id"
-      >
+      <view class="wallet-list ss-flex border-bottom" v-for="item in state.pagination.list" :key="item.id">
         <view class="list-content">
           <view class="title-box ss-flex ss-row-between ss-m-b-20">
             <text class="title ss-line-1">

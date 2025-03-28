@@ -85,13 +85,7 @@ export function formatDate(date, format = 'YYYY-MM-DD HH:mm:ss') {
  * @param {*} children 孩子节点字段 默认 'children'
  * @param {*} rootId 根Id 默认 0
  */
-export function handleTree(
-  data,
-  id = 'id',
-  parentId = 'parentId',
-  children = 'children',
-  rootId = 0,
-) {
+export function handleTree(data, id = 'id', parentId = 'parentId', children = 'children', rootId = 0) {
   // 对源数据深度克隆
   const cloneData = JSON.parse(JSON.stringify(data));
   // 循环所有项

@@ -14,34 +14,22 @@
       >
         <template #rightBottom>
           <view class="ss-flex ss-row-between">
-            <view class="commission-num" v-if="item.brokerageMinPrice === undefined"
-              >预计佣金：计算中</view
-            >
-            <view
-              class="commission-num"
-              v-else-if="item.brokerageMinPrice === item.brokerageMaxPrice"
-            >
+            <view class="commission-num" v-if="item.brokerageMinPrice === undefined">预计佣金：计算中</view>
+            <view class="commission-num" v-else-if="item.brokerageMinPrice === item.brokerageMaxPrice">
               预计佣金：{{ fen2yuan(item.brokerageMinPrice) }}
             </view>
             <view class="commission-num" v-else>
               预计佣金：{{ fen2yuan(item.brokerageMinPrice) }} ~
               {{ fen2yuan(item.brokerageMaxPrice) }}
             </view>
-            <button
-              class="ss-reset-button share-btn ui-BG-Main-Gradient"
-              @tap.stop="onShareGoods(item)"
-            >
+            <button class="ss-reset-button share-btn ui-BG-Main-Gradient" @tap.stop="onShareGoods(item)">
               分享赚
             </button>
           </view>
         </template>
       </s-goods-item>
     </view>
-    <s-empty
-      v-if="state.pagination.total === 0"
-      icon="/static/goods-empty.png"
-      text="暂无推广商品"
-    />
+    <s-empty v-if="state.pagination.total === 0" icon="/static/goods-empty.png" text="暂无推广商品" />
     <!-- 加载更多 -->
     <uni-load-more
       v-if="state.pagination.total > 0"

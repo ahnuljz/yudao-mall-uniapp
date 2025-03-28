@@ -1,8 +1,19 @@
 body {
   color: var(--text-a);
   background-color: var(--ui-BG-1) !important;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 /* ==================
@@ -89,8 +100,7 @@ $utilities: map-merge(
       responsive: true,
       property: margin,
       class: m,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -100,8 +110,7 @@ $utilities: map-merge(
     'margin-x': (
       property: margin-right margin-left,
       class: mx,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -111,8 +120,7 @@ $utilities: map-merge(
     'margin-y': (
       property: margin-top margin-bottom,
       class: my,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -122,8 +130,7 @@ $utilities: map-merge(
     'margin-top': (
       property: margin-top,
       class: mt,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -133,8 +140,7 @@ $utilities: map-merge(
     'margin-right': (
       property: margin-right,
       class: mr,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -144,8 +150,7 @@ $utilities: map-merge(
     'margin-bottom': (
       property: margin-bottom,
       class: mb,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -155,8 +160,7 @@ $utilities: map-merge(
     'margin-left': (
       property: margin-left,
       class: ml,
-      values:
-        map-merge(
+      values: map-merge(
           $spacers,
           (
             auto: auto,
@@ -218,8 +222,7 @@ $utilities: map-merge(
     'font-color': (
       property: color,
       class: text,
-      values:
-        map-merge(
+      values: map-merge(
           $colors,
           map-merge(
             $grays,
@@ -337,11 +340,7 @@ $utilities: map-merge(
       @if type-of($properties) == 'string' {
         $properties: append((), $properties);
       }
-      $property-class: if(
-        map-has-key($utility, class),
-        map-get($utility, class),
-        nth($properties, 1)
-      );
+      $property-class: if(map-has-key($utility, class), map-get($utility, class), nth($properties, 1));
       $property-class: if($property-class == null, '', $property-class);
       $property-class-modifier: if($key, if($property-class == '', '', '-') + $key, '');
       .#{$property-class + $property-class-modifier} {

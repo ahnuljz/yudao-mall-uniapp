@@ -27,10 +27,7 @@
             <view class="icon-del rotate"></view>
           </view>
         </view>
-        <view
-          v-if="(item.progress && item.progress !== 100) || item.progress === 0"
-          class="file-picker__progress"
-        >
+        <view v-if="(item.progress && item.progress !== 100) || item.progress === 0" class="file-picker__progress">
           <progress
             class="file-picker__progress-item"
             :percent="item.progress === -1 ? 0 : item.progress"
@@ -38,11 +35,7 @@
             :backgroundColor="item.errMsg ? '#ff5a5f' : '#EBEBEB'"
           />
         </view>
-        <view
-          v-if="item.status === 'error'"
-          class="file-picker__mask"
-          @click.stop="uploadFiles(item, index)"
-        >
+        <view v-if="item.status === 'error'" class="file-picker__mask" @click.stop="uploadFiles(item, index)">
           点击重试
         </view>
       </view>

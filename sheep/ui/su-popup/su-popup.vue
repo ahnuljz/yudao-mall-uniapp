@@ -287,8 +287,7 @@
     },
     mounted() {
       const fixSize = () => {
-        const { windowWidth, windowHeight, windowTop, safeArea, screenHeight, safeAreaInsets } =
-          sheep.$platform.device;
+        const { windowWidth, windowHeight, windowTop, safeArea, screenHeight, safeAreaInsets } = sheep.$platform.device;
         this.popupWidth = windowWidth;
         this.popupHeight = windowHeight + (windowTop || 0);
         // TODO fix by mehaotian 是否适配底部安全区 ,目前微信ios 、和 app ios 计算有差异，需要框架修复

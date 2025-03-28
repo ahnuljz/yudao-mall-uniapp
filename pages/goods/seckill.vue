@@ -7,9 +7,7 @@
     <detailSkeleton v-if="state.skeletonLoading" />
     <!-- 下架/售罄提醒 -->
     <s-empty
-      v-else-if="
-        state.goodsInfo === null || state.goodsInfo.activity_type !== 'seckill' || endTime.ms <= 0
-      "
+      v-else-if="state.goodsInfo === null || state.goodsInfo.activity_type !== 'seckill' || endTime.ms <= 0"
       text="活动不存在或已结束"
       icon="/static/soldout-empty.png"
       showAction
@@ -106,9 +104,7 @@
           <button v-else class="ss-reset-button origin-price-btn ss-flex-col">
             <view
               class="no-original"
-              :class="
-                state.goodsInfo.stock === 0 || timeStatusEnum !== TimeStatusEnum.STARTED ? '' : ''
-              "
+              :class="state.goodsInfo.stock === 0 || timeStatusEnum !== TimeStatusEnum.STARTED ? '' : ''"
             >
               秒杀价
             </view>
@@ -242,10 +238,7 @@
     state.goodsSwiper = formatGoodsSwiper(state.goodsInfo.sliderPicUrls);
 
     // 默认显示最低价
-    state.goodsInfo.price = min([
-      state.goodsInfo.price,
-      ...activity.value.products.map((spu) => spu.seckillPrice),
-    ]);
+    state.goodsInfo.price = min([state.goodsInfo.price, ...activity.value.products.map((spu) => spu.seckillPrice)]);
 
     // 价格、库存使用活动的
     data.skus.forEach((sku) => {

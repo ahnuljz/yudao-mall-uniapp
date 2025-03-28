@@ -2,12 +2,7 @@
 <template>
   <s-layout title="我的订单">
     <su-sticky bgColor="#fff">
-      <su-tabs
-        :list="tabMaps"
-        :scrollable="false"
-        @change="onTabsChange"
-        :current="state.currentTab"
-      />
+      <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
     </su-sticky>
     <s-empty v-if="state.pagination.total === 0" icon="/static/order-empty.png" text="暂无订单" />
     <view v-if="state.pagination.total > 0">
@@ -34,9 +29,7 @@
         </view>
         <view class="pay-box ss-m-t-30 ss-flex ss-row-right ss-p-r-20">
           <view class="ss-flex ss-col-center">
-            <view class="discounts-title pay-color"
-              >共 {{ order.productCount }} 件商品,总金额:</view
-            >
+            <view class="discounts-title pay-color">共 {{ order.productCount }} 件商品,总金额:</view>
             <view class="discounts-money pay-color"> ￥{{ fen2yuan(order.payPrice) }} </view>
           </view>
         </view>
@@ -121,12 +114,7 @@
 <script setup>
   import { reactive } from 'vue';
   import { onLoad, onReachBottom, onPullDownRefresh } from '@dcloudio/uni-app';
-  import {
-    fen2yuan,
-    formatOrderColor,
-    formatOrderStatus,
-    handleOrderButtons,
-  } from '@/sheep/hooks/useGoods';
+  import { fen2yuan, formatOrderColor, formatOrderStatus, handleOrderButtons } from '@/sheep/hooks/useGoods';
   import sheep from '@/sheep';
   import _ from 'lodash-es';
   import { isEmpty } from 'lodash-es';

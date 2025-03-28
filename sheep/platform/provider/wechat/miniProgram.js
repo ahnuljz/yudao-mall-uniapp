@@ -126,14 +126,14 @@ async function getInfo() {
 const checkUpdate = async (silence = true) => {
   if (uni.canIUse('getUpdateManager')) {
     const updateManager = uni.getUpdateManager();
-    updateManager.onCheckForUpdate(function(res) {
+    updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
       if (res.hasUpdate) {
-        updateManager.onUpdateReady(function() {
+        updateManager.onUpdateReady(function () {
           uni.showModal({
             title: '更新提示',
             content: '新版本已经准备好，是否重启应用？',
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
                 updateManager.applyUpdate();
@@ -141,7 +141,7 @@ const checkUpdate = async (silence = true) => {
             },
           });
         });
-        updateManager.onUpdateFailed(function() {
+        updateManager.onUpdateFailed(function () {
           // 新的版本下载失败
           // uni.showModal({
           //   title: '已经有新版本了哟~',
@@ -169,17 +169,17 @@ async function getSubscribeTemplate() {
 }
 
 // 订阅消息
-function subscribeMessage(event, callback= undefined) {
+function subscribeMessage(event, callback = undefined) {
   let tmplIds = [];
   if (typeof event === 'string') {
-    const temp = subscribeEventList.find(item => item.title.includes(event));
+    const temp = subscribeEventList.find((item) => item.title.includes(event));
     if (temp) {
       tmplIds.push(temp.id);
     }
   }
   if (typeof event === 'object') {
     event.forEach((e) => {
-      const temp = subscribeEventList.find(item => item.title.includes(e));
+      const temp = subscribeEventList.find((item) => item.title.includes(e));
       if (temp) {
         tmplIds.push(temp.id);
       }
@@ -189,10 +189,10 @@ function subscribeMessage(event, callback= undefined) {
 
   uni.requestSubscribeMessage({
     tmplIds,
-		success: ()=>{
+    success: () => {
       // 不管是拒绝还是同意都触发
-      callback && callback()
-		},
+      callback && callback();
+    },
     fail: (err) => {
       console.log(err);
     },

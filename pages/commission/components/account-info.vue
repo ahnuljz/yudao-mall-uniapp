@@ -5,15 +5,8 @@
       <view class="ss-flex ss-row-between card-box-header">
         <view class="ss-flex">
           <view class="header-title ss-m-r-16">账户信息</view>
-          <button
-            class="ss-reset-button look-btn ss-flex"
-            @tap="state.showMoney = !state.showMoney"
-          >
-            <uni-icons
-              :type="state.showMoney ? 'eye-filled' : 'eye-slash-filled'"
-              color="#A57A55"
-              size="20"
-            />
+          <button class="ss-reset-button look-btn ss-flex" @tap="state.showMoney = !state.showMoney">
+            <uni-icons :type="state.showMoney ? 'eye-filled' : 'eye-slash-filled'" color="#A57A55" size="20" />
           </button>
         </view>
         <view class="ss-flex" @tap="sheep.$router.go('/pages/commission/wallet')">
@@ -63,7 +56,7 @@
   onMounted(async () => {
     let { code, data } = await BrokerageApi.getBrokerageUserSummary();
     if (code === 0) {
-      state.summary = data || {}
+      state.summary = data || {};
     }
   });
 </script>

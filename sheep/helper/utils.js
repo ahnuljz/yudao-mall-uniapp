@@ -23,7 +23,7 @@ export function isString(value) {
 }
 
 export function isEmpty(value) {
-  if (value === '' || value === undefined || value === null){
+  if (value === '' || value === undefined || value === null) {
     return true;
   }
 
@@ -35,7 +35,7 @@ export function isEmpty(value) {
     return Object.keys(value).length === 0;
   }
 
-  return false
+  return false;
 }
 
 export function isBoolean(value) {

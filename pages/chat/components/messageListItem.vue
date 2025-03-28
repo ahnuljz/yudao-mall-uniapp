@@ -5,19 +5,13 @@
       <view class="ss-flex ss-row-center ss-col-center">
         <!-- 日期 -->
         <view
-          v-if="
-            message.contentType !== KeFuMessageContentTypeEnum.SYSTEM &&
-            showTime(message, messageIndex)
-          "
+          v-if="message.contentType !== KeFuMessageContentTypeEnum.SYSTEM && showTime(message, messageIndex)"
           class="date-message"
         >
           {{ formatDate(message.createTime) }}
         </view>
         <!-- 系统消息 -->
-        <view
-          v-if="message.contentType === KeFuMessageContentTypeEnum.SYSTEM"
-          class="system-message"
-        >
+        <view v-if="message.contentType === KeFuMessageContentTypeEnum.SYSTEM" class="system-message">
           {{ message.content }}
         </view>
       </view>
@@ -29,18 +23,15 @@
           message.senderType === UserTypeEnum.ADMIN
             ? `ss-row-left`
             : message.senderType === UserTypeEnum.MEMBER
-            ? `ss-row-right`
-            : '',
+              ? `ss-row-right`
+              : '',
         ]"
       >
         <!-- 客服头像 -->
         <image
           v-show="message.senderType === UserTypeEnum.ADMIN"
           class="chat-avatar ss-m-r-24"
-          :src="
-            sheep.$url.cdn(message.senderAvatar) ||
-            sheep.$url.static('/static/img/shop/chat/default.png')
-          "
+          :src="sheep.$url.cdn(message.senderAvatar) || sheep.$url.static('/static/img/shop/chat/default.png')"
           mode="aspectFill"
         ></image>
         <!-- 内容 -->
@@ -69,10 +60,10 @@
         </template>
         <template v-if="message.contentType === KeFuMessageContentTypeEnum.PRODUCT">
           <div class="ss-m-b-10">
-          <GoodsItem
-            :goodsData="getMessageContent(message)"
-            @tap="sheep.$router.go('/pages/goods/index', { id: getMessageContent(message).spuId })"
-          />
+            <GoodsItem
+              :goodsData="getMessageContent(message)"
+              @tap="sheep.$router.go('/pages/goods/index', { id: getMessageContent(message).spuId })"
+            />
           </div>
         </template>
         <template v-if="message.contentType === KeFuMessageContentTypeEnum.ORDER">
@@ -85,10 +76,7 @@
         <image
           v-if="message.senderType === UserTypeEnum.MEMBER"
           class="chat-avatar ss-m-l-24"
-          :src="
-            sheep.$url.cdn(userInfo.avatar) ||
-            sheep.$url.static('/static/img/shop/chat/default.png')
-          "
+          :src="sheep.$url.cdn(userInfo.avatar) || sheep.$url.static('/static/img/shop/chat/default.png')"
           mode="aspectFill"
         >
         </image>
@@ -149,9 +137,7 @@
           let emojiFile = selEmojiFile(item);
           newData = newData.replace(
             item,
-            `<img class="chat-img" style="width: 24px;height: 24px;margin: 0 3px;vertical-align: middle;" src="${sheep.$url.cdn(
-              '/static/img/chat/emoji/' + emojiFile,
-            )}"/>`,
+            `<img class="chat-img" style="width: 24px;height: 24px;margin: 0 3px;vertical-align: middle;" src="${sheep.$url.cdn('/static/img/chat/emoji/' + emojiFile)}"/>`,
           );
         });
       }

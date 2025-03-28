@@ -1,13 +1,7 @@
 <!-- 用户信息 -->
 <template>
   <s-layout title="用户信息" class="set-userinfo-wrap">
-    <uni-forms
-      :model="state.model"
-      :rules="state.rules"
-      labelPosition="left"
-      border
-      class="form-box"
-    >
+    <uni-forms :model="state.model" :rules="state.rules" labelPosition="left" border class="form-box">
       <!-- 头像 -->
       <view class="ss-flex ss-row-center ss-col-center ss-p-t-60 ss-p-b-0 bg-white">
         <view class="header-box-content">
@@ -23,11 +17,7 @@
           />
           <view class="avatar-action">
             <!-- #ifdef MP -->
-            <button
-              class="ss-reset-button avatar-action-btn"
-              open-type="chooseAvatar"
-              @chooseavatar="onChooseAvatar"
-            >
+            <button class="ss-reset-button avatar-action-btn" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
               修改
             </button>
             <!-- #endif -->
@@ -100,11 +90,7 @@
           >
             <template v-slot:right>
               <view class="ss-flex ss-col-center">
-                <su-radio
-                  class="ss-flex"
-                  v-if="userInfo.verification?.password"
-                  :modelValue="true"
-                />
+                <su-radio class="ss-flex" v-if="userInfo.verification?.password" :modelValue="true" />
                 <button v-else class="ss-reset-button ss-flex ss-col-center ss-row-center">
                   <text class="_icon-forward" style="color: #bbbbbb; font-size: 26rpx" />
                 </button>
@@ -133,24 +119,15 @@
       <view class="title-box ss-p-l-30">第三方账号绑定</view>
       <view class="account-list ss-flex ss-row-between">
         <view v-if="'WechatOfficialAccount' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image
-            class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/WechatOfficialAccount.png')"
-          />
+          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/WechatOfficialAccount.png')" />
           <text class="list-name">微信公众号</text>
         </view>
         <view v-if="'WechatMiniProgram' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image
-            class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/WechatMiniProgram.png')"
-          />
+          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/WechatMiniProgram.png')" />
           <text class="list-name">微信小程序</text>
         </view>
         <view v-if="'App' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image
-            class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/wechat.png')"
-          />
+          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/wechat.png')" />
           <text class="list-name">微信开放平台</text>
         </view>
         <view class="ss-flex ss-col-center">
@@ -159,11 +136,7 @@
             <text class="name">{{ state.thirdInfo.nickname }}</text>
           </view>
           <view class="bind-box ss-m-l-20">
-            <button
-              v-if="state.thirdInfo.openid"
-              class="ss-reset-button relieve-btn"
-              @tap="unBindThirdOauth"
-            >
+            <button v-if="state.thirdInfo.openid" class="ss-reset-button relieve-btn" @tap="unBindThirdOauth">
               解绑
             </button>
             <button v-else class="ss-reset-button bind-btn" @tap="bindThirdOauth">绑定</button>

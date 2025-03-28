@@ -19,11 +19,7 @@
                 class="sicon-circleclose"
                 v-if="state.list.length - 1 === index && [61, 62, 63].includes(state.info.status)"
               />
-              <text
-                class="sicon-circlecheck"
-                v-else
-                :class="state.active >= index ? 'activity-color' : 'info-color'"
-              />
+              <text class="sicon-circlecheck" v-else :class="state.active >= index ? 'activity-color' : 'info-color'" />
 
               <view
                 v-if="state.list.length - 1 !== index"
@@ -31,10 +27,7 @@
                 :class="state.active >= index ? 'activity-bg' : 'info-bg'"
               />
             </view>
-            <view
-              class="steps-item-title"
-              :class="state.active >= index ? 'activity-color' : 'info-color'"
-            >
+            <view class="steps-item-title" :class="state.active >= index ? 'activity-color' : 'info-color'">
               {{ item.title }}
             </view>
           </view>
@@ -102,18 +95,10 @@
     </view>
 
     <!-- 操作区 -->
-    <s-empty
-      v-if="isEmpty(state.info) && state.loading"
-      icon="/static/order-empty.png"
-      text="暂无该订单售后详情"
-    />
+    <s-empty v-if="isEmpty(state.info) && state.loading" icon="/static/order-empty.png" text="暂无该订单售后详情" />
     <su-fixed bottom placeholder bg="bg-white" v-if="!isEmpty(state.info)">
       <view class="foot_box">
-        <button
-          class="ss-reset-button btn"
-          v-if="state.info.buttons?.includes('cancel')"
-          @tap="onApply(state.info.id)"
-        >
+        <button class="ss-reset-button btn" v-if="state.info.buttons?.includes('cancel')" @tap="onApply(state.info.id)">
           取消申请
         </button>
         <button
@@ -123,12 +108,7 @@
         >
           填写退货
         </button>
-        <button
-          class="ss-reset-button contcat-btn btn"
-          @tap="sheep.$router.go('/pages/chat/index')"
-        >
-          联系客服
-        </button>
+        <button class="ss-reset-button contcat-btn btn" @tap="sheep.$router.go('/pages/chat/index')"> 联系客服 </button>
       </view>
     </su-fixed>
   </s-layout>
@@ -139,11 +119,7 @@
   import { onLoad } from '@dcloudio/uni-app';
   import { reactive } from 'vue';
   import { isEmpty } from 'lodash-es';
-  import {
-    fen2yuan,
-    formatAfterSaleStatusDescription,
-    handleAfterSaleButtons,
-  } from '@/sheep/hooks/useGoods';
+  import { fen2yuan, formatAfterSaleStatusDescription, handleAfterSaleButtons } from '@/sheep/hooks/useGoods';
   import AfterSaleApi from '@/sheep/api/trade/afterSale';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
@@ -224,7 +200,8 @@
   .steps-box {
     width: 100%;
     height: 190rpx;
-    background: v-bind(headerBg) no-repeat,
+    background:
+      v-bind(headerBg) no-repeat,
       linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
     padding-left: 72rpx;

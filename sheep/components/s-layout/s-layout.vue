@@ -1,8 +1,5 @@
 <template>
-  <view
-    class="page-app"
-    :class="['theme-' + sys?.mode, 'main-' + sys?.theme, 'font-' + sys?.fontSize]"
-  >
+  <view class="page-app" :class="['theme-' + sys?.mode, 'main-' + sys?.theme, 'font-' + sys?.fontSize]">
     <view class="page-main" :style="[bgMain]">
       <!-- 顶部导航栏-情况1：默认通用顶部导航栏 -->
       <su-navbar
@@ -25,10 +22,7 @@
       <view class="page-body" :style="[bgBody]">
         <!-- 顶部导航栏-情况3：沉浸式头部 -->
         <su-inner-navbar v-if="navbar === 'inner'" :title="title" />
-        <view
-          v-if="navbar === 'inner'"
-          :style="[{ paddingTop: sheep?.$platform?.navbar + 'px' }]"
-        ></view>
+        <view v-if="navbar === 'inner'" :style="[{ paddingTop: sheep?.$platform?.navbar + 'px' }]"></view>
 
         <!-- 顶部导航栏-情况4：装修组件导航栏-沉浸式 -->
         <s-custom-navbar
@@ -156,9 +150,7 @@
   const bgMain = computed(() => {
     if (navbarMode.value === 'inner') {
       return {
-        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(
-          props.bgStyle.backgroundImage,
-        )}) no-repeat top center / 100% auto`,
+        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
       };
     }
     return {};
@@ -168,9 +160,7 @@
   const bgBody = computed(() => {
     if (navbarMode.value === 'normal') {
       return {
-        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(
-          props.bgStyle.backgroundImage,
-        )}) no-repeat top center / 100% auto`,
+        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
       };
     }
     return {};
@@ -213,11 +203,11 @@
   // #endif
 
   // 组件中使用 onMounted 监听页面加载，不是页面组件不使用 onShow
-  onMounted(()=>{
+  onMounted(() => {
     if (!isEmpty(shareInfo.value)) {
       sheep.$platform.share.updateShareInfo(shareInfo.value);
     }
-  })
+  });
 </script>
 
 <style lang="scss" scoped>

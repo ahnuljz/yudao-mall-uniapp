@@ -29,9 +29,7 @@
         </view>
         <view class="flex flex-wrap">
           <text class="default font-color" v-if="state.addressInfo.defaultStatus">[默认]</text>
-          <text class="line2">
-            {{ state.addressInfo.areaName }} {{ state.addressInfo.detailAddress }}
-          </text>
+          <text class="line2"> {{ state.addressInfo.areaName }} {{ state.addressInfo.detailAddress }} </text>
         </view>
       </view>
       <view class="addressCon" v-else>
@@ -54,9 +52,7 @@
           >{{ state.pickUpInfo.name }}
           <text class="phone">{{ state.pickUpInfo.phone }}</text>
         </view>
-        <view class="line1">
-          {{ state.pickUpInfo.areaName }}{{ ', ' + state.pickUpInfo.detailAddress }}
-        </view>
+        <view class="line1"> {{ state.pickUpInfo.areaName }}{{ ', ' + state.pickUpInfo.detailAddress }} </view>
       </view>
       <view class="addressCon" v-else>
         <view class="setaddress">选择自提门店</view>

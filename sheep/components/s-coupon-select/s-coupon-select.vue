@@ -1,27 +1,12 @@
 <!-- 订单确认的优惠劵选择弹窗 -->
 <template>
-  <su-popup
-    :show="show"
-    type="bottom"
-    round="20"
-    @close="emits('close')"
-    showClose
-    backgroundColor="#f2f2f2"
-  >
+  <su-popup :show="show" type="bottom" round="20" @close="emits('close')" showClose backgroundColor="#f2f2f2">
     <view class="model-box">
       <view class="title ss-m-t-16 ss-m-l-20 ss-flex">优惠券</view>
-      <scroll-view
-        class="model-content"
-        scroll-y
-        :scroll-with-animation="false"
-        :enable-back-to-top="true"
-      >
+      <scroll-view class="model-content" scroll-y :scroll-with-animation="false" :enable-back-to-top="true">
         <!--可使用的优惠券区域-->
         <view class="subtitle ss-m-l-20">可使用优惠券</view>
-        <view
-          v-for="(item, index) in state.couponInfo.filter((coupon) => coupon.match)"
-          :key="index"
-        >
+        <view v-for="(item, index) in state.couponInfo.filter((coupon) => coupon.match)" :key="index">
           <s-coupon-list :data="item" type="user" :disabled="false">
             <template #default>
               <label class="ss-flex ss-col-center" @tap="radioChange(item.id)">

@@ -17,12 +17,7 @@
       labelAlign="center"
     >
       <uni-forms-item name="mobile" label="手机号">
-        <uni-easyinput
-          placeholder="请输入手机号"
-          v-model="state.model.mobile"
-          type="number"
-          :inputBorder="false"
-        >
+        <uni-easyinput placeholder="请输入手机号" v-model="state.model.mobile" type="number" :inputBorder="false">
           <template v-slot:right>
             <button
               class="ss-reset-button code-btn code-btn-start"
@@ -47,24 +42,15 @@
       </uni-forms-item>
 
       <uni-forms-item name="password" label="密码">
-        <uni-easyinput
-          type="password"
-          placeholder="请输入密码"
-          v-model="state.model.password"
-          :inputBorder="false"
-        >
+        <uni-easyinput type="password" placeholder="请输入密码" v-model="state.model.password" :inputBorder="false">
           <template v-slot:right>
-            <button class="ss-reset-button login-btn-start" @tap="resetPasswordSubmit">
-              确认
-            </button>
+            <button class="ss-reset-button login-btn-start" @tap="resetPasswordSubmit"> 确认 </button>
           </template>
         </uni-easyinput>
       </uni-forms-item>
     </uni-forms>
 
-    <button v-if="!isLogin" class="ss-reset-button type-btn" @tap="showAuthModal('accountLogin')">
-      返回登录
-    </button>
+    <button v-if="!isLogin" class="ss-reset-button type-btn" @tap="showAuthModal('accountLogin')"> 返回登录 </button>
   </view>
 </template>
 
@@ -110,7 +96,7 @@
       return;
     }
     // 成功后，用户重新登录
-    showAuthModal('accountLogin')
+    showAuthModal('accountLogin');
   };
 </script>
 

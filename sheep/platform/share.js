@@ -37,7 +37,7 @@ const getShareInfo = (
     link: '', // 分享Url+参数
     query: '', // 分享参数
     poster, // 海报所需数据
-    forward: {} // 转发所需参数
+    forward: {}, // 转发所需参数
   };
   shareInfo.title = scene.title;
   shareInfo.image = $url.cdn(scene.image);

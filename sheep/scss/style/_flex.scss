@@ -42,20 +42,14 @@
   }
 }
 .align {
-  @each $class,
-    $value
-      in (start: flex-start, end: flex-end, center: center, stretch: stretch, baseline: baseline)
-  {
+  @each $class, $value in (start: flex-start, end: flex-end, center: center, stretch: stretch, baseline: baseline) {
     &-#{$class} {
       align-items: $value !important;
     }
   }
 }
 .self {
-  @each $class,
-    $value
-      in (start: flex-start, end: flex-end, center: center, stretch: stretch, baseline: baseline)
-  {
+  @each $class, $value in (start: flex-start, end: flex-end, center: center, stretch: stretch, baseline: baseline) {
     &-#{$class} {
       align-self: $value !important;
     }
@@ -63,14 +57,7 @@
 }
 .justify {
   @each $class,
-    $value
-      in (
-        start: flex-start,
-        end: flex-end,
-        center: center,
-        between: space-between,
-        around: space-around
-      )
+    $value in (start: flex-start, end: flex-end, center: center, between: space-between, around: space-around)
   {
     &-#{$class} {
       justify-content: $value !important;

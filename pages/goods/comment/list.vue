@@ -1,12 +1,7 @@
 <!-- 商品评论的分页 -->
 <template>
   <s-layout title="全部评论">
-    <su-tabs
-      :list="state.type"
-      :scrollable="false"
-      @change="onTabsChange"
-      :current="state.currentTab"
-    />
+    <su-tabs :list="state.type" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
     <!-- 评论列表 -->
     <view class="ss-m-t-20">
       <view class="list-item" v-for="item in state.pagination.list" :key="item">

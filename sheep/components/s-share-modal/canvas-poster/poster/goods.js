@@ -79,10 +79,7 @@ const goods = async (poster) => {
     },
     {
       type: 'text',
-      text:
-        poster.shareInfo.poster.original_price > 0
-          ? '￥' + poster.shareInfo.poster.original_price
-          : '',
+      text: poster.shareInfo.poster.original_price > 0 ? '￥' + poster.shareInfo.poster.original_price : '',
       css: {
         position: 'fixed',
         left: width * 0.3,

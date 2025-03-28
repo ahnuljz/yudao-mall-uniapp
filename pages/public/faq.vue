@@ -23,11 +23,7 @@
         </view>
       </uni-collapse-item>
     </uni-collapse>
-    <s-empty
-      v-if="state.list.length === 0 && !state.loading"
-      text="暂无常见问题"
-      icon="/static/collect-empty.png"
-    />
+    <s-empty v-if="state.list.length === 0 && !state.loading" text="暂无常见问题" icon="/static/collect-empty.png" />
   </s-layout>
 </template>
 
@@ -53,7 +49,7 @@
     if (true) {
       sheep.$router.go('/pages/public/richtext', {
         title: '常见问题',
-      })
+      });
       return;
     }
     getFaqList();

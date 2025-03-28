@@ -396,8 +396,7 @@ function trim(str, pos = 'both') {
 function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
   const prefix = isPrefix ? '?' : '';
   const _result = [];
-  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1)
-    arrayFormat = 'brackets';
+  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';
   for (const key in data) {
     const value = data[key];
     // 去掉为空的参数

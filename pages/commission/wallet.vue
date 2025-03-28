@@ -13,21 +13,14 @@
           />
         </view>
         <view class="ss-flex ss-row-between ss-col-center ss-m-t-30">
-          <view class="money-num">{{
-            state.showMoney ? fen2yuan(state.summary.withdrawPrice || 0) : '*****'
-          }}</view>
+          <view class="money-num">{{ state.showMoney ? fen2yuan(state.summary.withdrawPrice || 0) : '*****' }}</view>
           <view class="ss-flex">
             <view class="ss-m-r-20">
-              <button
-                class="ss-reset-button withdraw-btn"
-                @tap="sheep.$router.go('/pages/commission/withdraw')"
-              >
+              <button class="ss-reset-button withdraw-btn" @tap="sheep.$router.go('/pages/commission/withdraw')">
                 提现
               </button>
             </view>
-            <button class="ss-reset-button balance-btn ss-m-l-20" @tap="state.showModal = true">
-              转余额
-            </button>
+            <button class="ss-reset-button balance-btn ss-m-l-20" @tap="state.showModal = true"> 转余额 </button>
           </view>
         </view>
 
@@ -51,12 +44,7 @@
     <su-sticky>
       <!-- 统计 -->
       <view class="filter-box ss-p-x-30 ss-flex ss-col-center ss-row-between">
-        <uni-datetime-picker
-          v-model="state.date"
-          type="daterange"
-          @change="onChangeTime"
-          :end="state.today"
-        >
+        <uni-datetime-picker v-model="state.date" type="daterange" @change="onChangeTime" :end="state.today">
           <button class="ss-reset-button date-btn">
             <text>{{ dateFilterText }}</text>
             <text class="cicon-drop-down ss-seldate-icon" />
@@ -69,27 +57,12 @@
           <!-- <view>总支出￥{{ (-state.pagination.expense).toFixed(2) }}</view> -->
         </view>
       </view>
-      <su-tabs
-        :list="tabMaps"
-        @change="onChangeTab"
-        :scrollable="false"
-        :current="state.currentTab"
-      />
+      <su-tabs :list="tabMaps" @change="onChangeTab" :scrollable="false" :current="state.currentTab" />
     </su-sticky>
-    <s-empty
-      v-if="state.pagination.total === 0"
-      icon="/static/data-empty.png"
-      text="暂无数据"
-    ></s-empty>
+    <s-empty v-if="state.pagination.total === 0" icon="/static/data-empty.png" text="暂无数据"></s-empty>
 
     <!-- 转余额弹框 -->
-    <su-popup
-      :show="state.showModal"
-      type="bottom"
-      round="20"
-      @close="state.showModal = false"
-      showClose
-    >
+    <su-popup :show="state.showModal" type="bottom" round="20" @close="state.showModal = false" showClose>
       <view class="ss-p-x-20 ss-p-y-30">
         <view class="model-title ss-m-b-30 ss-m-l-20">转余额</view>
         <view class="model-subtitle ss-m-b-100 ss-m-l-20">将您的佣金转到余额中继续消费</view>
@@ -103,22 +76,13 @@
             placeholder="请输入金额"
           />
         </view>
-        <button
-          class="ss-reset-button model-btn ui-BG-Main-Gradient ui-Shadow-Main"
-          @tap="onConfirm"
-        >
-          确定
-        </button>
+        <button class="ss-reset-button model-btn ui-BG-Main-Gradient ui-Shadow-Main" @tap="onConfirm"> 确定 </button>
       </view>
     </su-popup>
 
     <!-- 钱包记录 -->
     <view v-if="state.pagination.total > 0">
-      <view
-        class="wallet-list ss-flex border-bottom"
-        v-for="item in state.pagination.list"
-        :key="item.id"
-      >
+      <view class="wallet-list ss-flex border-bottom" v-for="item in state.pagination.list" :key="item.id">
         <view class="list-content">
           <view class="title-box ss-flex ss-row-between ss-m-b-20">
             <text class="title ss-line-1">{{ item.title }}</text>
@@ -127,9 +91,7 @@
               <text v-else class="minus">{{ fen2yuan(item.price) }}</text>
             </view>
           </view>
-          <text class="time">{{
-            sheep.$helper.timeFormat(item.createTime, 'yyyy-mm-dd hh:MM:ss')
-          }}</text>
+          <text class="time">{{ sheep.$helper.timeFormat(item.createTime, 'yyyy-mm-dd hh:MM:ss') }}</text>
         </view>
       </view>
     </view>

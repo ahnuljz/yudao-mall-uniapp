@@ -41,7 +41,6 @@
     }
     getRichTextContent(options.id, options.title);
   });
-
 </script>
 
 <style lang="scss" scoped>

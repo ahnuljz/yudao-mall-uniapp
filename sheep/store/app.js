@@ -66,7 +66,7 @@ const app = defineStore({
           copyright: '全部开源，个人与企业可 100% 免费使用',
           copytime: 'Copyright© 2018-2024',
 
-          cdnurl: 'https://file.sheepjs.com', // 云存储域名
+          cdnurl: 'https://img.yebenkj.com', // 云存储域名
           filesystem: 'qcloud', // 云存储平台
         };
         this.platform = {
@@ -125,7 +125,7 @@ const adaptTemplate = async (appTemplate, templateId) => {
     return;
   }
 
-  const tabBar = diyTemplate?.property?.tabBar;
+  const tabBar = diyTemplate?.basic;
   if (tabBar) {
     appTemplate.basic.tabbar = tabBar;
     // TODO 商城装修没有对 tabBar 进行角标配置，测试角标需打开以下注释

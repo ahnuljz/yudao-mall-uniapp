@@ -5,9 +5,7 @@
     <view class="head-box ss-m-b-60">
       <view class="ss-flex ss-m-b-20">
         <view class="head-title head-title-line head-title-animation">短信登录</view>
-        <view class="head-title-active ss-m-r-40" @tap="showAuthModal('accountLogin')">
-          账号登录
-        </view>
+        <view class="head-title-active ss-m-r-40" @tap="showAuthModal('accountLogin')"> 账号登录 </view>
       </view>
       <view class="head-subtitle">未注册的手机号，验证后自动注册账号</view>
     </view>
@@ -22,12 +20,7 @@
       labelAlign="center"
     >
       <uni-forms-item name="mobile" label="手机号">
-        <uni-easyinput
-          placeholder="请输入手机号"
-          v-model="state.model.mobile"
-          :inputBorder="false"
-          type="number"
-        >
+        <uni-easyinput placeholder="请输入手机号" v-model="state.model.mobile" :inputBorder="false" type="number">
           <template v-slot:right>
             <button
               class="ss-reset-button code-btn code-btn-start"
@@ -102,7 +95,7 @@
       return;
     }
     if (!props.agreeStatus) {
-      emits('onConfirm', true)
+      emits('onConfirm', true);
       sheep.$helper.toast('请勾选同意');
       return;
     }

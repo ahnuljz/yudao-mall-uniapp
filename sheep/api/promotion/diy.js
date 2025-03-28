@@ -6,8 +6,8 @@ const DiyApi = {
       url: '/template/json/used',
       method: 'GET',
       custom: {
-        showError: false,
-        showLoading: false,
+        showError: true,
+        showLoading: true,
       },
     });
   },
@@ -16,15 +16,15 @@ const DiyApi = {
       url: `/template/json/${id}`,
       method: 'GET',
       custom: {
-        showError: false,
-        showLoading: false,
+        showError: true,
+        showLoading: true,
       },
     });
   },
   getDiyPage: (id) => {
     return request({
       url: `/page/json/${id}`,
-      method: 'GET'
+      method: 'GET',
     });
   },
 };

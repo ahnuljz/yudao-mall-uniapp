@@ -20,10 +20,7 @@
               @tap="clickHandler(item, index)"
               :ref="`u-tabs__wrapper__nav__item-${index}`"
               :style="[addStyle(itemStyle), { flex: scrollable ? '' : 1 }]"
-              :class="[
-                `u-tabs__wrapper__nav__item-${index}`,
-                item.disabled && 'u-tabs__wrapper__nav__item--disabled',
-              ]"
+              :class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
             >
               <text
                 :class="[item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
@@ -205,8 +202,7 @@
         return (index) => {
           const style = {};
           // 取当期是否激活的样式
-          const customeStyle =
-            index === this.innerCurrent ? addStyle(this.activeStyle) : addStyle(this.inactiveStyle);
+          const customeStyle = index === this.innerCurrent ? addStyle(this.activeStyle) : addStyle(this.inactiveStyle);
           // 如果当前菜单被禁用，则加上对应颜色，需要在此做处理，是因为nvue下，无法在style样式中通过!import覆盖标签的内联样式
           if (this.list[index].disabled) {
             style.color = '#c8c9cc';
@@ -221,7 +217,8 @@
     methods: {
       $uGetRect(selector, all) {
         return new Promise((resolve) => {
-          uni.createSelectorQuery()
+          uni
+            .createSelectorQuery()
             .in(this)
             [all ? 'selectAll' : 'select'](selector)
             .boundingClientRect((rect) => {
@@ -241,9 +238,7 @@
           return;
         }
         // 获取滑块该移动的位置
-        let lineOffsetLeft = this.list
-          .slice(0, this.innerCurrent)
-          .reduce((total, curr) => total + curr.rect.width, 0);
+        let lineOffsetLeft = this.list.slice(0, this.innerCurrent).reduce((total, curr) => total + curr.rect.width, 0);
         // 获取下划线的数值px表示法
         const lineWidth = getPx(this.lineWidth);
         this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - lineWidth) / 2;
@@ -318,21 +313,19 @@
         if (this.list.length === 0) {
           return;
         }
-        Promise.all([this.getTabsRect(), this.getAllItemRect()]).then(
-          ([tabsRect, itemRect = []]) => {
-            this.tabsRect = tabsRect;
-            this.scrollViewWidth = 0;
-            itemRect.map((item, index) => {
-              // 计算scroll-view的宽度，这里
-              this.scrollViewWidth += item.width;
-              // 另外计算每一个item的中心点X轴坐标
-              this.list[index].rect = item;
-            });
-            // 获取了tabs的尺寸之后，设置滑块的位置
-            this.setLineLeft();
-            this.setScrollLeft();
-          },
-        );
+        Promise.all([this.getTabsRect(), this.getAllItemRect()]).then(([tabsRect, itemRect = []]) => {
+          this.tabsRect = tabsRect;
+          this.scrollViewWidth = 0;
+          itemRect.map((item, index) => {
+            // 计算scroll-view的宽度，这里
+            this.scrollViewWidth += item.width;
+            // 另外计算每一个item的中心点X轴坐标
+            this.list[index].rect = item;
+          });
+          // 获取了tabs的尺寸之后，设置滑块的位置
+          this.setLineLeft();
+          this.setScrollLeft();
+        });
       },
       // 获取导航菜单的尺寸
       getTabsRect() {

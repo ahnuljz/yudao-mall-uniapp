@@ -1,9 +1,6 @@
 <!-- 地址卡片 -->
 <template>
-  <view
-    class="address-item ss-flex ss-row-between ss-col-center"
-    :class="[{ 'border-bottom': props.hasBorderBottom }]"
-  >
+  <view class="address-item ss-flex ss-row-between ss-col-center" :class="[{ 'border-bottom': props.hasBorderBottom }]">
     <view class="item-left" v-if="!isEmpty(props.item)">
       <view class="area-text ss-flex ss-col-center">
         <uni-tag

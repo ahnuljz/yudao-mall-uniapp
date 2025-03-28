@@ -1,27 +1,27 @@
 <!-- 页面 TODO 芋艿：该页面的实现代码需要优化，包括 js 和 css，以及相关的样式设计 -->
 <template>
   <s-layout title="我的团队" :class="state.scrollTop ? 'team-wrap' : ''" navbar="inner">
-  <view
-	    class="header-box"
-	    :style="[
-	      {
-	        marginTop: '-' + Number(statusBarHeight + 88) + 'rpx',
-	        paddingTop: Number(statusBarHeight + 108) + 'rpx',
-	      },
-	    ]"
-	  >
-	    <!-- 推广数据总览 -->
-	    <view class="team-data-box ss-flex ss-col-center ss-row-between" style="width: 100%">
-	      <view class="data-card" style="width: 100%">
-	        <view class="total-item" style="width: 100%">
-	          <view class="item-title" style="text-align: center">推广人数</view>
-	          <view class="total-num" style="text-align: center">
-	            {{ state.summary.firstBrokerageUserCount + state.summary.secondBrokerageUserCount || 0 }}
-	          </view>
-	        </view>
-	      </view>
-	    </view>
-	  </view>
+    <view
+      class="header-box"
+      :style="[
+        {
+          marginTop: '-' + Number(statusBarHeight + 88) + 'rpx',
+          paddingTop: Number(statusBarHeight + 108) + 'rpx',
+        },
+      ]"
+    >
+      <!-- 推广数据总览 -->
+      <view class="team-data-box ss-flex ss-col-center ss-row-between" style="width: 100%">
+        <view class="data-card" style="width: 100%">
+          <view class="total-item" style="width: 100%">
+            <view class="item-title" style="text-align: center">推广人数</view>
+            <view class="total-num" style="text-align: center">
+              {{ state.summary.firstBrokerageUserCount + state.summary.secondBrokerageUserCount || 0 }}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
     <view class="promoter-list">
       <!--<view
         class="promoterHeader bg-color"
@@ -44,7 +44,7 @@
         </view>
       </view>-->
       <view style="padding: 0 20rpx">
-        <view class="nav acea-row row-around l1" style="margin-top:20rpx;">
+        <view class="nav acea-row row-around l1" style="margin-top: 20rpx">
           <view :class="state.level == 1 ? 'item on' : 'item'" @click="setType(1)">
             一级({{ state.summary.firstBrokerageUserCount || 0 }})
           </view>
@@ -52,10 +52,7 @@
             二级({{ state.summary.secondBrokerageUserCount || 0 }})
           </view>
         </view>
-        <view
-          class="search acea-row row-between-wrapper"
-          style="display: flex; height: 100rpx; align-items: center"
-        >
+        <view class="search acea-row row-between-wrapper" style="display: flex; height: 100rpx; align-items: center">
           <view class="input">
             <input
               placeholder="点击搜索会员名称"
@@ -65,29 +62,16 @@
               @confirm="submitForm"
             />
           </view>
-          <image
-            src="/static/images/search.png"
-            mode=""
-            style="width: 60rpx; height: 64rpx"
-            @click="submitForm"
-          />
+          <image src="/static/images/search.png" mode="" style="width: 60rpx; height: 64rpx" @click="submitForm" />
         </view>
         <view class="list">
           <view class="sortNav acea-row row-middle" style="display: flex; align-items: center">
-            <view
-              class="sortItem"
-              @click="setSort('userCount', 'asc')"
-              v-if="sort === 'userCountDESC'"
-            >
+            <view class="sortItem" @click="setSort('userCount', 'asc')" v-if="sort === 'userCountDESC'">
               团队排序
               <!-- TODO 芋艿：看看怎么从项目里拿出去 -->
               <image src="/static/images/sort1.png" />
             </view>
-            <view
-              class="sortItem"
-              @click="setSort('userCount', 'desc')"
-              v-else-if="sort === 'userCountASC'"
-            >
+            <view class="sortItem" @click="setSort('userCount', 'desc')" v-else-if="sort === 'userCountASC'">
               团队排序
               <image src="/static/images/sort3.png" />
             </view>
@@ -99,11 +83,7 @@
               金额排序
               <image src="/static/images/sort1.png" />
             </view>
-            <view
-              class="sortItem"
-              @click="setSort('price', 'desc')"
-              v-else-if="sort === 'priceASC'"
-            >
+            <view class="sortItem" @click="setSort('price', 'desc')" v-else-if="sort === 'priceASC'">
               金额排序
               <image src="/static/images/sort3.png" />
             </view>
@@ -111,19 +91,11 @@
               金额排序
               <image src="/static/images/sort2.png" />
             </view>
-            <view
-              class="sortItem"
-              @click="setSort('orderCount', 'asc')"
-              v-if="sort === 'orderCountDESC'"
-            >
+            <view class="sortItem" @click="setSort('orderCount', 'asc')" v-if="sort === 'orderCountDESC'">
               订单排序
               <image src="/static/images/sort1.png" />
             </view>
-            <view
-              class="sortItem"
-              @click="setSort('orderCount', 'desc')"
-              v-else-if="sort === 'orderCountASC'"
-            >
+            <view class="sortItem" @click="setSort('orderCount', 'desc')" v-else-if="sort === 'orderCountASC'">
               订单排序
               <image src="/static/images/sort3.png" />
             </view>
@@ -134,10 +106,7 @@
           </view>
           <block v-for="(item, index) in state.pagination.list" :key="index">
             <view class="item acea-row row-between-wrapper" style="display: flex">
-              <view
-                class="picTxt acea-row row-between-wrapper"
-                style="display: flex; align-items: center"
-              >
+              <view class="picTxt acea-row row-between-wrapper" style="display: flex; align-items: center">
                 <view class="pictrue">
                   <image :src="item.avatar" />
                 </view>
@@ -151,12 +120,7 @@
               </view>
               <view
                 class="right"
-                style="
-                  justify-content: center;
-                  flex-direction: column;
-                  display: flex;
-                  margin-left: auto;
-                "
+                style="justify-content: center; flex-direction: column; display: flex; margin-left: auto"
               >
                 <view>
                   <text class="num font-color">{{ item.brokerageUserCount || 0 }} </text>人
@@ -173,7 +137,7 @@
             </view>
           </block>
           <block v-if="state.pagination.list.length === 0">
-            <view style="text-align: center;margin-top:30rpx;">暂无推广人数</view>
+            <view style="text-align: center; margin-top: 30rpx">暂无推广人数</view>
           </block>
         </view>
       </view>
@@ -373,7 +337,8 @@
     width: 750rpx;
     z-index: 3;
     position: relative;
-    background: v-bind(headerBg) no-repeat,
+    background:
+      v-bind(headerBg) no-repeat,
       linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
 

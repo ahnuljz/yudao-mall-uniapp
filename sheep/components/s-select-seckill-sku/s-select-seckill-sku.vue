@@ -19,8 +19,10 @@
           <view class="goods-title ss-line-2">{{ state.goodsInfo.name }}</view>
           <view class="header-right-bottom ss-flex ss-col-center ss-row-between">
             <!-- 价格 -->
-            <view v-if="state.goodsInfo.activity_type === PromotionActivityTypeEnum.POINT.type"
-                  class="price-text ss-flex">
+            <view
+              v-if="state.goodsInfo.activity_type === PromotionActivityTypeEnum.POINT.type"
+              class="price-text ss-flex"
+            >
               <image
                 v-if="!isEmpty(state.selectedSku)"
                 :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
@@ -30,9 +32,7 @@
                 {{ getShowPriceText }}
               </text>
             </view>
-            <view v-else class="price-text">
-              ￥{{ fen2yuan(state.selectedSku.price || state.goodsInfo.price) }}
-            </view>
+            <view v-else class="price-text"> ￥{{ fen2yuan(state.selectedSku.price || state.goodsInfo.price) }} </view>
             <!-- 秒杀价格标签 -->
             <view class="tig ss-flex ss-col-center">
               <view class="tig-icon ss-flex ss-col-center ss-row-center">
@@ -41,9 +41,7 @@
               <view class="tig-title">秒杀价</view>
             </view>
             <!-- 库存 -->
-            <view class="stock-text ss-m-l-20">
-              库存{{ state.selectedSku.stock || state.goodsInfo.stock }}件
-            </view>
+            <view class="stock-text ss-m-l-20"> 库存{{ state.selectedSku.stock || state.goodsInfo.stock }}件 </view>
           </view>
         </view>
       </view>
@@ -110,8 +108,7 @@
   const props = defineProps({
     modelValue: {
       type: Object,
-      default() {
-      },
+      default() {},
     },
     show: {
       type: Boolean,
@@ -275,10 +272,7 @@
   const onSelectSku = (propertyId, valueId) => {
     // 清空已选择
     let isChecked = true; // 选中 or 取消选中
-    if (
-      state.currentPropertyArray[propertyId] !== undefined &&
-      state.currentPropertyArray[propertyId] === valueId
-    ) {
+    if (state.currentPropertyArray[propertyId] !== undefined && state.currentPropertyArray[propertyId] === valueId) {
       // 点击已被选中的，删除并填充 ''
       isChecked = false;
       state.currentPropertyArray.splice(propertyId, 1, '');

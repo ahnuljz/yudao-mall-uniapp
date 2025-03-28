@@ -66,10 +66,7 @@
       height: heightMax * cell.value + 'px',
       width:
         windowWidth -
-        (props.data?.style?.marginLeft +
-          props.data?.style?.marginRight +
-          props.styles.padding * 2) *
-          2 +
+        (props.data?.style?.marginLeft + props.data?.style?.marginRight + props.styles.padding * 2) * 2 +
         'px',
     };
   });
