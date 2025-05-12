@@ -8,7 +8,7 @@
         <view class="list-item ss-m-b-24" v-for="item in list" :key="item.title">
           <view class="ss-flex-col ss-col-center">
             <button class="ss-reset-button list-image ss-flex ss-row-center ss-col-center" @tap="onClick(item)">
-              <image v-if="show" :src="sheep.$url.static(item.icon)" class="list-icon" />
+              <image v-if="show" :src="item.icon" class="list-icon" />
             </button>
             <view class="list-title ss-m-t-20">{{ item.title }}</view>
           </view>
@@ -33,37 +33,37 @@
   const list = [
     {
       url: '/pages/index/index',
-      icon: '/static/img/shop/tools/home.png',
+      icon: 'https://ui.yebenkj.com/img/home.png',
       title: '首页',
     },
     {
       url: '/pages/index/search',
-      icon: '/static/img/shop/tools/search.png',
+      icon: 'https://ui.yebenkj.com/img/search.png',
       title: '搜索',
     },
     {
       url: '/pages/index/user',
-      icon: '/static/img/shop/tools/user.png',
+      icon: 'https://ui.yebenkj.com/img/user.png',
       title: '个人中心',
     },
     {
       url: '/pages/index/cart',
-      icon: '/static/img/shop/tools/cart.png',
+      icon: 'https://ui.yebenkj.com/img/cart.png',
       title: '购物车',
     },
     {
       url: '/pages/user/goods-log',
-      icon: '/static/img/shop/tools/browse.png',
+      icon: 'https://ui.yebenkj.com/img/browse.png',
       title: '浏览记录',
     },
     {
       url: '/pages/user/goods-collect',
-      icon: '/static/img/shop/tools/collect.png',
+      icon: 'https://ui.yebenkj.com/img/collect.png',
       title: '我的收藏',
     },
     {
       url: '/pages/chat/index',
-      icon: '/static/img/shop/tools/service.png',
+      icon: 'https://ui.yebenkj.com/img/service.png',
       title: '客服',
     },
   ];

@@ -4,7 +4,7 @@
  */
 
 import Request from 'luch-request';
-import { apiPath, baseUrl, tenantId } from '@/sheep/config';
+import { apiPath, baseUrl, db, tenantId } from '@/sheep/config';
 import $store from '@/sheep/store';
 import $platform from '@/sheep/platform';
 import { showAuthModal } from '@/sheep/hooks/useModal';
@@ -97,7 +97,8 @@ http.interceptors.request.use(
     config.header['terminal'] = getTerminal();
 
     config.header['Accept'] = '*/*';
-    config.header['tenant-id'] = tenantId;
+    config.header['biz'] = tenantId;
+    config.header['db'] = db;
 
     console.info(`==========>>>：${JSON.stringify(config)}`);
 

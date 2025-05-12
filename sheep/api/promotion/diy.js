@@ -3,7 +3,7 @@ import request from '@/sheep/request';
 const DiyApi = {
   getUsedDiyTemplate: () => {
     return request({
-      url: '/template/json/used',
+      url: '/decorate',
       method: 'GET',
       custom: {
         showError: true,
@@ -13,7 +13,7 @@ const DiyApi = {
   },
   getDiyTemplate: (id) => {
     return request({
-      url: `/template/json/${id}`,
+      url: `/decorate`,
       method: 'GET',
       custom: {
         showError: true,
@@ -23,7 +23,7 @@ const DiyApi = {
   },
   getDiyPage: (id) => {
     return request({
-      url: `/page/json/${id}`,
+      url: `/decorate/page/${id}`,
       method: 'GET',
     });
   },
