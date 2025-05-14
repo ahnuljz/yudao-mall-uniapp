@@ -32,18 +32,18 @@
             class="discount"
             v-if="state.settlementSku && state.settlementSku.id && state.settlementSku.promotionPrice"
           >
-            <image class="disImg" :src="sheep.$url.static('/static/img/shop/goods/dis.png')" />
+            <image class="disImg" :src="sheep.$url.static('/img/dis.png')" />
             <view class="discountCont">
               <view class="disContT">
                 <view class="disContT1">
-                  <view class="disContT1P"> ￥{{ fen2yuan(state.settlementSku.promotionPrice) }} </view>
+                  <view class="disContT1P"> ￥{{ fen2yuan(state.settlementSku.promotionPrice) }}</view>
                   <view class="disContT1End">
                     直降￥
                     {{ fen2yuan(state.settlementSku.price - state.settlementSku.promotionPrice) }}
                   </view>
                 </view>
-                <view class="disContT2" v-if="state.settlementSku.promotionType === 4"> 限时折扣 </view>
-                <view class="disContT2" v-else-if="state.settlementSku.promotionType === 6"> 会员折扣 </view>
+                <view class="disContT2" v-if="state.settlementSku.promotionType === 4"> 限时折扣</view>
+                <view class="disContT2" v-else-if="state.settlementSku.promotionType === 6"> 会员折扣</view>
               </view>
               <view class="disContB">
                 <view class="disContB1">
@@ -128,7 +128,7 @@
           </view>
 
           <!-- 功能卡片 -->
-          <view class="detail-cell-card detail-card ss-flex-col">
+          <view class="detail-cell-card detail-card ss-flex-col none">
             <detail-cell-sku
               v-model="state.selectedSku.goods_sku_text"
               :sku="state.selectedSku"
@@ -137,20 +137,13 @@
           </view>
 
           <!-- 规格与数量弹框 -->
-          <s-select-sku
-            :goodsInfo="state.goodsInfo"
-            :show="state.showSelectSku"
-            @addCart="onAddCart"
-            @buy="onBuy"
-            @change="onSkuChange"
-            @close="state.showSelectSku = false"
-          />
+          <s-select-sku :goodsInfo="state.goodsInfo" @buy="onBuy" @change="onSkuChange" />
         </view>
 
         <!-- 评价 -->
-        <detail-comment-card class="detail-comment-selector" :goodsId="state.goodsId" />
+        <detail-comment-card class="detail-comment-selector none" :goodsId="state.goodsId" />
         <!-- 详情 -->
-        <detail-content-card class="detail-content-selector" :content="state.goodsInfo.description" />
+        <detail-content-card class="detail-content-selector" :content="state.goodsInfo.attraction" />
 
         <!-- 活动跳转：拼团/秒杀/砍价活动 -->
         <detail-activity-tip v-if="state.activityList.length > 0" :activity-list="state.activityList" />
@@ -158,13 +151,10 @@
         <!-- 详情 tabbar -->
         <detail-tabbar v-model="state.goodsInfo">
           <view class="buy-box ss-flex ss-col-center ss-p-r-20" v-if="state.goodsInfo.stock > 0">
-            <button class="ss-reset-button add-btn ui-Shadow-Main" @tap="state.showSelectSku = true">
-              加入购物车
-            </button>
-            <button class="ss-reset-button buy-btn ui-Shadow-Main" @tap="state.showSelectSku = true"> 立即购买 </button>
+            <button class="ss-reset-button buy-btn ui-Shadow-Main" @tap="state.showSelectSku = true">立即购买</button>
           </view>
           <view class="buy-box ss-flex ss-col-center ss-p-r-20" v-else>
-            <button class="ss-reset-button disabled-btn" disabled> 已售罄 </button>
+            <button class="ss-reset-button disabled-btn" disabled>已售罄</button>
           </view>
         </detail-tabbar>
 
@@ -205,13 +195,12 @@
   import detailActivityTip from './components/detail/detail-activity-tip.vue';
   import { isEmpty } from 'lodash-es';
   import SpuApi from '@/sheep/api/product/spu';
-
-  onPageScroll(() => {});
   import countDown from '@/sheep/components/countDown/index.vue';
   import OrderApi from '@/sheep/api/trade/order';
   import activity from '@/sheep/api/promotion/activity';
   import { SharePageEnum } from '@/sheep/util/const';
 
+  onPageScroll(() => {});
   const bgColor = {
     bgColor: '#E93323',
     Color: '#fff',
@@ -238,15 +227,6 @@
   function onSkuChange(e) {
     state.selectedSku = e;
     state.settlementSku = e;
-  }
-
-  // 添加购物车
-  function onAddCart(e) {
-    if (!e.id) {
-      sheep.$helper.toast('请选择商品规格');
-      return;
-    }
-    sheep.$store('cart').add(e);
   }
 
   // 立即购买
@@ -374,7 +354,21 @@
       }
       // 加载到商品
       state.skeletonLoading = false;
-      state.goodsInfo = res.data;
+      const arr = [];
+      const video = res.data.videoUrl;
+      video && arr.push(video);
+      arr.push(...JSON.parse(res.data.sliderPicUrls));
+
+      state.goodsInfo = {
+        ...res.data,
+        sliderPicUrls: arr,
+        price: res.data.adultCost,
+        marketPrice: 0,
+        salesCount: res.data.saleCount,
+        stock: res.data.stockCount,
+        name: res.data.routeName,
+        introduction: res.data.introduction,
+      };
       // 加载是否收藏
       if (isLogin.value) {
         FavoriteApi.isFavoriteExists(state.goodsId, 'goods').then((res) => {
@@ -387,14 +381,14 @@
     });
 
     // 2. 加载优惠劵信息
-    getCoupon();
+    //getCoupon();
 
     // 3. 加载营销活动信息
     ActivityApi.getActivityListBySpuId(state.goodsId).then((res) => {
       if (res.code !== 0) {
         return;
       }
-      state.activityList = res.data;
+      //state.activityList = res.data;
     });
     //获取结算信息
     getSettlementByIds(state.goodsId);
@@ -513,7 +507,7 @@
       font-weight: 500;
       font-size: 28rpx;
 
-      border-radius: 0 40rpx 40rpx 0;
+      border-radius: 40rpx 40rpx;
       background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
       color: $white;
     }

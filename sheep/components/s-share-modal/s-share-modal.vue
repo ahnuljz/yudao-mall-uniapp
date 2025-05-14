@@ -17,7 +17,7 @@
             open-type="share"
             @tap="onShareByForward"
           >
-            <image class="share-img" :src="sheep.$url.static('/static/img/shop/share/share_wx.png')" mode="" />
+            <image class="share-img" :src="sheep.$url.static('/img/share_wx.png')" mode="" />
             <text class="share-title">微信好友</text>
           </button>
 
@@ -27,7 +27,7 @@
             class="share-item share-btn ss-flex-col ss-col-center"
             @tap="onShareByPoster"
           >
-            <image class="share-img" :src="sheep.$url.static('/static/img/shop/share/share_poster.png')" mode="" />
+            <image class="share-img" :src="sheep.$url.static('/img/share_poster.png')" mode="" />
             <text class="share-title">生成海报</text>
           </button>
 
@@ -37,11 +37,11 @@
             class="share-item share-btn ss-flex-col ss-col-center"
             @tap="onShareByCopyLink"
           >
-            <image class="share-img" :src="sheep.$url.static('/static/img/shop/share/share_link.png')" mode="" />
+            <image class="share-img" :src="sheep.$url.static('/img/share_link.png')" mode="" />
             <text class="share-title">复制链接</text>
           </button>
         </view>
-        <view class="share-foot ss-flex ss-row-center ss-col-center" @tap="closeShareModal"> 取消 </view>
+        <view class="share-foot ss-flex ss-row-center ss-col-center" @tap="closeShareModal"> 取消</view>
       </view>
     </su-popup>
 

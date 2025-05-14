@@ -61,22 +61,22 @@ const app = defineStore({
       if (true) {
         this.info = {
           name: '旅小助商城',
-          logo: 'https://static.iocoder.cn/ruoyi-vue-pro-logo.png',
+          logo: 'https://ui.yebenkj.com/img/128px.png',
           version: '2.4.0',
-          copyright: '全部开源，个人与企业可 100% 免费使用',
-          copytime: 'Copyright© 2018-2024',
+          copyright: '值得信赖的商城，旅小助商城',
+          copytime: 'Copyright© 2020-2025',
 
           cdnurl: 'https://img.yebenkj.com', // 云存储域名
-          filesystem: 'qcloud', // 云存储平台
+          filesystem: 'qiniu', // 云存储平台
         };
         this.platform = {
           share: {
             methods: ['forward', 'poster', 'link'],
-            linkAddress: 'http://127.0.0.1:3000', // TODO 芋艿：可以考虑改到 .env 那
+            linkAddress: import.meta.env.SHOPRO_STATIC_URL, // TODO 芋艿：可以考虑改到 .env 那
             posterInfo: {
-              user_bg: '/static/img/shop/config/user-poster-bg.png',
-              goods_bg: '/static/img/shop/config/goods-poster-bg.png',
-              groupon_bg: '/static/img/shop/config/groupon-poster-bg.png',
+              user_bg: '/img/user-poster-bg.png',
+              goods_bg: '/img/goods-poster-bg.png',
+              groupon_bg: '/img/groupon-poster-bg.png',
             },
             forwardInfo: {
               title: '',

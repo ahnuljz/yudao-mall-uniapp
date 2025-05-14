@@ -6,7 +6,7 @@ import test from '@/sheep/helper/test.js';
 import AuthUtil from '@/sheep/api/member/auth';
 
 // 打开授权弹框
-export function showAuthModal(type = 'smsLogin') {
+export function showAuthModal(type = 'accountLogin') {
   const modal = $store('modal');
   if (modal.auth !== '') {
     // 注意：延迟修改，保证下面的 closeAuthModal 先执行掉

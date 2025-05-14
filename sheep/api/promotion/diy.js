@@ -3,7 +3,7 @@ import request from '@/sheep/request';
 const DiyApi = {
   getUsedDiyTemplate: () => {
     return request({
-      url: '/decorate',
+      url: '/decorate/index',
       method: 'GET',
       custom: {
         showError: true,
@@ -13,7 +13,7 @@ const DiyApi = {
   },
   getDiyTemplate: (id) => {
     return request({
-      url: `/decorate`,
+      url: `/decorate/index`,
       method: 'GET',
       custom: {
         showError: true,

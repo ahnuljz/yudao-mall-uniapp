@@ -145,24 +145,24 @@
           },
           {
             label: '价格升序',
-            sort: 'price',
+            sort: 'adultCost',
             order: true,
           },
           {
             label: '价格降序',
-            sort: 'price',
+            sort: 'adultCost',
             order: false,
           },
         ],
       },
       {
         name: '销量',
-        sort: 'salesCount',
+        sort: 'sn',
         order: false,
       },
       {
         name: '新品优先',
-        value: 'createTime',
+        sort: 'dt',
         order: false,
       },
     ],
@@ -270,6 +270,15 @@
     if (code !== 0) {
       return;
     }
+    data.list = data.records.map((e) => ({
+      ...e,
+      price: e.adultCost,
+      marketPrice: 0,
+      salesCount: e.saleCount,
+      stock: e.stockCount,
+      name: e.routeName,
+      introduction: e.introduction,
+    }));
     // 拼接结算信息（营销）
     await OrderApi.getSettlementProduct(data.list.map((item) => item.id).join(',')).then((res) => {
       if (res.code !== 0) {
@@ -278,7 +287,7 @@
       appendSettlementProduct(data.list, res.data);
     });
     state.pagination.list = _.concat(state.pagination.list, data.list);
-    state.pagination.total = data.total;
+    state.pagination.total = data.totalRow;
     state.loadStatus = state.pagination.list.length < state.pagination.total ? 'more' : 'noMore';
     mountMasonry();
   }

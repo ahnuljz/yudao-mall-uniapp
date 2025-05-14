@@ -31,7 +31,7 @@
         </view>
       </view>
     </view>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/comment-empty.png" text="暂无充值记录" />
+    <s-empty v-if="state.pagination.total === 0" icon="/img/comment-empty.png" text="暂无充值记录" />
     <uni-load-more
       v-if="state.pagination.total > 0"
       :status="state.loadStatus"

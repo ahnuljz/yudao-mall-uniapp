@@ -32,7 +32,7 @@
             <su-video
               v-else
               :ref="(el) => (refs.videoRef[`video_${index}`] = el)"
-              :poster="sheep.$url.cdn(item.poster)"
+              :poster="`${item.src}?vframe/jpg/offset/10/w/640/h/360`"
               :src="sheep.$url.cdn(item.src)"
               :index="index"
               :moveX="state.moveX"

@@ -43,7 +43,7 @@
           @tap="thirdLogin('wechat')"
           class="ss-reset-button auto-login-btn"
         >
-          <image class="auto-login-img" :src="sheep.$url.static('/static/img/shop/platform/wechat.png')" />
+          <image class="auto-login-img" :src="sheep.$url.static('/img/wechat.png')" />
         </button>
 
         <!-- 7.3 iOS 登录 TODO 芋艿：等后面搞 App 再弄 -->
@@ -52,7 +52,7 @@
           @tap="thirdLogin('apple')"
           class="ss-reset-button auto-login-btn"
         >
-          <image class="auto-login-img" :src="sheep.$url.static('/static/img/shop/platform/apple.png')" />
+          <image class="auto-login-img" :src="sheep.$url.static('/img/apple.png')" />
         </button>
       </view>
 

@@ -11,7 +11,7 @@
           <block v-if="modelValue.favorite">
             <image
               class="item-icon"
-              :src="sheep.$url.static('/static/img/shop/goods/collect_1.gif')"
+              :src="sheep.$url.static('/img/collect_1.gif')"
               mode="aspectFit"
             />
             <view class="item-title">已收藏</view>
@@ -19,7 +19,7 @@
           <block v-else>
             <image
               class="item-icon"
-              :src="sheep.$url.static('/static/img/shop/goods/collect_0.png')"
+              :src="sheep.$url.static('/img/collect_0.png')"
               mode="aspectFit"
             />
             <view class="item-title">收藏</view>
@@ -30,7 +30,7 @@
           class="detail-tabbar-item ss-flex ss-flex-col ss-row-center ss-col-center"
           @tap="onChat"
         >
-          <image class="item-icon" :src="sheep.$url.static('/static/img/shop/goods/message.png')" mode="aspectFit" />
+          <image class="item-icon" :src="sheep.$url.static('/img/message.png')" mode="aspectFit" />
           <view class="item-title">客服</view>
         </view>
         <view
@@ -38,7 +38,7 @@
           class="detail-tabbar-item ss-flex ss-flex-col ss-row-center ss-col-center"
           @tap="showShareModal"
         >
-          <image class="item-icon" :src="sheep.$url.static('/static/img/shop/goods/share.png')" mode="aspectFit" />
+          <image class="item-icon" :src="sheep.$url.static('/img/share.png')" mode="aspectFit" />
           <view class="item-title">分享</view>
         </view>
         <slot></slot>

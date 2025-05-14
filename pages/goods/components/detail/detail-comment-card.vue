@@ -24,7 +24,7 @@
       <s-empty
         v-if="state.commentList.length === 0"
         paddingTop="0"
-        icon="/static/comment-empty.png"
+        :icon="sheep.$url.static('/img/comment-empty.png')"
         text="期待您的第一个评价"
       />
     </view>
@@ -50,9 +50,9 @@
   });
 
   async function getComment(id) {
-    const { data } = await CommentApi.getCommentPage(id, 1, 3, 0);
-    state.commentList = data.list;
-    state.total = data.total;
+    // const { data } = await CommentApi.getCommentPage(id, 1, 3, 0);
+    // state.commentList = data.list;
+    // state.total = data.total;
   }
 
   onBeforeMount(() => {
@@ -64,6 +64,7 @@
   .detail-comment-card {
     margin: 0 20rpx 20rpx 20rpx;
     padding: 20rpx 20rpx 0 20rpx;
+
     .card-header {
       .line {
         width: 6rpx;
@@ -97,8 +98,10 @@
       }
     }
   }
+
   .comment-box {
     border-bottom: 2rpx solid #eeeeee;
+
     &:last-child {
       border: none;
     }

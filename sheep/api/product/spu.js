@@ -4,9 +4,8 @@ const SpuApi = {
   // 获得商品 SPU 列表
   getSpuListByIds: (ids) => {
     return request({
-      url: '/product/spu/list-by-ids',
+      url: `/product/category/${ids}`,
       method: 'GET',
-      params: { ids },
       custom: {
         showLoading: false,
         showError: false,
@@ -28,7 +27,7 @@ const SpuApi = {
   // 获得商品 SPU 分页
   getSpuPage: (params) => {
     return request({
-      url: '/product/spu/page',
+      url: `/product/page`,
       method: 'GET',
       params,
       custom: {
@@ -40,7 +39,7 @@ const SpuApi = {
   // 查询商品
   getSpuDetail: (id) => {
     return request({
-      url: '/product/spu/get-detail',
+      url: '/product/detail',
       method: 'GET',
       params: { id },
       custom: {

@@ -26,9 +26,9 @@
           @scrolltolower="handleScrollToLower"
         >
           <image
-            v-if="state.categoryList[state.activeMenu].picUrl"
+            v-if="state.categoryList[state.activeMenu].image"
             class="banner-img"
-            :src="sheep.$url.cdn(state.categoryList[state.activeMenu].picUrl)"
+            :src="sheep.$url.cdn(state.categoryList[state.activeMenu].image)"
             mode="widthFix"
           />
           <first-one v-if="state.style === 'first_one'" :pagination="state.pagination" />
@@ -84,7 +84,9 @@
     if (code !== 0) {
       return;
     }
-    state.categoryList = handleTree(data);
+
+    state.categoryList = handleTree(data, 'id', 'pid', 'children')[0]['children'];
+    console.log(data, state.categoryList);
   }
 
   // 选中菜单
