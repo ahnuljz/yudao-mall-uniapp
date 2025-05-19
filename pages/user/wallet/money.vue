@@ -35,7 +35,7 @@
       </view>
       <su-tabs :list="tabMaps" @change="onChange" :scrollable="false" :current="state.currentTab"></su-tabs>
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" text="暂无数据" icon="/static/data-empty.png" />
+    <s-empty v-if="state.pagination.total === 0" text="暂无数据" :icon="sheep.$url.cdn('/static/data-empty.png')" />
 
     <!-- 钱包记录 -->
     <view v-if="state.pagination.total > 0">
@@ -76,7 +76,7 @@
   import { fen2yuan } from '@/sheep/hooks/useGoods';
   import { resetPagination } from '@/sheep/util';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/wallet_card_bg.png');
+  const headerBg = sheep.$url.css('/img/wallet_card_bg.png');
 
   // 数据
   const state = reactive({

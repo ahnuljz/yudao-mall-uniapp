@@ -20,7 +20,7 @@
                   v-for="item in emoji"
                   :key="item"
                   class="emoji-img"
-                  :src="sheep.$url.cdn(`/static/img/chat/emoji/${item.file}`)"
+                  :src="sheep.$url.cdn(`/img/emoji/${item.file}`)"
                   @tap="onEmoji(item)"
                 >
                 </image>
@@ -35,16 +35,16 @@
               :imageStyles="{ width: 50, height: 50, border: false }"
               @select="imageSelect({ type: 'image', data: $event })"
             >
-              <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/image.png')" mode="aspectFill"></image>
+              <image class="icon" :src="sheep.$url.cdn('/img/image.png')" mode="aspectFill"></image>
             </s-uploader>
             <view>图片</view>
           </view>
           <view class="goods" @tap="onShowSelect('goods')">
-            <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/goods.png')" mode="aspectFill"></image>
+            <image class="icon" :src="sheep.$url.cdn('/img/goods.png')" mode="aspectFill"></image>
             <view>商品</view>
           </view>
           <view class="order" @tap="onShowSelect('order')">
-            <image class="icon" :src="sheep.$url.static('/static/img/shop/chat/order.png')" mode="aspectFill"></image>
+            <image class="icon" :src="sheep.$url.cdn('/img/order.png')" mode="aspectFill"></image>
             <view>订单</view>
           </view>
         </template>

@@ -152,7 +152,7 @@
   import DictApi from '@/sheep/api/system/dict';
   import SLayout from '@/sheep/components/s-layout/s-layout.vue';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/img/withdraw_bg.png');
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
 
   const userStore = sheep.$store('user');

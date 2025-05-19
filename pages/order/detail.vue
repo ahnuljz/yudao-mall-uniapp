@@ -19,25 +19,25 @@
             state.orderInfo.status_code == 'nocomment'
           "
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_loading.png')"
+          :src="sheep.$url.cdn('/img/order_loading.png')"
         >
         </image>
         <image
           v-if="state.orderInfo.status_code == 'completed' || state.orderInfo.status_code == 'refund_agree'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_success.png')"
+          :src="sheep.$url.cdn('/img/order_success.png')"
         >
         </image>
         <image
           v-if="state.orderInfo.status_code == 'cancel' || state.orderInfo.status_code == 'closed'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_close.png')"
+          :src="sheep.$url.cdn('/img/order_close.png')"
         >
         </image>
         <image
           v-if="state.orderInfo.status_code == 'noget'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_express.png')"
+          :src="sheep.$url.cdn('/img/order_express.png')"
         >
         </image>
         <view class="ss-font-30">{{ formatOrderStatus(state.orderInfo) }}</view>
@@ -261,7 +261,7 @@
   import PickUpVerify from '@/pages/order/pickUpVerify.vue';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/order/order_bg.png');
+  const headerBg = sheep.$url.css('/img/order_bg.png');
 
   const state = reactive({
     orderInfo: {},

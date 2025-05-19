@@ -74,7 +74,7 @@ const buildSpmQuery = (params) => {
   let shareId = '0'; // 设置分享者用户ID
   if (typeof params.shareId === 'undefined') {
     if (user.isLogin) {
-      shareId = user.userInfo.id;
+      shareId = user.userInfo.customerId;
     }
   }
   let page = SharePageEnum.HOME.value; // 页面类型，默认首页

@@ -68,17 +68,6 @@ const CouponApi = {
       params: { id },
     });
   },
-  // 获得未使用的优惠劵数量
-  getUnusedCouponCount: () => {
-    return request({
-      url: '/promotion/coupon/get-unused-count',
-      method: 'GET',
-      custom: {
-        showLoading: false,
-        auth: true,
-      },
-    });
-  },
 };
 
 export default CouponApi;

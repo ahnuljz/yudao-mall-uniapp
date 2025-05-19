@@ -19,7 +19,7 @@ const SocialApi = {
     return request({
       url: '/member/social-user/bind',
       method: 'POST',
-      data: {
+      params: {
         type,
         code,
         state,
@@ -38,7 +38,7 @@ const SocialApi = {
     return request({
       url: '/member/social-user/unbind',
       method: 'DELETE',
-      data: {
+      params: {
         type,
         openid,
       },

@@ -36,7 +36,7 @@
         >
           <!-- 活动价格 -->
           <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-            <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+            <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
             <text class="point-text ss-m-r-16">
               {{ data.point }}
               {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -86,7 +86,7 @@
         >
           <!-- 活动价格 -->
           <view class="ss-flex" v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type">
-            <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+            <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
             <text class="point-text ss-m-r-16">
               {{ data.point }}
               {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -153,7 +153,7 @@
               class="ss-flex"
               v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
             >
-              <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+              <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
               <text class="point-text ss-m-r-16">
                 {{ data.point }}
                 {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -187,7 +187,7 @@
 
       <slot name="cart">
         <view class="cart-box ss-flex ss-col-center ss-row-center">
-          <image class="cart-icon" src="/static/img/shop/tabbar/category2.png" mode="" />
+          <image class="cart-icon" :src="sheep.$url.cdn('/img/category2.png')" mode="" />
         </view>
       </slot>
     </view>
@@ -245,7 +245,7 @@
                 class="ss-flex"
                 v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
               >
-                <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+                <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
                 <text class="point-text ss-m-r-16">
                   {{ data.point }}
                   {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}
@@ -331,7 +331,7 @@
                 class="ss-flex"
                 v-if="data.activityType && data.activityType === PromotionActivityTypeEnum.POINT.type"
               >
-                <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+                <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
                 <text class="ss-m-r-16">
                   {{ data.point }}
                   {{ !data.pointPrice || data.pointPrice === 0 ? '' : `+${priceUnit}${fen2yuan(data.pointPrice)}` }}

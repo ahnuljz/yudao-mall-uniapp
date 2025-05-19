@@ -27,7 +27,7 @@
             </view>
             <view v-if="point && Number(price) > 0">+</view>
             <view class="price-text ss-flex ss-col-center" v-if="point">
-              <image :src="sheep.$url.static('/static/img/shop/goods/score1.svg')" class="point-img"></image>
+              <image :src="sheep.$url.cdn('/img/score1.svg')" class="point-img"></image>
               <view>{{ point }}</view>
             </view>
             <view v-if="num" class="total-text ss-flex ss-col-center">x {{ num }}</view>

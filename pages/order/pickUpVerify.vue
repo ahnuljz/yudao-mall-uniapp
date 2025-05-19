@@ -14,7 +14,7 @@
         </view>
       </view>
       <view class="gear">
-        <image :src="sheep.$url.static('/static/images/writeOff.png', 'local')"></image>
+        <image :src="sheep.$url.cdn('/theme/red/writeOff.png')"></image>
       </view>
       <view class="num">{{ orderInfo.pickUpVerifyCode }}</view>
       <view class="rules">

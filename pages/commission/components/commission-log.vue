@@ -2,7 +2,7 @@
 <template>
   <view class="distribution-log-wrap">
     <view class="header-box">
-      <image class="header-bg" :src="sheep.$url.static('/static/img/shop/commission/title2.png')" />
+      <image class="header-bg" :src="sheep.$url.cdn('/img/title2.png')" />
       <view class="ss-flex header-title">
         <view class="title">实时动态</view>
         <text class="cicon-forward" />
@@ -16,7 +16,7 @@
               <view class="ss-flex ss-col-center">
                 <image
                   class="log-img"
-                  :src="sheep.$url.static('/static/img/shop/avatar/notice.png')"
+                  :src="sheep.$url.cdn('/img/notice.png')"
                   mode="aspectFill"
                 />
               </view>

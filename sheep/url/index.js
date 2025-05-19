@@ -7,7 +7,7 @@ const cdn = (url = '', cdnurl = '') => {
     return url;
   }
   if (cdnurl === '') {
-    cdnurl = $store('app').info.cdnurl;
+    cdnurl = $store('app').info.cdnurl + '/mall';
   }
   return cdnurl + url;
 };
@@ -19,29 +19,9 @@ export default {
     url = cdn(url);
     return append_thumbnail_params(url, params);
   },
-  // 静态资源地址
-  static: (url = '', staticurl = '') => {
-    if (staticurl === '') {
-      staticurl = staticUrl;
-    }
-    if (staticurl !== 'local') {
-      url = cdn(url, staticurl);
-    }
-    return url;
-  },
   // css背景图片地址
   css: (url = '', staticurl = '') => {
-    if (staticurl === '') {
-      staticurl = staticUrl;
-    }
-    if (staticurl !== 'local') {
-      url = cdn(url, staticurl);
-    }
-    // #ifdef APP-PLUS
-    if (staticurl === 'local') {
-      url = plus.io.convertLocalFileSystemURL(url);
-    }
-    // #endif
+    url = cdn(url, staticurl);
     return `url(${url})`;
   },
 };

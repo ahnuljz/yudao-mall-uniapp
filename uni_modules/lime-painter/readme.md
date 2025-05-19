@@ -346,7 +346,7 @@ data() {
 ```
 ```js
 import parseHtml from '@/uni_modules/lime-painter/parser'
-const json = parseHtml(`<p><span>测试测试</span><img src="/static/logo.png"/></p>`)
+const json = parseHtml(`<p><span>测试测试</span><img src="/logo.png"/></p>`)
 this.$refs.painter.render(json)
 ```
 

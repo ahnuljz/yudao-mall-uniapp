@@ -4,7 +4,7 @@
     <su-sticky bgColor="#fff">
       <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab" />
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/coupon-empty.png" text="暂无优惠券" />
+    <s-empty v-if="state.pagination.total === 0" :icon="sheep.$url.cdn('/static/coupon-empty.png')" text="暂无优惠券" />
     <!-- 情况一：领劵中心 -->
     <template v-if="state.currentTab === 0">
       <view v-for="item in state.pagination.list" :key="item.id">

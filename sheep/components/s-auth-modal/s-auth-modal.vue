@@ -43,17 +43,9 @@
           @tap="thirdLogin('wechat')"
           class="ss-reset-button auto-login-btn"
         >
-          <image class="auto-login-img" :src="sheep.$url.static('/img/wechat.png')" />
+          <image class="auto-login-img" :src="sheep.$url.cdn('/img/wechat.png')" />
         </button>
 
-        <!-- 7.3 iOS 登录 TODO 芋艿：等后面搞 App 再弄 -->
-        <button
-          v-if="sheep.$platform.os === 'ios' && sheep.$platform.name === 'App'"
-          @tap="thirdLogin('apple')"
-          class="ss-reset-button auto-login-btn"
-        >
-          <image class="auto-login-img" :src="sheep.$url.static('/img/apple.png')" />
-        </button>
       </view>
 
       <!-- 用户协议的勾选 -->

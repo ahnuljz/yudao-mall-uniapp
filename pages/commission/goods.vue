@@ -29,7 +29,7 @@
         </template>
       </s-goods-item>
     </view>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/goods-empty.png" text="暂无推广商品" />
+    <s-empty v-if="state.pagination.total === 0" :icon="sheep.$url.cdn('/static/goods-empty.png')" text="暂无推广商品" />
     <!-- 加载更多 -->
     <uni-load-more
       v-if="state.pagination.total > 0"

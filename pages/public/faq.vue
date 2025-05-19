@@ -23,7 +23,7 @@
         </view>
       </uni-collapse-item>
     </uni-collapse>
-    <s-empty v-if="state.list.length === 0 && !state.loading" text="暂无常见问题" icon="/static/collect-empty.png" />
+    <s-empty v-if="state.list.length === 0 && !state.loading" text="暂无常见问题" :icon="sheep.$url.cdn('/static/collect-empty.png')" />
   </s-layout>
 </template>
 

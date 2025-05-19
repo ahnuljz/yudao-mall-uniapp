@@ -24,7 +24,7 @@
         <view class="list">
           <view class="item" v-for="(item, index) in state.pagination.list" :key="index">
             <view class="num" v-if="index <= 2">
-              <image :src="'/static/images/medal0' + (index + 1) + '.png'" />
+              <image :src="sheep.$url.cdn('/theme/red/medal0' + (index + 1) + '.png')" />
             </view>
             <view class="num" v-else>
               {{ index + 1 }}

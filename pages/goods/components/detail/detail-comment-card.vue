@@ -24,7 +24,7 @@
       <s-empty
         v-if="state.commentList.length === 0"
         paddingTop="0"
-        :icon="sheep.$url.static('/img/comment-empty.png')"
+        :icon="sheep.$url.cdn('/img/comment-empty.png')"
         text="期待您的第一个评价"
       />
     </view>
@@ -62,7 +62,7 @@
 
 <style lang="scss" scoped>
   .detail-comment-card {
-    margin: 0 20rpx 20rpx 20rpx;
+    margin: 20rpx 0;
     padding: 20rpx 20rpx 0 20rpx;
 
     .card-header {

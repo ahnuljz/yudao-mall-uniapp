@@ -44,17 +44,6 @@
 			}
 		},
 		{
-			"path": "pages/index/cart",
-			"style": {
-				"navigationBarTitleText": "购物车"
-			},
-			"meta": {
-				"sync": true,
-				"title": "购物车",
-				"group": "商城"
-			}
-		},
-		{
 			"path": "pages/index/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -677,9 +666,6 @@
 	"tabBar": {
 		"list": [{
 				"pagePath": "pages/index/index"
-			},
-			{
-				"pagePath": "pages/index/cart"
 			},
 			{
 				"pagePath": "pages/index/user"

@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import $share from '@/sheep/platform/share';
 import { clone, cloneDeep } from 'lodash-es';
-import cart from './cart';
 import app from './app';
 import { showAuthModal } from '@/sheep/hooks/useModal';
 import UserApi from '@/sheep/api/member/user';
@@ -16,6 +15,7 @@ const defaultUserInfo = {
   gender: 0, // 性别
   mobile: '', // 手机号
   point: 0, // 积分
+  customerId: 0, // ID
 };
 
 // 默认钱包信息
@@ -63,33 +63,27 @@ const user = defineStore({
       if (code !== 0) {
         return;
       }
-      this.userWallet = data;
+      this.userWallet = { balance: +data };
     },
 
     // 获取订单、优惠券等其他资产信息
     getNumData() {
       OrderApi.getOrderCount().then((res) => {
         if (res.code === 0) {
+          this.numData.unusedCouponCount = res.data.unusedCouponCount;
           this.numData.orderCount = res.data;
-        }
-      });
-      CouponApi.getUnusedCouponCount().then((res) => {
-        if (res.code === 0) {
-          this.numData.unusedCouponCount = res.data;
         }
       });
     },
 
     // 设置 token
-    setToken(token = '', refreshToken = '') {
+    setToken(token = '') {
       if (token === '') {
         this.isLogin = false;
         uni.removeStorageSync('token');
-        uni.removeStorageSync('refresh-token');
       } else {
         this.isLogin = true;
         uni.setStorageSync('token', token);
-        uni.setStorageSync('refresh-token', refreshToken);
         this.loginAfter();
       }
       return this.isLogin;
@@ -123,8 +117,6 @@ const user = defineStore({
       this.userInfo = clone(defaultUserInfo);
       this.userWallet = clone(defaultUserWallet);
       this.numData = cloneDeep(defaultNumData);
-      // 清空购物车的缓存
-      cart().emptyList();
     },
 
     // 登录后，加载各种信息
@@ -132,8 +124,6 @@ const user = defineStore({
     async loginAfter() {
       await this.updateUserData();
 
-      // 加载购物车
-      cart().getList();
       // 登录后设置全局分享参数
       $share.getShareInfo();
 
@@ -143,7 +133,7 @@ const user = defineStore({
       }
 
       // 绑定推广员
-      $share.bindBrokerageUser();
+      //$share.bindBrokerageUser();
     },
 
     // 登出系统

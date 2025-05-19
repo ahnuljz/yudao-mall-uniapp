@@ -31,7 +31,7 @@
         <image
           v-show="message.senderType === UserTypeEnum.ADMIN"
           class="chat-avatar ss-m-r-24"
-          :src="sheep.$url.cdn(message.senderAvatar) || sheep.$url.static('/static/img/shop/chat/default.png')"
+          :src="sheep.$url.cdn(message.senderAvatar) || sheep.$url.cdn('/img/default.png')"
           mode="aspectFill"
         ></image>
         <!-- 内容 -->
@@ -76,7 +76,7 @@
         <image
           v-if="message.senderType === UserTypeEnum.MEMBER"
           class="chat-avatar ss-m-l-24"
-          :src="sheep.$url.cdn(userInfo.avatar) || sheep.$url.static('/static/img/shop/chat/default.png')"
+          :src="sheep.$url.cdn(userInfo.avatar) || sheep.$url.cdn('/img/default.png')"
           mode="aspectFill"
         >
         </image>
@@ -137,7 +137,7 @@
           let emojiFile = selEmojiFile(item);
           newData = newData.replace(
             item,
-            `<img class="chat-img" style="width: 24px;height: 24px;margin: 0 3px;vertical-align: middle;" src="${sheep.$url.cdn('/static/img/chat/emoji/' + emojiFile)}"/>`,
+            `<img class="chat-img" style="width: 24px;height: 24px;margin: 0 3px;vertical-align: middle;" src="${sheep.$url.cdn('/img/emoji/' + emojiFile)}"/>`,
           );
         });
       }

@@ -8,7 +8,7 @@
       @tap="sheep.$router.go(item.path, { type: item.value })"
     >
       <uni-badge class="uni-badge-left-margin" :text="numData.orderCount[item.count]" absolute="rightTop" size="small">
-        <image class="item-icon" :src="sheep.$url.static(item.icon)" mode="aspectFit" />
+        <image class="item-icon" :src="sheep.$url.cdn(item.icon)" mode="aspectFit" />
       </uni-badge>
       <view class="menu-title ss-m-t-28">{{ item.title }}</view>
     </view>
@@ -26,7 +26,7 @@
     {
       title: '待付款',
       value: '1',
-      icon: '/static/img/shop/order/no_pay.png',
+      icon: '/img/no_pay.png',
       path: '/pages/order/list',
       type: 'unpaid',
       count: 'unpaidCount',
@@ -34,7 +34,7 @@
     {
       title: '待收货',
       value: '3',
-      icon: '/static/img/shop/order/no_take.png',
+      icon: '/img/no_take.png',
       path: '/pages/order/list',
       type: 'noget',
       count: 'deliveredCount',
@@ -42,7 +42,7 @@
     {
       title: '待评价',
       value: '4',
-      icon: '/static/img/shop/order/no_comment.png',
+      icon: '/img/no_comment.png',
       path: '/pages/order/list',
       type: 'nocomment',
       count: 'uncommentedCount',
@@ -50,7 +50,7 @@
     {
       title: '售后单',
       value: '0',
-      icon: '/static/img/shop/order/change_order.png',
+      icon: '/img/change_order.png',
       path: '/pages/order/aftersale/list',
       type: 'aftersale',
       count: 'afterSaleCount',
@@ -58,7 +58,7 @@
     {
       title: '全部订单',
       value: '0',
-      icon: '/static/img/shop/order/all_order.png',
+      icon: '/img/all_order.png',
       path: '/pages/order/list',
     },
   ];

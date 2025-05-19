@@ -61,17 +61,17 @@
       {
         label: '商品',
         value: 'goods',
-        to: 'detail-swiper-selector',
+        to: 'goods',
       },
       {
-        label: '评价',
+        label: '规格',
         value: 'comment',
-        to: 'detail-comment-selector',
+        to: 'sku',
       },
       {
         label: '详情',
         value: 'detail',
-        to: 'detail-content-selector',
+        to: 'detail',
       },
     ],
   });

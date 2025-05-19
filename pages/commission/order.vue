@@ -50,7 +50,7 @@
         </view>
       </view>
       <!-- 数据为空 -->
-      <s-empty v-if="state.pagination.total === 0" icon="/static/order-empty.png" text="暂无订单" />
+      <s-empty v-if="state.pagination.total === 0" :icon="sheep.$url.cdn('/static/order-empty.png')"  text="暂无订单" />
       <!-- 加载更多 -->
       <uni-load-more
         v-if="state.pagination.total > 0"
@@ -74,7 +74,7 @@
   import { fen2yuan } from '../../sheep/hooks/useGoods';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/img/withdraw_bg.png');
 
   onPageScroll((e) => {
     state.scrollTop = e.scrollTop <= 100;

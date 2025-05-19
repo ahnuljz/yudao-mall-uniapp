@@ -199,7 +199,7 @@
       return {
         files: [],
         localValue: [],
-        imgsrc: sheep.$url.static('/static/img/shop/upload-camera.png'),
+        imgsrc: sheep.$url.cdn('/img/upload-camera.png'),
       };
     },
     watch: {

@@ -25,7 +25,7 @@
             >
               <image
                 v-if="!isEmpty(state.selectedSku)"
-                :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
+                :src="sheep.$url.cdn('/img/score1.svg')"
                 class="point-img"
               ></image>
               <text class="point-text ss-m-r-16">

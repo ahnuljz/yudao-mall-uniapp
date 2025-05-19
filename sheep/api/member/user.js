@@ -17,7 +17,7 @@ const UserApi = {
     return request({
       url: '/member/user/update',
       method: 'PUT',
-      data,
+      params: data,
       custom: {
         auth: true,
         showSuccess: true,
@@ -30,7 +30,7 @@ const UserApi = {
     return request({
       url: '/member/user/update-mobile',
       method: 'PUT',
-      data,
+      params: data,
       custom: {
         loadingMsg: '验证中',
         showSuccess: true,
@@ -43,7 +43,7 @@ const UserApi = {
     return request({
       url: '/member/user/update-mobile-by-weixin',
       method: 'PUT',
-      data: {
+      params: {
         code,
       },
       custom: {
@@ -58,7 +58,7 @@ const UserApi = {
     return request({
       url: '/member/user/update-password',
       method: 'PUT',
-      data,
+      params: data,
       custom: {
         loadingMsg: '验证中',
         showSuccess: true,
@@ -71,7 +71,7 @@ const UserApi = {
     return request({
       url: '/member/user/reset-password',
       method: 'PUT',
-      data,
+      params: data,
       custom: {
         loadingMsg: '验证中',
         showSuccess: true,

@@ -62,7 +62,7 @@
   const sysNavBar = sheep.$platform.navbar;
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   const pageHeight = (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sysNavBar - 350;
-  const headerBg = sheep.$url.css('/static/img/shop/goods/groupon-header.png');
+  const headerBg = sheep.$url.css('/img/groupon-header.png');
 
   const state = reactive({
     pagination: {

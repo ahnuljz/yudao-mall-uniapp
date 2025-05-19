@@ -46,7 +46,7 @@ const mobileLogin = async (e) => {
     }
 
     // 2. 一键登录
-    const loginResult = await AuthUtil.weixinMiniAppLogin(e.code, codeResult.code, 'default');
+    const loginResult = await AuthUtil.weixinMiniAppLogin(e.code, codeResult.code);
     if (loginResult.code === 0) {
       setOpenid(loginResult.data.openid);
       return resolve(true);

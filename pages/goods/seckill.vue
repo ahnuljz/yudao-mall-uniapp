@@ -9,7 +9,7 @@
     <s-empty
       v-else-if="state.goodsInfo === null || state.goodsInfo.activity_type !== 'seckill' || endTime.ms <= 0"
       text="活动不存在或已结束"
-      icon="/static/soldout-empty.png"
+      :icon="sheep.$url.cdn('/static/soldout-empty.png')"
       showAction
       actionText="再逛逛"
       actionUrl="/pages/goods/list"
@@ -67,10 +67,8 @@
           <view class="subtitle-text ss-line-1">{{ state.goodsInfo.introduction }}</view>
         </view>
 
-        <!-- 功能卡片 -->
-        <view class="detail-cell-card detail-card ss-flex-col">
-          <detail-cell-sku :sku="state.selectedSku" @tap="state.showSelectSku = true" />
-        </view>
+        <!-- 规格 -->
+        <s-select-sku :plans="state.goodsInfo.plans" :singleSupplements="state.goodsInfo.singleSupplements" class="sku" />
         <!-- 规格与数量弹框 -->
         <s-select-seckill-sku
           v-model="state.goodsInfo"
@@ -139,7 +137,6 @@
   import { isEmpty, min } from 'lodash-es';
   import { fen2yuan, formatGoodsSwiper, useDurationTime } from '@/sheep/hooks/useGoods';
   import detailNavbar from './components/detail/detail-navbar.vue';
-  import detailCellSku from './components/detail/detail-cell-sku.vue';
   import detailTabbar from './components/detail/detail-tabbar.vue';
   import detailSkeleton from './components/detail/detail-skeleton.vue';
   import detailCommentCard from './components/detail/detail-comment-card.vue';
@@ -148,12 +145,13 @@
   import SeckillApi from '@/sheep/api/promotion/seckill';
   import SpuApi from '@/sheep/api/product/spu';
   import { getTimeStatusEnum, SharePageEnum, TimeStatusEnum } from '@/sheep/util/const';
+  import SSelectSku from '@/sheep/components/s-select-sku/s-select-sku.vue';
 
-  const headerBg = sheep.$url.css('/static/img/shop/goods/seckill-bg.png');
-  const btnBg = sheep.$url.css('/static/img/shop/goods/seckill-btn.png');
-  const disabledBtnBg = sheep.$url.css('/static/img/shop/goods/activity-btn-disabled.png');
-  const seckillBg = sheep.$url.css('/static/img/shop/goods/seckill-tip-bg.png');
-  const grouponBg = sheep.$url.css('/static/img/shop/goods/groupon-tip-bg.png');
+  const headerBg = sheep.$url.css('/img/seckill-bg.png');
+  const btnBg = sheep.$url.css('/img/seckill-btn.png');
+  const disabledBtnBg = sheep.$url.css('/img/activity-btn-disabled.png');
+  const seckillBg = sheep.$url.css('/img/seckill-tip-bg.png');
+  const grouponBg = sheep.$url.css('/img/groupon-tip-bg.png');
 
   onPageScroll(() => {});
   const state = reactive({

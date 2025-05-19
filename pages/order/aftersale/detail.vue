@@ -95,7 +95,7 @@
     </view>
 
     <!-- 操作区 -->
-    <s-empty v-if="isEmpty(state.info) && state.loading" icon="/static/order-empty.png" text="暂无该订单售后详情" />
+    <s-empty v-if="isEmpty(state.info) && state.loading"  :icon="sheep.$url.cdn('/static/order-empty.png')" text="暂无该订单售后详情" />
     <su-fixed bottom placeholder bg="bg-white" v-if="!isEmpty(state.info)">
       <view class="foot_box">
         <button class="ss-reset-button btn" v-if="state.info.buttons?.includes('cancel')" @tap="onApply(state.info.id)">
@@ -123,7 +123,7 @@
   import AfterSaleApi from '@/sheep/api/trade/afterSale';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/order/order_bg.png');
+  const headerBg = sheep.$url.css('/img/order_bg.png');
   const state = reactive({
     id: 0, // 售后编号
     info: {}, // 收货信息

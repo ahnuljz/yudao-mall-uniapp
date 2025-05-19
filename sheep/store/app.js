@@ -4,6 +4,8 @@ import $platform from '@/sheep/platform';
 import $router from '@/sheep/router';
 import user from './user';
 import sys from './sys';
+import { staticUrl } from '@/sheep/config';
+import sheep from '@/sheep';
 
 const app = defineStore({
   id: 'app',
@@ -57,26 +59,25 @@ const app = defineStore({
       // 加载装修配置
       await adaptTemplate(this.template, templateId);
 
-      // TODO 芋艿：未来支持管理后台可配；对应 https://api.shopro.sheepjs.com/shop/api/init
+      // TODO 支持管理后台可配
       if (true) {
         this.info = {
           name: '旅小助商城',
-          logo: 'https://ui.yebenkj.com/img/128px.png',
+          logo: sheep.$url.cdn('/img/128px.png'),
           version: '2.4.0',
           copyright: '值得信赖的商城，旅小助商城',
           copytime: 'Copyright© 2020-2025',
-
-          cdnurl: 'https://img.yebenkj.com', // 云存储域名
+          cdnurl: staticUrl, // 云存储域名
           filesystem: 'qiniu', // 云存储平台
         };
         this.platform = {
           share: {
             methods: ['forward', 'poster', 'link'],
-            linkAddress: import.meta.env.SHOPRO_STATIC_URL, // TODO 芋艿：可以考虑改到 .env 那
+            linkAddress: import.meta.env.SHOPRO_QR_URL,
             posterInfo: {
-              user_bg: '/img/user-poster-bg.png',
-              goods_bg: '/img/goods-poster-bg.png',
-              groupon_bg: '/img/groupon-poster-bg.png',
+              user_bg: sheep.$url.cdn('/img/user-poster-bg.png'),
+              goods_bg: sheep.$url.cdn('/img/goods-poster-bg.png'),
+              groupon_bg: sheep.$url.cdn('/img/groupon-poster-bg.png'),
             },
             forwardInfo: {
               title: '',

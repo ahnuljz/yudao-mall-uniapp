@@ -4,7 +4,7 @@
     <su-sticky bgColor="#fff">
       <su-tabs :list="tabMaps" :scrollable="false" @change="onTabsChange" :current="state.currentTab"></su-tabs>
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/goods-empty.png" />
+    <s-empty v-if="state.pagination.total === 0" :icon="sheep.$url.cdn('/static/goods-empty.png')" />
     <view v-if="state.pagination.total > 0">
       <view
         class="order-list-card-box bg-white ss-r-10 ss-m-t-14 ss-m-20"

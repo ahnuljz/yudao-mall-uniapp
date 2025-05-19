@@ -23,7 +23,7 @@
     <slot>
       <button class="ss-reset-button edit-btn" @tap.stop="onEdit">
         <view class="edit-icon ss-flex ss-row-center ss-col-center">
-          <image :src="sheep.$url.static('/static/img/shop/user/address/edit.png')" />
+          <image :src="sheep.$url.cdn('/img/address/edit.png')" />
         </view>
       </button>
     </slot>

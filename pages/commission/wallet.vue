@@ -59,7 +59,7 @@
       </view>
       <su-tabs :list="tabMaps" @change="onChangeTab" :scrollable="false" :current="state.currentTab" />
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/data-empty.png" text="暂无数据"></s-empty>
+    <s-empty v-if="state.pagination.total === 0" :icon="sheep.$url.cdn('/static/data-empty.png')" text="暂无数据"></s-empty>
 
     <!-- 转余额弹框 -->
     <su-popup :show="state.showModal" type="bottom" round="20" @close="state.showModal = false" showClose>
@@ -117,7 +117,7 @@
   import { fen2yuan } from '@/sheep/hooks/useGoods';
   import { resetPagination } from '@/sheep/util';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/wallet_card_bg.png');
+  const headerBg = sheep.$url.css('/img/wallet_card_bg.png');
 
   const state = reactive({
     showMoney: false,

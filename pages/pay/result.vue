@@ -7,12 +7,12 @@
       <image
         class="pay-img ss-m-b-30"
         v-if="payResult === 'success'"
-        :src="sheep.$url.static('/static/img/shop/order/order_pay_success.gif')"
+        :src="sheep.$url.cdn('/img/order_pay_success.gif')"
       />
       <image
         class="pay-img ss-m-b-30"
         v-if="['failed', 'closed'].includes(payResult)"
-        :src="sheep.$url.static('/static/img/shop/order/order_paty_fail.gif')"
+        :src="sheep.$url.cdn('/img/order_paty_fail.gif')"
       />
       <view class="tip-text ss-m-b-30" v-if="payResult === 'success'">支付成功</view>
       <view class="tip-text ss-m-b-30" v-if="payResult === 'failed'">支付失败</view>
@@ -44,7 +44,7 @@
 
       <!-- #ifdef MP -->
       <view class="subscribe-box ss-flex ss-m-t-44" v-if="showSubscribeBtn && state.orderType === 'goods'">
-        <image class="subscribe-img" :src="sheep.$url.static('/static/img/shop/order/cargo.png')" />
+        <image class="subscribe-img" :src="sheep.$url.cdn('/img/cargo.png')" />
         <view class="subscribe-title ss-m-r-48 ss-m-l-16">获取实时发货信息与订单状态</view>
         <view class="subscribe-start" @tap="subscribeMessage">立即订阅</view>
       </view>

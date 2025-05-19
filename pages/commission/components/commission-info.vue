@@ -20,7 +20,7 @@
   import { computed, reactive } from 'vue';
 
   const userInfo = computed(() => sheep.$store('user').userInfo);
-  const headerBg = sheep.$url.css('/static/img/shop/commission/background.png');
+  const headerBg = sheep.$url.css('/img/background.png');
 
   const state = reactive({
     showMoney: false,

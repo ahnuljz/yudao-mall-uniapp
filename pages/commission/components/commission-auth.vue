@@ -12,7 +12,7 @@
       <view class="img-wrap">
         <image
           class="notice-img"
-          :src="sheep.$url.static('/static/img/shop/commission/forbidden.png')"
+          :src="sheep.$url.cdn('/img/forbidden.png')"
           mode="aspectFill"
         />
       </view>

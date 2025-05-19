@@ -9,7 +9,7 @@
       :enable-back-to-top="true"
     >
       <s-point-card ref="sPointCardRef" class="ss-p-x-20 ss-m-t-20" />
-      <s-empty v-if="activityTotal === 0" icon="/static/goods-empty.png" text="暂无积分商品"></s-empty>
+      <s-empty v-if="activityTotal === 0" :icon="sheep.$url.cdn('/static/goods-empty.png')" text="暂无积分商品"></s-empty>
       <uni-load-more
         v-if="activityTotal > 0"
         :status="loadStatus"

@@ -56,7 +56,7 @@
           <view class="minus" v-else>{{ item.point }}</view>
         </view>
       </view>
-      <s-empty v-else text="暂无数据" icon="/static/data-empty.png" />
+      <s-empty v-else text="暂无数据" :icon="sheep.$url.cdn('/static/data-empty.png')"/>
     </view>
 
     <uni-load-more

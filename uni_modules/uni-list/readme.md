@@ -259,7 +259,7 @@ footer	|	右/下内容插槽，可完全自定义右侧内容
 <uni-list>
 	<uni-list-item title="自定义右侧插槽" note="列表描述信息" link>
 		<template slot="header">
-			<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
+			<image class="slot-image" src="sheep.$url.cdn('/static/logo.png')" mode="widthFix"></image>
 		</template>
 	</uni-list-item>
 	<uni-list-item>

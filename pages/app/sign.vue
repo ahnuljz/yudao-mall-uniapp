@@ -1,7 +1,7 @@
 <!-- 签到界面  -->
 <template>
   <s-layout title="签到有礼">
-    <s-empty v-if="state.loading" icon="/static/data-empty.png" text="签到活动还未开始" />
+    <s-empty v-if="state.loading" :icon="sheep.$url.cdn('/static/data-empty.png')" text="签到活动还未开始" />
     <view v-if="state.loading" />
     <view class="sign-wrap" v-else-if="!state.loading">
       <!-- 签到日历 -->
@@ -87,7 +87,7 @@
   import { reactive } from 'vue';
   import SignInApi from '@/sheep/api/member/signin';
 
-  const headerBg = sheep.$url.css('/static/img/shop/app/sign.png');
+  const headerBg = sheep.$url.css('/img/sign.png');
 
   const state = reactive({
     loading: true,

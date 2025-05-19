@@ -305,33 +305,21 @@ export default class SheepPay {
 export function getPayMethods(channels) {
   const payMethods = [
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/img/wechat.png',
       title: '微信支付',
       value: 'wechat',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/alipay.png',
+      icon: '/img/alipay.png',
       title: '支付宝支付',
       value: 'alipay',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/wallet.png',
+      icon: '/img/wallet.png',
       title: '余额支付',
       value: 'wallet',
-      disabled: true,
-    },
-    {
-      icon: '/static/img/shop/pay/apple.png',
-      title: 'Apple Pay',
-      value: 'apple',
-      disabled: true,
-    },
-    {
-      icon: '/static/img/shop/pay/wallet.png',
-      title: '模拟支付',
-      value: 'mock',
       disabled: true,
     },
   ];
@@ -341,8 +329,7 @@ export function getPayMethods(channels) {
   const wechatMethod = payMethods[0];
   if (
     (platform === 'WechatOfficialAccount' && channels.includes('wx_pub')) ||
-    (platform === 'WechatMiniProgram' && channels.includes('wx_lite')) ||
-    (platform === 'App' && channels.includes('wx_app'))
+    (platform === 'WechatMiniProgram' && channels.includes('wx_lite'))
   ) {
     wechatMethod.disabled = false;
   }
@@ -352,8 +339,7 @@ export function getPayMethods(channels) {
   if (
     (platform === 'H5' && channels.includes('alipay_wap')) ||
     (platform === 'WechatOfficialAccount' && channels.includes('alipay_wap')) ||
-    (platform === 'WechatMiniProgram' && channels.includes('alipay_wap')) ||
-    (platform === 'App' && channels.includes('alipay_app'))
+    (platform === 'WechatMiniProgram' && channels.includes('alipay_wap'))
   ) {
     alipayMethod.disabled = false;
   }
@@ -362,12 +348,7 @@ export function getPayMethods(channels) {
   if (channels.includes('wallet')) {
     walletMethod.disabled = false;
   }
-  // 4. 处理【苹果支付】TODO 芋艿：未来接入
-  // 5. 处理【模拟支付】
-  const mockMethod = payMethods[4];
-  if (channels.includes('mock')) {
-    mockMethod.disabled = false;
-  }
+
   return payMethods;
 }
 

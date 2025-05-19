@@ -67,7 +67,10 @@
         "schemes": "lvxiaozhu"
       },
       "ios": {
-        "urlschemewhitelist": ["baidumap", "iosamap"],
+        "urlschemewhitelist": [
+          "baidumap",
+          "iosamap"
+        ],
         "dSYMs": false,
         "privacyDescription": {
           "NSPhotoLibraryUsageDescription": "需要同意访问您的相册选取图片才能完善该条目",
@@ -78,7 +81,9 @@
         "urltypes": "lvxiaozhu",
         "capabilities": {
           "entitlements": {
-            "com.apple.developer.associated-domains": ["applinks:lvxiaozhu.yebenkj.com"]
+            "com.apple.developer.associated-domains": [
+              "applinks:lvxiaozhu.yebenkj.com"
+            ]
           }
         },
         "idfa": true
@@ -95,12 +100,18 @@
         },
         "payment": {
           "weixin": {
-            "__platform__": ["ios", "android"],
+            "__platform__": [
+              "ios",
+              "android"
+            ],
             "appid": "wxe161f8384b908527",
             "UniversalLinks": "https://shopro.sheepjs.com/uni-universallinks/__UNI__082C0BA/"
           },
           "alipay": {
-            "__platform__": ["ios", "android"]
+            "__platform__": [
+              "ios",
+              "android"
+            ]
           }
         },
         "share": {
@@ -110,7 +121,9 @@
           }
         }
       },
-      "orientation": ["portrait-primary"],
+      "orientation": [
+        "portrait-primary"
+      ],
       "splashscreen": {
         "androidStyle": "common",
         "iosStyle": "common",
@@ -177,19 +190,17 @@
     "optimization": {
       "subPackages": true
     },
-    "plugins": {
-      "live-player-plugin": {
-        "version": "1.3.5",
-        "provider": "wx2b03c6e691cd7370"
-      }
-    },
+    "plugins": {},
     "lazyCodeLoading": "requiredComponents",
     "usingComponents": {},
     "permission": {},
-    "requiredPrivateInfos": ["chooseAddress"]
+    "requiredPrivateInfos": [
+      "chooseAddress"
+    ]
   },
   "mp-alipay": {
-    "usingComponents": true
+    "usingComponents": true,
+    "appid": "2019041563927017"
   },
   "mp-baidu": {
     "usingComponents": true

@@ -8,7 +8,7 @@
           <view class="tag-box ss-flex ss-col-center ss-row-center">
             <image
               class="tag-image"
-              :src="sheep.$url.static('/static/img/shop/app/coupon_icon.png')"
+              :src="sheep.$url.cdn('/img/coupon_icon.png')"
               mode="aspectFit"
             />
           </view>
@@ -128,7 +128,7 @@
       <s-empty
         v-if="state.coupon.productScope === 3 && state.pagination.total === 0"
         paddingTop="0"
-        icon="/static/soldout-empty.png"
+        :icon="sheep.$url.cdn('/static/soldout-empty.png')"
         text="暂无商品"
       />
     </view>

@@ -39,7 +39,7 @@
       class="menu-item ss-flex-col ss-row-center ss-col-center menu-wallet"
       @tap="sheep.$router.go('/pages/user/wallet/money')"
     >
-      <image class="item-icon" :src="sheep.$url.static('/static/img/shop/user/wallet_icon.png')" mode="aspectFit" />
+      <image class="item-icon" :src="sheep.$url.cdn('/img/wallet_icon.png')" mode="aspectFit" />
       <view class="menu-title ss-m-t-30">我的钱包</view>
     </view>
   </view>

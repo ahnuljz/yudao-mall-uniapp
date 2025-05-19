@@ -106,7 +106,7 @@
           </view>
           <!-- 还有几个坑位 -->
           <view class="default-avatar ss-m-r-24 ss-m-b-20" v-for="item in state.remainNumber" :key="item">
-            <image :src="sheep.$url.static('/static/img/shop/avatar/unknown.png')" class="avatar-img"></image>
+            <image :src="sheep.$url.cdn('/img/unknown.png')" class="avatar-img"></image>
           </view>
         </view>
       </view>
@@ -160,7 +160,7 @@
       </view>
     </view>
 
-    <s-empty v-if="!state.data && !state.loading" icon="/static/goods-empty.png" />
+    <s-empty v-if="!state.data && !state.loading" :icon="sheep.$url.cdn('/static/goods-empty.png')" />
   </s-layout>
 </template>
 
@@ -175,7 +175,7 @@
   import SpuApi from '@/sheep/api/product/spu';
   import { SharePageEnum } from '@/sheep/util/const';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/img/withdraw_bg.png');
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   const state = reactive({
     data: {}, // 拼团详情

@@ -119,15 +119,15 @@
       <view class="title-box ss-p-l-30">第三方账号绑定</view>
       <view class="account-list ss-flex ss-row-between">
         <view v-if="'WechatOfficialAccount' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/WechatOfficialAccount.png')" />
+          <image class="list-img" :src="sheep.$url.cdn('/img/WechatOfficialAccount.png')" />
           <text class="list-name">微信公众号</text>
         </view>
         <view v-if="'WechatMiniProgram' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/WechatMiniProgram.png')" />
+          <image class="list-img" :src="sheep.$url.cdn('/img/WechatMiniProgram.png')" />
           <text class="list-name">微信小程序</text>
         </view>
         <view v-if="'App' === sheep.$platform.name" class="ss-flex ss-col-center">
-          <image class="list-img" :src="sheep.$url.static('/static/img/shop/platform/wechat.png')" />
+          <image class="list-img" :src="sheep.$url.cdn('/img/wechat.png')" />
           <text class="list-name">微信开放平台</text>
         </view>
         <view class="ss-flex ss-col-center">

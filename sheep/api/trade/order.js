@@ -43,9 +43,6 @@ const OrderApi = {
     for (let i = 0; i < data.items.length; i++) {
       data2[encodeURIComponent('items[' + i + '' + '].skuId')] = data.items[i].skuId + '';
       data2[encodeURIComponent('items[' + i + '' + '].count')] = data.items[i].count + '';
-      if (data.items[i].cartId) {
-        data2[encodeURIComponent('items[' + i + '' + '].cartId')] = data.items[i].cartId + '';
-      }
     }
     const queryString = Object.keys(data2)
       .map((key) => key + '=' + data2[key])

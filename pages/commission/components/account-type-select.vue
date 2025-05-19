@@ -13,7 +13,7 @@
             :key="index"
           >
             <view class="container-icon ss-flex ss-m-r-20">
-              <image :src="sheep.$url.static(item.icon)" />
+              <image :src="sheep.$url.cdn(item.icon)" />
             </view>
             <view class="ss-flex-1">{{ item.title }}</view>
             <radio
@@ -58,27 +58,27 @@
 
   const typeList = [
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/img/wechat.png',
       title: '钱包余额',
       value: '1',
     },
     {
-      icon: '/static/img/shop/pay/bank.png',
+      icon: '/img/bank.png',
       title: '银行卡转账',
       value: '2',
     },
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/img/wechat.png',
       title: '微信账户', // 微信手动转账
       value: '3',
     },
     {
-      icon: '/static/img/shop/pay/alipay.png',
+      icon: '/img/alipay.png',
       title: '支付宝账户',
       value: '4',
     },
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/img/wechat.png',
       title: '微信零钱', // 微信 API 转账
       value: '5',
     },
