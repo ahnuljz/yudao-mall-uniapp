@@ -14,8 +14,8 @@ export function useWebSocket(opt) {
   const options = reactive({
     url: websocketPath + '/' + db + '/' + userInfo.customerId, // ws 地址
     isReconnecting: false, // 正在重新连接
-    reconnectInterval: 3000, // 重连间隔，单位毫秒
-    heartBeatInterval: 5000, // 心跳间隔，单位毫秒
+    reconnectInterval: 5000, // 重连间隔，单位毫秒
+    heartBeatInterval: 50000, // 心跳间隔，单位毫秒
     pingTimeoutDuration: 1000, // 超过这个时间，后端没有返回pong，则判定后端断线了。
     heartBeatTimer: null, // 心跳计时器
     destroy: false, // 是否销毁
@@ -39,7 +39,8 @@ export function useWebSocket(opt) {
     // 监听 WebSocket 接受到服务器的消息事件
     SocketTask.value.onMessage((res) => {
       try {
-        if (res.data === 'pong') {
+        const msg = JSON.parse(res.data);
+        if (msg.message === 'pong') {
           // 收到心跳重置心跳超时检查
           resetPingTimeout();
         } else {
@@ -73,7 +74,12 @@ export function useWebSocket(opt) {
   // 开始心跳检查
   const startHeartBeat = () => {
     options.heartBeatTimer = setInterval(() => {
-      sendMessage('ping');
+      const ping = {
+        orderId: userInfo.customerId,
+        db: db,
+        message: 'ping',
+      };
+      sendMessage(JSON.stringify(ping));
       options.pingTimeout = setTimeout(() => {
         // 如果在超时时间内没有收到 pong，则认为连接断开
         reconnect();

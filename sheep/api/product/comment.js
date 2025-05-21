@@ -4,7 +4,7 @@ const CommentApi = {
   // 获得商品评价分页
   getCommentPage: (spuId, pageNo, pageSize, type) => {
     return request({
-      url: '/product/comment/page',
+      url: '/open/product/comment/page',
       method: 'GET',
       params: {
         spuId,

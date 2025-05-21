@@ -16,10 +16,10 @@
             }"
           >
             <template v-slot:body>
-              <view class="ss-flex ss-flex-col">
-                <text class="slot-box slot-text">{{ s.name }} ￥{{ s.marketPrice }}</text>
-                <text style="color: #999; font-size: 12px; margin-left: 6px; line-height: 20px">元/位</text>
-              </view>
+              <text class="slot-box slot-text"
+                >{{ s.name }} ￥{{ s.marketPrice }}
+                <text style="color: #999; font-size: 12px; margin-left: 3px; line-height: 20px">元/位</text>
+              </text>
             </template>
             <template v-slot:footer>
               <text class="slot-box slot-text" style="padding-left: 20px">剩余 {{ s.stock - s.sale }}</text>
@@ -34,10 +34,10 @@
             }"
           >
             <template v-slot:body>
-              <view class="ss-flex ss-flex-col">
-                <text class="slot-box slot-text">单房 ￥{{ singleSupplements }}</text>
-                <text style="color: #999; font-size: 12px; margin-left: 6px; line-height: 20px">元/位</text>
-              </view>
+              <text class="slot-box slot-text"
+                >单房 ￥{{ singleSupplements }}
+                <text style="color: #999; font-size: 12px; margin-left: 3px; line-height: 20px">元/位</text>
+              </text>
             </template>
             <template v-slot:footer>
               <text class="slot-box slot-text" style="padding-left: 20px">单独房间补差价</text>

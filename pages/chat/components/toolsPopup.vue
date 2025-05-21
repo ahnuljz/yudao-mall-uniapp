@@ -20,7 +20,7 @@
                   v-for="item in emoji"
                   :key="item"
                   class="emoji-img"
-                  :src="sheep.$url.cdn(`/img/emoji/${item.file}`)"
+                  :src="sheep.$url.cdn(`/chat/${item.file}`)"
                   @tap="onEmoji(item)"
                 >
                 </image>

@@ -12,7 +12,7 @@ const FavoriteApi = {
   // 检查是否收藏过商品
   isFavoriteExists: (spuId) => {
     return request({
-      url: '/product/favorite/exits',
+      url: '/open/product/favorite/exits',
       method: 'GET',
       params: {
         spuId,

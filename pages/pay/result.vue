@@ -113,12 +113,12 @@
     const { data, code } = await PayOrderApi.getOrder(id);
     if (code === 0) {
       state.orderInfo = data;
-      if (!state.orderInfo || state.orderInfo.status === 30) {
+      if (!state.orderInfo || state.orderInfo.status === 'CLOSED') {
         // 支付关闭
         state.result = 'closed';
         return;
       }
-      if (state.orderInfo.status !== 0) {
+      if (state.orderInfo.status !== 'PAYING') {
         // 非待支付，可能是已支付，可能是已退款
         state.result = 'paid';
         // #ifdef MP
@@ -135,7 +135,7 @@
         // #endif
         // 特殊：获得商品订单信息
         if (state.orderType === 'goods') {
-          const { data, code } = await OrderApi.getOrderDetail(state.orderInfo.merchantOrderId, true);
+          const { data, code } = await OrderApi.getOrderDetail(state.orderInfo.orderId, true);
           if (code === 0) {
             state.tradeOrder = data;
           }

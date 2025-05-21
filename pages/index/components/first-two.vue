@@ -8,8 +8,8 @@
             <image class="goods-img" :src="item.picUrl" mode="aspectFit" />
           </view>
           <view class="goods-content">
-            <view class="goods-title ss-line-1 ss-m-b-28">{{ item.name }}</view>
-            <view class="goods-price">￥{{ fen2yuan(item.price) }}</view>
+            <view class="goods-title ss-line-1 ss-m-b-28">{{ item.routeName }}</view>
+            <view class="goods-price">￥{{ fen2yuan(item.adultCost) }}</view>
           </view>
         </view>
       </view>

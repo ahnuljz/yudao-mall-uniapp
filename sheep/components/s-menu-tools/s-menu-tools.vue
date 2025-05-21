@@ -46,21 +46,21 @@ const list = [
     icon: '/img/user.png',
     title: '个人中心',
   },
-  {
-    url: '/pages/user/goods-log',
-    icon: '/img/browse.png',
-    title: '浏览记录',
-  },
+  // {
+  //   url: '/pages/user/goods-log',
+  //   icon: '/img/browse.png',
+  //   title: '浏览记录',
+  // },
   {
     url: '/pages/user/goods-collect',
     icon: '/img/collect.png',
     title: '我的收藏',
   },
-  {
-    url: '/pages/chat/index',
-    icon: '/img/service.png',
-    title: '客服',
-  },
+  // {
+  //   url: '/pages/chat/index',
+  //   icon: '/img/service.png',
+  //   title: '客服',
+  // },
 ];
 </script>
 

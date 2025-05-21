@@ -48,12 +48,6 @@
         title: '推广商品',
         path: '/pages/commission/goods',
       },
-      // {
-      //   img: '/img/commission_icon5.png',
-      //   title: '我的资料',
-      //   path: '/pages/commission/apply',
-      //   isAgentFrom: true,
-      // },
       {
         img: '/img/commission_icon7.png',
         title: '邀请海报',
@@ -65,7 +59,7 @@
         path: '/pages/commission/promoter',
       },
       {
-        img: '/img/commission_icon9.png',
+        img: '/img/commission_icon5.png',
         title: '佣金排行',
         path: '/pages/commission/commission-ranking',
       },

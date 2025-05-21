@@ -13,24 +13,23 @@
         @tap="onOrderDetail(order.id)"
       >
         <view class="order-card-header ss-flex ss-col-center ss-row-between ss-p-x-20">
-          <view class="order-no">订单号：{{ order.no }}</view>
+          <view class="order-no">订单编号：{{ order.id }}</view>
           <view class="order-state ss-font-26" :class="formatOrderColor(order)">
             {{ formatOrderStatus(order) }}
           </view>
         </view>
-        <view class="border-bottom" v-for="item in order.items" :key="item.id">
+        <view class="border-bottom">
           <s-goods-item
-            :img="item.picUrl"
-            :title="item.spuName"
-            :skuText="item.properties.map((property) => property.valueName).join(' ')"
-            :price="item.price"
-            :num="item.count"
+            :img="order.picUrl"
+            :title="order.description"
+            :skuText="relaceHtml(order.shorten)"
+            :price="order.orderAmount"
           />
         </view>
         <view class="pay-box ss-m-t-30 ss-flex ss-row-right ss-p-r-20">
           <view class="ss-flex ss-col-center">
-            <view class="discounts-title pay-color">共 {{ order.productCount }} 件商品,总金额:</view>
-            <view class="discounts-money pay-color"> ￥{{ fen2yuan(order.payPrice) }} </view>
+            <view class="discounts-title pay-color">共 {{ order.tourists.length }} 位游客,总金额:</view>
+            <view class="discounts-money pay-color"> ￥{{ fen2yuan(order.orderAmount) }} </view>
           </view>
         </view>
         <view
@@ -139,20 +138,16 @@
     },
     {
       name: '待付款',
-      value: 0,
+      value: 'PAYING',
     },
     {
-      name: '待发货',
-      value: 10,
+      name: '已付款',
+      value: 'SUCCESS',
     },
     {
-      name: '待收货',
-      value: 20,
-    },
-    {
-      name: '待评价',
-      value: 30,
-    },
+      name: '已过期',
+      value: 'TIME_OUT',
+    }
   ];
 
   // 切换选项卡
@@ -164,6 +159,10 @@
     resetPagination(state.pagination);
     state.currentTab = e.index;
     getOrderList();
+  }
+
+  function relaceHtml(html) {
+    return html.replace(/<br>/g, '').replace(/<b>/g, '').replace(/<\/b>/g, '');
   }
 
   // 订单详情
@@ -190,79 +189,6 @@
   // 评价
   function onComment(id) {
     sheep.$router.go('/pages/goods/comment/add', {
-      id,
-    });
-  }
-
-  // 确认收货 TODO 芋艿：待测试
-  async function onConfirm(order, ignore = false) {
-    // 需开启确认收货组件
-    // todo: 芋艿：需要后续接入微信收货组件
-    // 1.怎么检测是否开启了发货组件功能？如果没有开启的话就不能在这里return出去
-    // 2.如果开启了走mpConfirm方法,需要在App.vue的show方法中拿到确认收货结果
-    let isOpenBusinessView = true;
-    if (
-      sheep.$platform.name === 'WechatMiniProgram' &&
-      !isEmpty(order.wechat_extra_data) &&
-      isOpenBusinessView &&
-      !ignore
-    ) {
-      mpConfirm(order);
-      return;
-    }
-
-    uni.showModal({
-      title: '提示',
-      content: '确认收货吗？',
-      success: async function (res) {
-        if (!res.confirm) {
-          return;
-        }
-        // 正常的确认收货流程
-        const { code } = await OrderApi.receiveOrder(order.id);
-        if (code === 0) {
-          resetPagination(state.pagination);
-          await getOrderList();
-        }
-      },
-    });
-  }
-
-  // #ifdef MP-WEIXIN
-  // 小程序确认收货组件 TODO 芋艿：后续再接入
-  function mpConfirm(order) {
-    if (!wx.openBusinessView) {
-      sheep.$helper.toast(`请升级微信版本`);
-      return;
-    }
-    wx.openBusinessView({
-      businessType: 'weappOrderConfirm',
-      extraData: {
-        merchant_id: '1481069012',
-        merchant_trade_no: order.wechat_extra_data.merchant_trade_no,
-        transaction_id: order.wechat_extra_data.transaction_id,
-      },
-      success(response) {
-        console.log('success:', response);
-        if (response.errMsg === 'openBusinessView:ok') {
-          if (response.extraData.status === 'success') {
-            onConfirm(order, true);
-          }
-        }
-      },
-      fail(error) {
-        console.log('error:', error);
-      },
-      complete(result) {
-        console.log('result:', result);
-      },
-    });
-  }
-  // #endif
-
-  // 查看物流
-  async function onExpress(id) {
-    sheep.$router.go('/pages/order/express/log', {
       id,
     });
   }
@@ -312,15 +238,14 @@
     let { code, data } = await OrderApi.getOrderPage({
       pageNo: state.pagination.pageNo,
       pageSize: state.pagination.pageSize,
-      status: tabMaps[state.currentTab].value,
-      commentStatus: tabMaps[state.currentTab].value === 30 ? false : null,
+      keyword: tabMaps[state.currentTab].value,
     });
     if (code !== 0) {
       return;
     }
-    data.list.forEach((order) => handleOrderButtons(order));
-    state.pagination.list = _.concat(state.pagination.list, data.list);
-    state.pagination.total = data.total;
+    data.records.forEach((order) => handleOrderButtons(order));
+    state.pagination.list = _.concat(state.pagination.list, data.records);
+    state.pagination.total = data.totalRow;
     state.loadStatus = state.pagination.list.length < state.pagination.total ? 'more' : 'noMore';
   }
 

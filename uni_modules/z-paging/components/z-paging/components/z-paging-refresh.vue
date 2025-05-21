@@ -39,7 +39,7 @@
 		data() {
 			return {
 				R: Enum.Refresher,
-				isIos: uni.getSystemInfoSync().platform === 'ios',
+				isIos: uni.getDeviceInfo().platform === 'ios',
 				refresherTimeText: '',
 				zTheme: {
 					title: { white: '#efefef', black: '#555555' },

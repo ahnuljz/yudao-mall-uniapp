@@ -5,9 +5,9 @@
     </uni-section>
     <uni-section title="可选规格" type="line">
       <view class="ss-m-20 ss-flex ss-col-center ss-flex-wrap" v-if="sku.length">
-        <view class="ss-flex w-100 border ss-r-20 ss-p-y-10 ss-p-x-20 ss-margin-bottom-20" v-for="s in sku">
+        <view class="ss-flex w-100 border ss-r-20 ss-p-y-10 ss-p-x-20 ss-margin-bottom-20" v-for="s in sku" :key="s.index">
           <view class="w-100"> {{ s.name }} ￥{{ s.marketPrice }} 元/位</view>
-          <su-number-box :min="0" :max="s?.stock" :step="1" v-model="s.count" :key="s.index" @increase="(n) => increase(n, s)" @decrease="(n) => decrease(n, s)" />
+          <su-number-box :min="0" :max="s?.stock" :step="1" v-model="s.count" @increase="(n) => increase(n, s)" @decrease="(n) => decrease(n, s)" />
         </view>
         <view class="ss-flex w-100 border ss-r-20 ss-p-y-10 ss-p-x-20 ss-margin-bottom-20">
           <view class="w-100"> 单房 ￥{{ singleSupplements }} 元/位</view>
@@ -17,7 +17,7 @@
     </uni-section>
     <uni-section title="填写订单" type="line" v-if="form.tourists.length > 0">
       <view class="ss-w-100 ss-font-20 ss-p-l-30">提示：游客1为联系人，如未登陆系统自动创建联系人账号。</view>
-      <uni-group :title="`游客${i + 1}. ${tt.skuName}`" mode="card" v-for="(tt, i) in form.tourists">
+      <uni-group :title="`游客${i + 1}. ${tt.skuName}`" mode="card" v-for="(tt, i) in form.tourists" :key="i">
         <view class="uni-form-item uni-column ss-flex ss-p-10 ss-m-t-30">
           <view style="width: 66px; text-align: right">证 件：</view>
           <uni-easyinput
@@ -170,6 +170,7 @@ const stringData = () => {
     })),
     skus: sku.value,
     orderAmount: ammount.value,
+    customerId: sheep.$store('user').userInfo.customerId,
   };
 };
 
@@ -197,7 +198,6 @@ const remove = (sku, skuName, cost, count) => {
 
 const submit = () => {
   const valid = validateTourists(ammount.value, form.tourists, sku.value);
-  console.log(valid);
   if (valid) {
     OrderApi.createOrder(stringData()).then((ds) => {
       if (ds.code !== 0) {

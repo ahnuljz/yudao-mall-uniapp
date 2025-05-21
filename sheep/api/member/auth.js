@@ -4,9 +4,9 @@ const AuthUtil = {
   // 使用手机 + 密码登录
   login: (data) => {
     return request({
-      url: '/member/auth/login',
+      url: '/open/auth/login',
       method: 'POST',
-      data,
+      params: data,
       custom: {
         showSuccess: true,
         loadingMsg: '登录中',
@@ -17,9 +17,9 @@ const AuthUtil = {
   // 使用手机 + 验证码登录
   smsLogin: (data) => {
     return request({
-      url: '/member/auth/sms-login',
+      url: '/open/auth/sms-login',
       method: 'POST',
-      data,
+      params: data,
       custom: {
         showSuccess: true,
         loadingMsg: '登录中',
@@ -30,9 +30,9 @@ const AuthUtil = {
   // 发送手机验证码
   sendSmsCode: (mobile, scene) => {
     return request({
-      url: '/member/auth/send-sms-code',
+      url: '/open/auth/send-sms-code',
       method: 'POST',
-      data: {
+      params: {
         mobile,
         scene,
       },
@@ -46,14 +46,14 @@ const AuthUtil = {
   // 登出系统
   logout: () => {
     return request({
-      url: '/member/auth/logout',
+      url: '/open/auth/logout',
       method: 'POST',
     });
   },
   // 社交授权的跳转
   socialAuthRedirect: (type, redirectUri) => {
     return request({
-      url: '/member/auth/social-auth-redirect',
+      url: '/open/auth/social-auth-redirect',
       method: 'GET',
       params: {
         type,
@@ -68,7 +68,7 @@ const AuthUtil = {
   // 社交快捷登录
   socialLogin: (type, code, state) => {
     return request({
-      url: '/member/auth/social-login',
+      url: '/open/auth/social-login',
       method: 'POST',
       params: {
         type,
@@ -84,7 +84,7 @@ const AuthUtil = {
   // 微信小程序的一键登录
   weixinMiniAppLogin: (phoneCode, loginCode, state) => {
     return request({
-      url: '/member/auth/weixin-mini-app-login',
+      url: '/open/auth/weixin-mini-app-login',
       method: 'POST',
       params: {
         phoneCode,
@@ -101,7 +101,7 @@ const AuthUtil = {
   // 创建微信 JS SDK 初始化所需的签名
   createWeixinMpJsapiSignature: (url) => {
     return request({
-      url: '/member/auth/create-weixin-jsapi-signature',
+      url: '/open/auth/create-weixin-jsapi-signature',
       method: 'POST',
       params: {
         url,

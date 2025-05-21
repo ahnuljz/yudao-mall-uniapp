@@ -10,7 +10,7 @@ import PayOrderApi from '@/sheep/api/pay/order';
  *
  * @param {String} payment = ['wechat','alipay','wallet','mock']  	- 支付方式
  * @param {String} orderType = ['goods','recharge','groupon']  	- 订单类型
- * @param {String} id					- 订单号
+ * @param {String} id          - 订单号
  */
 
 export default class SheepPay {
@@ -87,38 +87,37 @@ export default class SheepPay {
   prepay(channel) {
     return new Promise(async (resolve, reject) => {
       let data = {
-        id: this.id,
+        orderId: this.id,
         channelCode: channel,
-        channelExtras: {},
+        openid: '',
       };
       // 特殊逻辑：微信公众号、小程序支付时，必须传入 openid
+      let payType = 'ALIPAY';
       if (['wx_pub', 'wx_lite'].includes(channel)) {
+        payType = 'WECHAT';
         const openid = await sheep.$platform.useProvider('wechat').getOpenid();
         // 如果获取不到 openid，微信无法发起支付，此时需要引导
         if (!openid) {
           this.bindWeixin();
           return;
         }
-        data.channelExtras.openid = openid;
+        data.openid = openid;
       }
       // 发起预支付 API 调用
-      PayOrderApi.submitOrder(data).then((res) => {
+
+      PayOrderApi.submitOrder({ ...data, payType }).then((res) => {
         // 成功时
         res.code === 0 && resolve(res);
         // 失败时
         if (res.code !== 0 && res.message.indexOf('无效的openid') >= 0) {
           // 特殊逻辑：微信公众号、小程序支付时，必须传入 openid 不正确的情况
-          if (
-            res.message.indexOf('无效的openid') >= 0 || // 获取的 openid 不正确时，或者随便输入了个 openid
-            res.message.indexOf('下单账号与支付账号不一致') >= 0
-          ) {
-            // https://developers.weixin.qq.com/community/develop/doc/00008c53c347804beec82aed051c00
-            this.bindWeixin();
-          }
+          // https://developers.weixin.qq.com/community/develop/doc/00008c53c347804beec82aed051c00
+          this.bindWeixin();
         }
       });
     });
   }
+
   // #ifdef H5
   // 微信公众号 JSSDK 支付
   async wechatOfficialAccountPay() {
@@ -126,7 +125,7 @@ export default class SheepPay {
     if (code !== 0) {
       return;
     }
-    const payConfig = JSON.parse(data.displayContent);
+    const payConfig = JSON.parse(data.resultData);
     $wxsdk.wxpay(payConfig, {
       success: () => {
         this.payResult('success');
@@ -159,7 +158,7 @@ export default class SheepPay {
     if (code !== 0) {
       return;
     }
-    location.href = data.displayContent;
+    location.href = data.resultData;
   }
 
   // #endif
@@ -172,12 +171,13 @@ export default class SheepPay {
       return;
     }
     // 调用微信小程序支付
-    const payConfig = JSON.parse(data.displayContent);
+    const payConfig = JSON.parse(data.resultData);
+    console.info('payConfig', payConfig);
     uni.requestPayment({
       provider: 'wxpay',
       timeStamp: payConfig.timeStamp,
       nonceStr: payConfig.nonceStr,
-      package: payConfig.packageValue,
+      package: payConfig.package,
       signType: payConfig.signType,
       paySign: payConfig.paySign,
       success: (res) => {
@@ -187,6 +187,7 @@ export default class SheepPay {
         if (err.errMsg === 'requestPayment:fail cancel') {
           sheep.$helper.toast('支付已手动取消');
         } else {
+          console.error('支付失败', err);
           this.payResult('fail');
         }
       },
@@ -218,7 +219,7 @@ export default class SheepPay {
       confirmText: '复制链接',
       success: (res) => {
         if (res.confirm) {
-          sheep.$helper.copyText(data.displayContent);
+          sheep.$helper.copyText(data.resultData);
         }
       },
     });
@@ -234,7 +235,7 @@ export default class SheepPay {
 
     uni.requestPayment({
       provider: 'alipay',
-      orderInfo: data.displayContent, // 直接使用返回的支付参数
+      orderInfo: data.resultData, // 直接使用返回的支付参数
       success: (res) => {
         that.payResult('success');
       },
@@ -259,14 +260,14 @@ export default class SheepPay {
     }
 
     // 解析支付参数
-    const payConfig = JSON.parse(data.displayContent);
+    const payConfig = JSON.parse(data.resultData);
 
     // 调用微信支付
     uni.requestPayment({
       provider: 'wxpay',
       timeStamp: payConfig.timeStamp,
       nonceStr: payConfig.nonceStr,
-      package: payConfig.packageValue,
+      package: payConfig.package,
       signType: payConfig.signType,
       paySign: payConfig.paySign,
       success: (res) => {
@@ -327,10 +328,7 @@ export function getPayMethods(channels) {
 
   // 1. 处理【微信支付】
   const wechatMethod = payMethods[0];
-  if (
-    (platform === 'WechatOfficialAccount' && channels.includes('wx_pub')) ||
-    (platform === 'WechatMiniProgram' && channels.includes('wx_lite'))
-  ) {
+  if ((platform === 'WechatOfficialAccount' && channels.includes('wx_pub')) || (platform === 'WechatMiniProgram' && channels.includes('wx_lite'))) {
     wechatMethod.disabled = false;
   }
 

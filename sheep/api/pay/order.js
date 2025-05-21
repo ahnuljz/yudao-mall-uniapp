@@ -4,7 +4,7 @@ const PayOrderApi = {
   // 获得支付订单
   getOrder: (id, sync) => {
     return request({
-      url: `/trade/order/pay/${id}`,
+      url: `/trade/order/pay/data/${id}`,
       method: 'GET',
       params: { id, sync },
     });
@@ -14,7 +14,7 @@ const PayOrderApi = {
     return request({
       url: '/trade/order/pay/submit',
       method: 'POST',
-      data,
+      params: data,
     });
   },
 };

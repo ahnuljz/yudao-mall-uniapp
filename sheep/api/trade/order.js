@@ -59,7 +59,7 @@ const OrderApi = {
   // 获得商品结算信息
   getSettlementProduct: (spuIds) => {
     return request({
-      url: '/trade/order/settlement-product',
+      url: '/open/order/settlement-product',
       method: 'GET',
       params: { spuIds },
       custom: {
@@ -79,10 +79,9 @@ const OrderApi = {
   // 获得订单详细：sync 是可选参数
   getOrderDetail: (id, sync) => {
     return request({
-      url: `/trade/order/get-detail`,
+      url: `/trade/order/get/${id}`,
       method: 'GET',
       params: {
-        id,
         sync,
       },
       custom: {
@@ -121,10 +120,20 @@ const OrderApi = {
       },
     });
   },
+  // 申请退款
+  refund: (id) => {
+    return request({
+      url: `/trade/order/refund`,
+      method: 'PUT',
+      params: {
+        id,
+      },
+    });
+  },
   // 删除订单
   deleteOrder: (id) => {
     return request({
-      url: `/trade/order/delete`,
+      url: `/trade/order/cancel`,
       method: 'DELETE',
       params: {
         id,

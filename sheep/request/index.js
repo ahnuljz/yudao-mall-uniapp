@@ -50,7 +50,7 @@ const http = new Request({
   header: {
     Accept: 'application/json',
     'Content-Type': 'application/json;charset=UTF-8',
-    platform: uni.getSystemInfoSync().uniPlatform,
+    platform: uni.getAppBaseInfo().uniPlatform,
   },
   // #ifdef APP-PLUS
   sslVerify: false,
@@ -69,7 +69,10 @@ http.interceptors.request.use(
   (config) => {
     // 自定义处理【auth 授权】：必须登录的接口，则跳出 AuthModal 登录弹窗
     if (config.custom.auth && !$store('user').isLogin) {
-      showAuthModal();
+      // #ifdef mp-weixin
+      showAuthModal('mpAuthorization');
+      // #endif
+
       return Promise.reject();
     }
 
@@ -110,7 +113,7 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     // 约定：如果是 /auth/ 下的 URL 地址，并且返回了 token 说明是登录相关的接口，则自动设置登陆令牌
-    if (response.config.url.indexOf('/member/auth/') >= 0 && response.data?.data?.token) {
+    if (response.config.url.indexOf('/open/auth/') >= 0 && response.data?.data?.token) {
       $store('user').setToken(response.data.data.token);
     }
 
@@ -171,7 +174,7 @@ http.interceptors.response.use(
 export const getReferralInfo = () => {
   const refId = uni.getStorageSync('ref');
   const defaultRef = '1' + storeId;
-  console.log(refId || defaultRef);
+  //console.log(refId || defaultRef);
   return refId || defaultRef;
 };
 

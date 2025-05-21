@@ -4,7 +4,7 @@ import $platform from '@/sheep/platform';
 import $router from '@/sheep/router';
 import user from './user';
 import sys from './sys';
-import { staticUrl } from '@/sheep/config';
+import { staticUrl, version } from '@/sheep/config';
 import sheep from '@/sheep';
 
 const app = defineStore({
@@ -63,8 +63,8 @@ const app = defineStore({
       if (true) {
         this.info = {
           name: '旅小助商城',
-          logo: sheep.$url.cdn('/img/128px.png'),
-          version: '2.4.0',
+          logo: '/img/128px.png',
+          version: version,
           copyright: '值得信赖的商城，旅小助商城',
           copytime: 'Copyright© 2020-2025',
           cdnurl: staticUrl, // 云存储域名

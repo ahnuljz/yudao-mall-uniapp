@@ -8,15 +8,15 @@
 </template>
 
 <script setup>
-  import sheep from '@/sheep';
+import sheep from '@/sheep';
 
-  const props = defineProps({
-    pagination: Object,
-  });
+const props = defineProps({
+  pagination: Object,
+});
 </script>
 
 <style lang="scss" scoped>
-  .goods-box {
-    width: 100%;
-  }
+.goods-box {
+  width: 100%;
+}
 </style>

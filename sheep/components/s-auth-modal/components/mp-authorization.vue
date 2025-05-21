@@ -10,23 +10,11 @@
     </view>
 
     <!-- 表单项 -->
-    <uni-forms
-      ref="accountLoginRef"
-      v-model="state.model"
-      :rules="state.rules"
-      validateTrigger="bind"
-      labelWidth="140"
-      labelAlign="center"
-    >
+    <uni-forms ref="accountLoginRef" v-model="state.model" :rules="state.rules" validateTrigger="bind" labelWidth="140" labelAlign="center">
       <!-- 获取头像昵称：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/userProfile.html -->
       <uni-forms-item name="avatar" label="头像">
         <button class="ss-reset-button avatar-btn" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
-          <image
-            class="avatar-img"
-            :src="sheep.$url.cdn(state.model.avatar)"
-            mode="aspectFill"
-            @tap="sheep.$router.go('/pages/user/info')"
-          />
+          <image class="avatar-img" :src="sheep.$url.cdn(state.model.avatar)" mode="aspectFill" @tap="sheep.$router.go('/pages/user/info')" />
           <text class="cicon-forward" />
         </button>
       </uni-forms-item>
@@ -34,110 +22,125 @@
         <uni-easyinput type="nickname" placeholder="请输入昵称" v-model="state.model.nickname" :inputBorder="false" />
       </uni-forms-item>
       <view class="foot-box">
-        <button class="ss-reset-button authorization-btn" @tap="onConfirm"> 确认授权 </button>
+        <button class="ss-reset-button authorization-btn" @tap="onConfirm">确认授权</button>
       </view>
     </uni-forms>
   </view>
 </template>
 
 <script setup>
-  import { computed, ref, reactive } from 'vue';
-  import sheep from '@/sheep';
-  import { closeAuthModal } from '@/sheep/hooks/useModal';
-  import FileApi from '@/sheep/api/infra/file';
-  import UserApi from '@/sheep/api/member/user';
+import { computed, ref, reactive } from 'vue';
+import sheep from '@/sheep';
+import { closeAuthModal } from '@/sheep/hooks/useModal';
+import UserApi from '@/sheep/api/member/user';
 
-  const props = defineProps({
-    agreeStatus: {
-      type: Boolean,
-      default: false,
+const props = defineProps({
+  agreeStatus: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const userInfo = computed(() => sheep.$store('user').userInfo);
+
+const accountLoginRef = ref(null);
+
+// 数据
+const state = reactive({
+  model: {
+    nickname: userInfo.value.nickname,
+    avatar: userInfo.value.avatar,
+  },
+  rules: {},
+  disabledStyle: {
+    color: '#999',
+    disableColor: '#fff',
+  },
+});
+
+// 选择头像（来自微信）
+function onChooseAvatar(e) {
+  const tempUrl = e.detail.avatarUrl || '';
+  uploadAvatar(tempUrl);
+}
+
+// 选择头像（来自文件系统）
+async function uploadAvatar(tempUrl) {
+  if (!tempUrl) {
+    return;
+  }
+  // 临时图片转为base64
+  uni.getImageInfo({
+    src: tempUrl,
+    success: function (res) {
+      let tempFilePath = res.path;
+      uni.getFileSystemManager().readFile({
+        filePath: tempFilePath,
+        encoding: 'base64',
+        success: function (res) {
+          state.model.avatar = 'data:image/png;base64,' + res.data;
+        },
+      });
     },
   });
+}
 
-  const userInfo = computed(() => sheep.$store('user').userInfo);
-
-  const accountLoginRef = ref(null);
-
-  // 数据
-  const state = reactive({
-    model: {
-      nickname: userInfo.value.nickname,
-      avatar: userInfo.value.avatar,
-    },
-    rules: {},
-    disabledStyle: {
-      color: '#999',
-      disableColor: '#fff',
-    },
+// 确认授权
+async function onConfirm() {
+  const { model } = state;
+  const { nickname, avatar } = model;
+  if (!nickname) {
+    sheep.$helper.toast('请输入昵称');
+    return;
+  }
+  if (!avatar) {
+    sheep.$helper.toast('请选择头像');
+    return;
+  }
+  // 发起更新
+  const { code } = await UserApi.updateUser({
+    avatar: state.model.avatar,
+    nickname: state.model.nickname,
   });
-
-  // 选择头像（来自微信）
-  function onChooseAvatar(e) {
-    const tempUrl = e.detail.avatarUrl || '';
-    uploadAvatar(tempUrl);
+  // 更新成功
+  if (code === 0) {
+    sheep.$helper.toast('授权成功');
+    await sheep.$store('user').getInfo();
+    closeAuthModal();
   }
-
-  // 选择头像（来自文件系统）
-  async function uploadAvatar(tempUrl) {
-    if (!tempUrl) {
-      return;
-    }
-    let { data } = await FileApi.uploadFile(tempUrl);
-    state.model.avatar = data;
-  }
-
-  // 确认授权
-  async function onConfirm() {
-    const { model } = state;
-    const { nickname, avatar } = model;
-    if (!nickname) {
-      sheep.$helper.toast('请输入昵称');
-      return;
-    }
-    if (!avatar) {
-      sheep.$helper.toast('请选择头像');
-      return;
-    }
-    // 发起更新
-    const { code } = await UserApi.updateUser({
-      avatar: state.model.avatar,
-      nickname: state.model.nickname,
-    });
-    // 更新成功
-    if (code === 0) {
-      sheep.$helper.toast('授权成功');
-      await sheep.$store('user').getInfo();
-      closeAuthModal();
-    }
-  }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '../index.scss';
+@import '../index.scss';
 
-  .foot-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  .authorization-btn {
-    width: 686rpx;
-    height: 80rpx;
-    background-color: var(--ui-BG-Main);
-    border-radius: 40rpx;
-    color: #fff;
-  }
-  .avatar-img {
-    width: 72rpx;
-    height: 72rpx;
-    border-radius: 36rpx;
-  }
-  .cicon-forward {
-    font-size: 30rpx;
-    color: #595959;
-  }
-  .avatar-btn {
-    width: 100%;
-    justify-content: space-between;
-  }
+.foot-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.authorization-btn {
+  width: 686rpx;
+  height: 80rpx;
+  background-color: var(--ui-BG-Main);
+  border-radius: 40rpx;
+  color: #fff;
+}
+
+.avatar-img {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+}
+
+.cicon-forward {
+  font-size: 30rpx;
+  color: #595959;
+}
+
+.avatar-btn {
+  width: 100%;
+  justify-content: space-between;
+}
 </style>

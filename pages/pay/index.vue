@@ -8,7 +8,7 @@
           <text>{{ state.orderInfo.description }}</text>
         </view>
         <view class="money-box ss-m-b-20">
-          <text class="money-text">{{ fen2yuan(state.orderInfo.payAmount) }}</text>
+          <text class="money-text">{{ fen2yuan(state.orderInfo.payAmount || 0) }}</text>
         </view>
         <view class="time-text">
           <text>{{ payDescText }}</text>
@@ -27,7 +27,7 @@
                 <text class="pay-title">{{ item.title }}</text>
               </view>
               <view class="check-box ss-flex ss-col-center ss-p-l-10">
-                <view class="userInfo-money ss-m-r-10" v-if="item.value === 'wallet'"> 余额: {{ fen2yuan(userWallet.balance) }}元 </view>
+                <view class="userInfo-money ss-m-r-10" v-if="item.value === 'wallet'"> 余额: {{ fen2yuan(userWallet.balance || 0) }}元 </view>
                 <radio :value="item.value" color="var(--ui-BG-Main)" style="transform: scale(0.8)" :disabled="item.disabled" :checked="state.payment === item.value" />
               </view>
             </view>
@@ -90,7 +90,8 @@ const payDescText = computed(() => {
     return '该订单已支付';
   }
   if (state.payStatus === 1) {
-    const time = useDurationTime(state.orderInfo.expireTime);
+    const to = dayjs(state.orderInfo.dt).add(state.orderInfo.paymentMinutes, 'minute');
+    const time = useDurationTime(to.format('YYYY-MM-DD HH:mm:ss'));
     if (time.ms <= 0) {
       state.payStatus = -1;
       return '';
@@ -140,7 +141,7 @@ async function setOrder(id) {
     state.payStatus = -2;
     return;
   }
-  state.orderInfo = { ...data,expireTime: dayjs(data.dt).add(data.paymentMinutes, 'minute')};
+  state.orderInfo = { ...data, expireTime: dayjs(data.dt).add(data.paymentMinutes, 'minute') };
   // 设置支付状态
   checkPayStatus();
   // 获得支付方式

@@ -5,7 +5,7 @@
     <view class="card-top ss-flex ss-row-between">
       <view class="ss-flex">
         <view class="head-img-box">
-          <image class="head-img" :src="sheep.$url.cdn(userInfo.avatar)" mode="aspectFill"></image>
+          <image class="head-img" :src="userInfo.avatar" mode="aspectFill"></image>
         </view>
         <view class="ss-flex-col">
           <view class="user-name">{{ userInfo.nickname }}</view>

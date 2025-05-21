@@ -97,13 +97,13 @@ export function formatGoodsSwiper(urlList) {
  * @return {string} 颜色的 class 名称
  */
 export function formatOrderColor(order) {
-  if (order.status === 0) {
+  if (order.status === 'PAYING') {
     return 'info-color';
   }
-  if (order.status === 10 || order.status === 20 || (order.status === 30 && !order.commentStatus)) {
+  if (order.status === 'TIME_OUT') {
     return 'warning-color';
   }
-  if (order.status === 30 && order.commentStatus) {
+  if (order.status === 'SUCCESS') {
     return 'success-color';
   }
   return 'danger-color';
@@ -115,23 +115,17 @@ export function formatOrderColor(order) {
  * @param order 订单
  */
 export function formatOrderStatus(order) {
-  if (order.status === 0) {
+  if (order.status === 'PAYING') {
     return '待付款';
   }
-  if (order.status === 10 && order.deliveryType === 1) {
-    return '待发货';
+  if (order.status === 'TIME_OUT') {
+    return '已过期';
   }
-  if (order.status === 10 && order.deliveryType === 2) {
-    return '待核销';
+  if (order.status === 'SUCCESS') {
+    return '已支付';
   }
-  if (order.status === 20) {
-    return '待收货';
-  }
-  if (order.status === 30 && !order.commentStatus) {
-    return '待评价';
-  }
-  if (order.status === 30 && order.commentStatus) {
-    return '已完成';
+  if (order.status === 'CLOSED') {
+    return '已退款';
   }
   return '已关闭';
 }
@@ -142,20 +136,17 @@ export function formatOrderStatus(order) {
  * @param order 订单
  */
 export function formatOrderStatusDescription(order) {
-  if (order.status === 0) {
+  if (order.status === 'PAYING') {
     return `请在 ${formatDate(order.payExpireTime)} 前完成支付`;
   }
-  if (order.status === 10) {
-    return '商家未发货，请耐心等待';
+  if (order.status === 'TIME_OUT') {
+    return '已过期，请重新下单';
   }
-  if (order.status === 20) {
-    return '商家已发货，请耐心等待';
+  if (order.status === 'SUCCESS') {
+    return '已支付，请等待商家处理';
   }
-  if (order.status === 30 && !order.commentStatus) {
-    return '已收货，快去评价一下吧';
-  }
-  if (order.status === 30 && order.commentStatus) {
-    return '交易完成，感谢您的支持';
+  if (order.status === 'CLOSED') {
+    return '已退款，感谢您的支持';
   }
   return '交易关闭';
 }
@@ -167,28 +158,15 @@ export function formatOrderStatusDescription(order) {
  */
 export function handleOrderButtons(order) {
   order.buttons = [];
-  if (order.type === 3) {
-    // 查看拼团
-    order.buttons.push('combination');
-  }
-  if (order.status === 20) {
-    // 确认收货
-    order.buttons.push('confirm');
-  }
-  if (order.logisticsId > 0) {
-    // 查看物流
-    order.buttons.push('express');
-  }
-  if (order.status === 0) {
-    // 取消订单 / 发起支付
+  if (order.status === 'PAYING') {
+    // 取消订单
     order.buttons.push('cancel');
+    // 发起支付
     order.buttons.push('pay');
+    // 删除订单
+    order.buttons.push('delete');
   }
-  if (order.status === 30 && !order.commentStatus) {
-    // 发起评价
-    order.buttons.push('comment');
-  }
-  if (order.status === 40) {
+  if (order.status === 'TIME_OUT') {
     // 删除订单
     order.buttons.push('delete');
   }
@@ -412,9 +390,7 @@ export function appendSettlementProduct(spus, settlementInfos) {
       return;
     }
     // 选择价格最小的 SKU 设置到 SPU 上
-    const settlementSku = settlementInfo.skus
-      .filter((sku) => sku.promotionPrice > 0)
-      .reduce((prev, curr) => (prev.promotionPrice < curr.promotionPrice ? prev : curr), []);
+    const settlementSku = settlementInfo.skus.filter((sku) => sku.promotionPrice > 0).reduce((prev, curr) => (prev.promotionPrice < curr.promotionPrice ? prev : curr), []);
     if (settlementSku) {
       spu.promotionType = settlementSku.promotionType;
       spu.promotionPrice = settlementSku.promotionPrice;
@@ -437,8 +413,7 @@ export function getRewardActivityRuleGroupDescriptions(activity) {
     { name: '包邮', values: [] },
   ];
   activity.rules.forEach((rule) => {
-    const conditionTypeStr =
-      activity.conditionType === 10 ? `满 ${fen2yuanSimple(rule.limit)} 元` : `满 ${rule.limit} 件`;
+    const conditionTypeStr = activity.conditionType === 10 ? `满 ${fen2yuanSimple(rule.limit)} 元` : `满 ${rule.limit} 件`;
     // 满减
     if (rule.limit) {
       result[0].values.push(`${conditionTypeStr} 减 ${fen2yuanSimple(rule.discountPrice)} 元`);

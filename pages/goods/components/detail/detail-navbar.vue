@@ -65,7 +65,7 @@
       },
       {
         label: '规格',
-        value: 'comment',
+        value: 'sku',
         to: 'sku',
       },
       {
@@ -100,7 +100,7 @@
     return new Promise((res, rej) => {
       uni
         .createSelectorQuery()
-        .select('.detail-comment-selector')
+        .select('.sku')
         .boundingClientRect((data) => {
           if (data) {
             commentCard.top = data.top;
@@ -116,7 +116,7 @@
 
   function onTab(tab) {
     let scrollTop = 0;
-    if (tab.value === 'comment') {
+    if (tab.value === 'sku') {
       scrollTop = commentCard.top - sys_navBar + 1;
     } else if (tab.value === 'detail') {
       scrollTop = commentCard.bottom - sys_navBar + 1;
@@ -138,7 +138,7 @@
     if (e.scrollTop < commentCard.top - sys_navBar) {
       state.curTab = 'goods';
     } else if (e.scrollTop >= commentCard.top - sys_navBar && e.scrollTop <= commentCard.bottom - sys_navBar) {
-      state.curTab = 'comment';
+      state.curTab = 'sku';
     } else {
       state.curTab = 'detail';
     }

@@ -2,11 +2,10 @@
 <template>
   <view class="ss-coupon-menu-wrap ss-flex ss-col-center" :style="[bgStyle, { marginLeft: `${data.space}px` }]">
     <view
-      class="menu-item ss-flex-col ss-row-center ss-col-center"
+      class="menu-item ss-flex-1 ss-flex-col ss-row-center ss-col-center"
       v-for="item in props.list"
       :key="item.title"
       @tap="sheep.$router.go(item.path, { type: item.type })"
-      :class="item.type === 'all' ? 'menu-wallet' : 'ss-flex-1'"
     >
       <image class="item-icon" :src="sheep.$url.cdn(item.icon)" mode="aspectFit"></image>
       <view class="menu-title ss-m-t-28">{{ item.title }}</view>
@@ -85,13 +84,13 @@
   .ss-coupon-menu-wrap {
     .menu-item {
       height: 160rpx;
-
+      position: relative;
+      z-index: 10;
       .menu-title {
         font-size: 24rpx;
         line-height: 24rpx;
         color: #333333;
       }
-
       .item-icon {
         width: 44rpx;
         height: 44rpx;

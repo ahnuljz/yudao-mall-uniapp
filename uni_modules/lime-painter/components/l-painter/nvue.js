@@ -15,7 +15,7 @@ export default {
 		return {
 			tempFilePath: [],
 			isInitFile: false,
-			osName: uni.getSystemInfoSync().osName
+			osName: uni.getDeviceInfo().osName
 		}
 	},
 	methods: {
@@ -203,7 +203,7 @@ export default {
 					tempFilePath
 				})
 			} catch (e) {
-				console.log('e', e)
+				//console.log('e', e)
 				args.fail({
 					error: e
 				})

@@ -60,7 +60,7 @@
 				}
 			},
 			dpr() {
-				return this.pixelRatio || uni.getSystemInfoSync().pixelRatio;
+				return this.pixelRatio || uni.getWindowInfo().pixelRatio;
 			},
 			boardWidth() {
 				const {width = 0} = (this.elements && this.elements.css) || this.elements || this

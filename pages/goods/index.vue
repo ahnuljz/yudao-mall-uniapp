@@ -102,13 +102,12 @@
             <view class="title-text ss-line-2 ss-m-b-6">{{ state.goodsInfo.name }}</view>
             <view class="subtitle-text ss-line-1">{{ state.goodsInfo.introduction }}</view>
           </view>
-
-          <!-- 规格 -->
-          <s-select-sku :plans="state.goodsInfo.plans" :singleSupplements="state.goodsInfo.singleSupplements" class="sku" />
         </view>
 
+        <!-- 规格 -->
+        <s-select-sku :plans="state.goodsInfo.plans" :singleSupplements="state.goodsInfo.singleSupplements" class="sku" />
         <!-- 评价 -->
-        <detail-comment-card class="comment none" :goodsId="state.goodsId" />
+        <detail-comment-card class="none" :goodsId="state.goodsId" />
         <!-- 详情 -->
         <detail-content-card :content="state.goodsInfo.attraction" class="detail" />
 

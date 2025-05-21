@@ -31,7 +31,7 @@
         />
         <!-- 为了过审 只有 iOS-App 有注销账号功能 -->
         <uni-list-item
-          v-if="isLogin && sheep.$platform.os === 'ios' && sheep.$platform.name === 'App'"
+          v-if="isLogin"
           title="注销账号"
           rightText=""
           showArrow

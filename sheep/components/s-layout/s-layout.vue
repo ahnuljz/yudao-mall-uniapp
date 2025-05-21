@@ -150,7 +150,7 @@
   const bgMain = computed(() => {
     if (navbarMode.value === 'inner') {
       return {
-        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
+        background: `${props.bgStyle.backgroundColor || props.bgStyle.color || ''} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
       };
     }
     return {};
@@ -160,7 +160,7 @@
   const bgBody = computed(() => {
     if (navbarMode.value === 'normal') {
       return {
-        background: `${props.bgStyle.backgroundColor || props.bgStyle.color} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
+        background: `${props.bgStyle.backgroundColor || props.bgStyle.color || ''} url(${sheep.$url.cdn(props.bgStyle.backgroundImage)}) no-repeat top center / 100% auto`,
       };
     }
     return {};

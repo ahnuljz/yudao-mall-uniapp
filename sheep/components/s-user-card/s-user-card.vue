@@ -6,7 +6,7 @@
         <view class="avatar-box ss-m-r-24">
           <image
             class="avatar-img"
-            :src="isLogin && userInfo.avatar ? sheep.$url.cdn(userInfo.avatar) : sheep.$url.cdn('/img/default_avatar.png')"
+            :src="isLogin && userInfo.avatar ? userInfo.avatar : sheep.$url.cdn('/img/default_avatar.png')"
             mode="aspectFill"
             @tap="sheep.$router.go('/pages/user/info')"
           >
@@ -57,7 +57,7 @@
 
   // 用户信息
   const userInfo = computed(() => sheep.$store('user').userInfo);
-  console.log('用户信息', userInfo);
+  //console.log('用户信息', userInfo);
 
   // 是否登录
   const isLogin = computed(() => sheep.$store('user').isLogin);
@@ -142,7 +142,7 @@
     }
 
     .sicon-qrcode {
-      font-size: 40rpx;
+      font-size: 60rpx;
     }
   }
 
