@@ -109,17 +109,17 @@
 						"group": "商品"
 					}
 				},
-                {
-                    "path": "point",
-                    "style": {
-                      "navigationBarTitleText": "积分商品"
-                    },
-                    "meta": {
-                      "sync": true,
-                      "title": "积分商品",
-                      "group": "商品"
-                    }
-                },
+				{
+					"path": "point",
+					"style": {
+						"navigationBarTitleText": "积分商品"
+					},
+					"meta": {
+						"sync": true,
+						"title": "积分商品",
+						"group": "商品"
+					}
+				},
 				{
 					"path": "list",
 					"style": {
@@ -193,16 +193,16 @@
 						"title": "申请售后"
 					}
 				},
-                {
-                  "path": "aftersale/return-delivery",
-                  "style": {
-                    "navigationBarTitleText": "退货物流"
-                  },
-                  "meta": {
-                    "auth": true,
-                    "title": "退货物流"
-                  }
-                },
+				{
+					"path": "aftersale/return-delivery",
+					"style": {
+						"navigationBarTitleText": "退货物流"
+					},
+					"meta": {
+						"auth": true,
+						"title": "退货物流"
+					}
+				},
 				{
 					"path": "aftersale/list",
 					"style": {
@@ -243,6 +243,18 @@
 					"meta": {
 						"auth": true,
 						"title": "物流轨迹"
+					}
+				}, 
+				{
+					"path": "sign/index",
+					"style": {
+						"navigationBarTitleText": "合同"
+					}
+				},
+				{
+					"path": "sign/sgin",
+					"style": {
+						"navigationBarTitleText": "合同签名"
 					}
 				}
 			]
@@ -307,18 +319,18 @@
 						"title": "编辑地址"
 					}
 				},
-                {
-                  "path": "goods_details_store/index",
-                  "style": {
-                    "navigationBarTitleText": "自提门店"
-                  },
-                  "meta": {
-                    "auth": true,
-                    "sync": true,
-                    "title": "地址管理",
-                    "group": "用户中心"
-                  }
-                },
+				{
+					"path": "goods_details_store/index",
+					"style": {
+						"navigationBarTitleText": "自提门店"
+					},
+					"meta": {
+						"auth": true,
+						"sync": true,
+						"title": "地址管理",
+						"group": "用户中心"
+					}
+				},
 				{
 					"path": "wallet/money",
 					"style": {
@@ -429,17 +441,17 @@
 						"group": "分销商城"
 					}
 				}, {
-                "path": "withdraw",
-                "style": {
-                  "navigationBarTitleText": "申请提现"
-                },
-                "meta": {
-                  "auth": true,
-                  "sync": true,
-                  "title": "申请提现",
-                  "group": "分销商城"
-                }
-              }
+					"path": "withdraw",
+					"style": {
+						"navigationBarTitleText": "申请提现"
+					},
+					"meta": {
+						"auth": true,
+						"sync": true,
+						"title": "申请提现",
+						"group": "分销商城"
+					}
+				}
 			]
 		},
 		{
@@ -642,17 +654,17 @@
 						"group": "营销活动"
 					}
 				},
-                {
-                  "path": "point/list",
-                  "style": {
-                    "navigationBarTitleText": "积分商城"
-                  },
-                  "meta": {
-                    "sync": true,
-                    "title": "积分商城",
-                    "group": "营销活动"
-                  }
-                }
+				{
+					"path": "point/list",
+					"style": {
+						"navigationBarTitleText": "积分商城"
+					},
+					"meta": {
+						"sync": true,
+						"title": "积分商城",
+						"group": "营销活动"
+					}
+				}
 			]
 		}
 	],

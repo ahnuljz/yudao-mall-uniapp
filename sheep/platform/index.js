@@ -53,6 +53,12 @@ platform = 'miniProgram';
 provider = 'wechat';
 // #endif
 
+// #ifdef MP-ALIPAY
+name = 'AlipayMiniProgram';
+platform = 'miniProgram';
+provider = 'alipay';
+// #endif
+
 if (isEmpty(name)) {
   uni.showToast({
     title: '暂不支持该平台',

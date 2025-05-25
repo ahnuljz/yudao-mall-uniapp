@@ -64,11 +64,7 @@ const SocialApi = {
     return await request({
       url: '/member/social-user/wxa-qrcode',
       method: 'POST',
-      data: {
-        scene: query,
-        path,
-        checkPath: false, // TODO 开发环境暂不检查 path 是否存在
-      },
+      params: { path, query },
     });
   },
 };

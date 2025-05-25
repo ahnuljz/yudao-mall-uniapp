@@ -150,6 +150,21 @@ const OrderApi = {
       },
     });
   },
+  // 获得合同pdf
+  getPdf: () => {
+    return request({
+      url: '/open/pdf',
+      method: 'GET',
+    });
+  },
+  // 签署合同
+  step2: (data) => {
+    return request({
+      url: '/open/sign',
+      method: 'PUT',
+      data,
+    });
+  },
   // 获得交易订单数量
   getOrderCount: () => {
     return request({

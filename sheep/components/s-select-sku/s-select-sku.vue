@@ -9,6 +9,7 @@
           <uni-list-item
             v-for="s in sku"
             :show-extra-icon="true"
+            :key="s.name"
             :extra-icon="{
               color: '#00e',
               size: '22',

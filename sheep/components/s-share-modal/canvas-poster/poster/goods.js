@@ -32,7 +32,7 @@ const goods = async (poster) => {
     },
     {
       type: 'image',
-      src: formatImageUrlProtocol(sheep.$url.cdn(userInfo.avatar)),
+      src: userInfo.avatar,
       css: {
         position: 'fixed',
         left: width * 0.04,
@@ -109,10 +109,10 @@ const goods = async (poster) => {
       src: wxa_qrcode,
       css: {
         position: 'fixed',
-        left: width * 0.75,
+        left: width * 0.7,
         top: width * 1.3,
-        width: width * 0.2,
-        height: width * 0.2,
+        width: width * 0.25,
+        height: width * 0.25,
       },
     },
     // #endif

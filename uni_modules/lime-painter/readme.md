@@ -1,9 +1,7 @@
 # Painter 画板 测试版
 
 > uniapp 海报画板，更优雅的海报生成方案  
-> [查看更多 站点 1](https://limeui.qcoon.cn/#/painter)  
-> [查看更多 站点 2](http://liangei.gitee.io/limeui/#/painter)  
-> Q 群：1169785031
+> [查看更多](https://limeui.qcoon.cn/#/painter)  
 
 ## 平台兼容
 
@@ -346,7 +344,7 @@ data() {
 ```
 ```js
 import parseHtml from '@/uni_modules/lime-painter/parser'
-const json = parseHtml(`<p><span>测试测试</span><img src="/logo.png"/></p>`)
+const json = parseHtml(`<p><span>测试测试</span><img src="/static/logo.png"/></p>`)
 this.$refs.painter.render(json)
 ```
 
