@@ -66,14 +66,13 @@ const AuthUtil = {
     });
   },
   // 社交快捷登录
-  socialLogin: (type, code, state) => {
+  socialLogin: (type, code) => {
     return request({
       url: '/open/auth/social-login',
       method: 'POST',
       params: {
         type,
         code,
-        state,
       },
       custom: {
         showSuccess: true,
@@ -82,14 +81,13 @@ const AuthUtil = {
     });
   },
   // 微信小程序的一键登录
-  weixinMiniAppLogin: (phoneCode, loginCode, state) => {
+  weixinMiniAppLogin: (phoneCode,loginCode) => {
     return request({
       url: '/open/auth/weixin-mini-app-login',
       method: 'POST',
       params: {
         phoneCode,
-        loginCode,
-        state,
+        loginCode
       },
       custom: {
         showSuccess: true,

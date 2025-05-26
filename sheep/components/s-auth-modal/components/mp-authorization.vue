@@ -34,18 +34,8 @@ import sheep from '@/sheep';
 import { closeAuthModal } from '@/sheep/hooks/useModal';
 import UserApi from '@/sheep/api/member/user';
 
-const props = defineProps({
-  agreeStatus: {
-    type: Boolean,
-    default: false,
-  },
-});
-
 const userInfo = computed(() => sheep.$store('user').userInfo);
-
 const accountLoginRef = ref(null);
-
-// 数据
 const state = reactive({
   model: {
     nickname: userInfo.value.nickname,

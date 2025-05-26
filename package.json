@@ -95,9 +95,7 @@
     "vue": "3.5.13",
     "pinia": "2.3.0",
     "pinia-plugin-persist-uni": "1.3.1",
-    "weixin-js-sdk": "^1.6.0",
-    "canvas": "^2.11.2",
-    "pdfh5": "^2.0.5"
+    "weixin-js-sdk": "^1.6.0"
   },
   "devDependencies": {
     "prettier": "3.4.2",

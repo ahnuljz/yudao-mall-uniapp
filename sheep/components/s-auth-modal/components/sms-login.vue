@@ -11,14 +11,7 @@
     </view>
 
     <!-- 表单项 -->
-    <uni-forms
-      ref="smsLoginRef"
-      v-model="state.model"
-      :rules="state.rules"
-      validateTrigger="bind"
-      labelWidth="140"
-      labelAlign="center"
-    >
+    <uni-forms ref="smsLoginRef" v-model="state.model" :rules="state.rules" validateTrigger="bind" labelWidth="140" labelAlign="center">
       <uni-forms-item name="mobile" label="手机号">
         <uni-easyinput placeholder="请输入手机号" v-model="state.model.mobile" :inputBorder="false" type="number">
           <template v-slot:right>
@@ -35,15 +28,9 @@
       </uni-forms-item>
 
       <uni-forms-item name="code" label="验证码">
-        <uni-easyinput
-          placeholder="请输入验证码"
-          v-model="state.model.code"
-          :inputBorder="false"
-          type="number"
-          maxlength="4"
-        >
+        <uni-easyinput placeholder="请输入验证码" v-model="state.model.code" :inputBorder="false" type="number" maxlength="4">
           <template v-slot:right>
-            <button class="ss-reset-button login-btn-start" @tap="smsLoginSubmit"> 登录 </button>
+            <button class="ss-reset-button login-btn-start" @tap="smsLoginSubmit">登录</button>
           </template>
         </uni-easyinput>
       </uni-forms-item>
@@ -52,61 +39,45 @@
 </template>
 
 <script setup>
-  import { ref, reactive, unref } from 'vue';
-  import sheep from '@/sheep';
-  import { code, mobile } from '@/sheep/validate/form';
-  import { showAuthModal, closeAuthModal, getSmsCode, getSmsTimer } from '@/sheep/hooks/useModal';
-  import AuthUtil from '@/sheep/api/member/auth';
+import { ref, reactive, unref } from 'vue';
+import { code, mobile } from '@/sheep/validate/form';
+import { showAuthModal, closeAuthModal, getSmsCode, getSmsTimer } from '@/sheep/hooks/useModal';
+import AuthUtil from '@/sheep/api/member/auth';
 
-  const smsLoginRef = ref(null);
+const smsLoginRef = ref(null);
+// 数据
+const state = reactive({
+  isMobileEnd: false, // 手机号输入完毕
+  codeText: '获取验证码',
+  model: {
+    mobile: '', // 手机号
+    code: '', // 验证码
+  },
+  rules: {
+    code,
+    mobile,
+  },
+});
 
-  const emits = defineEmits(['onConfirm']);
-
-  const props = defineProps({
-    agreeStatus: {
-      type: Boolean,
-      default: false,
-    },
-  });
-
-  // 数据
-  const state = reactive({
-    isMobileEnd: false, // 手机号输入完毕
-    codeText: '获取验证码',
-    model: {
-      mobile: '', // 手机号
-      code: '', // 验证码
-    },
-    rules: {
-      code,
-      mobile,
-    },
-  });
-
-  // 短信登录
-  async function smsLoginSubmit() {
-    // 参数校验
-    const validate = await unref(smsLoginRef)
-      .validate()
-      .catch((error) => {
-        console.log('error: ', error);
-      });
-    if (!validate) {
-      return;
-    }
-    if (!props.agreeStatus) {
-      emits('onConfirm', true);
-      sheep.$helper.toast('请勾选同意');
-      return;
-    }
-    // 提交数据
-    const { code } = await AuthUtil.smsLogin(state.model);
-    if (code === 0) {
-      closeAuthModal();
-    }
+// 短信登录
+async function smsLoginSubmit() {
+  // 参数校验
+  const validate = await unref(smsLoginRef)
+    .validate()
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+  if (!validate) {
+    return;
   }
+  // 提交数据
+  const { code } = await AuthUtil.smsLogin(state.model);
+  if (code === 0) {
+    closeAuthModal();
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '../index.scss';
+@import '../index.scss';
 </style>

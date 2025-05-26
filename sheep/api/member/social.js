@@ -22,7 +22,6 @@ const SocialApi = {
       params: {
         type,
         code,
-        state,
       },
       custom: {
         custom: {

@@ -5,24 +5,17 @@
     <view class="head-box ss-m-b-60 ss-flex-col">
       <view class="ss-flex ss-m-b-20">
         <view class="head-title ss-m-r-40 head-title-animation">账号登录</view>
-        <view class="head-title-active head-title-line" @tap="showAuthModal('smsLogin')"> 短信登录 </view>
+        <view class="head-title-active head-title-line" @tap="showAuthModal('smsLogin')"> 短信登录</view>
       </view>
       <view class="head-subtitle">如果未设置过密码，请点击忘记密码</view>
     </view>
 
     <!-- 表单项 -->
-    <uni-forms
-      ref="accountLoginRef"
-      v-model="state.model"
-      :rules="state.rules"
-      validateTrigger="bind"
-      labelWidth="140"
-      labelAlign="center"
-    >
+    <uni-forms ref="accountLoginRef" v-model="state.model" :rules="state.rules" validateTrigger="bind" labelWidth="140" labelAlign="center">
       <uni-forms-item name="mobile" label="账号">
         <uni-easyinput placeholder="请输入账号" v-model="state.model.mobile" :inputBorder="false">
           <template v-slot:right>
-            <button class="ss-reset-button forgot-btn" @tap="showAuthModal('resetPassword')"> 忘记密码 </button>
+            <button class="ss-reset-button forgot-btn" @tap="showAuthModal('resetPassword')">忘记密码</button>
           </template>
         </uni-easyinput>
       </uni-forms-item>
@@ -39,60 +32,43 @@
 </template>
 
 <script setup>
-  import { ref, reactive, unref } from 'vue';
-  import sheep from '@/sheep';
-  import { mobile, password } from '@/sheep/validate/form';
-  import { showAuthModal, closeAuthModal } from '@/sheep/hooks/useModal';
-  import AuthUtil from '@/sheep/api/member/auth';
+import { ref, reactive, unref } from 'vue';
+import { mobile, password } from '@/sheep/validate/form';
+import { showAuthModal, closeAuthModal } from '@/sheep/hooks/useModal';
+import AuthUtil from '@/sheep/api/member/auth';
 
-  const accountLoginRef = ref(null);
+const accountLoginRef = ref(null);
 
-  const emits = defineEmits(['onConfirm']);
+// 数据
+const state = reactive({
+  model: {
+    mobile: '', // 账号
+    password: '', // 密码
+  },
+  rules: {
+    mobile,
+    password,
+  },
+});
 
-  const props = defineProps({
-    agreeStatus: {
-      type: Boolean,
-      default: false,
-    },
-  });
+// 账号登录
+async function accountLoginSubmit() {
+  // 表单验证
+  const validate = await unref(accountLoginRef)
+    .validate()
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+  if (!validate) return;
 
-  // 数据
-  const state = reactive({
-    model: {
-      mobile: '', // 账号
-      password: '', // 密码
-    },
-    rules: {
-      mobile,
-      password,
-    },
-  });
-
-  // 账号登录
-  async function accountLoginSubmit() {
-    // 表单验证
-    const validate = await unref(accountLoginRef)
-      .validate()
-      .catch((error) => {
-        console.log('error: ', error);
-      });
-    if (!validate) return;
-
-    // 同意协议
-    if (!props.agreeStatus) {
-      emits('onConfirm', true);
-      sheep.$helper.toast('请勾选同意');
-      return;
-    }
-
-    // 提交数据
-    const { code, data } = await AuthUtil.login(state.model);
-    if (code === 0) {
-      closeAuthModal();
-    }
+  // 提交数据
+  const { code, data } = await AuthUtil.login(state.model);
+  if (code === 0) {
+    closeAuthModal();
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '../index.scss';
+@import '../index.scss';
 </style>

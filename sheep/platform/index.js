@@ -14,7 +14,8 @@ import { isEmpty } from 'lodash-es';
 import { isWxBrowser } from '@/sheep/helper/utils';
 // #endif
 import wechat from './provider/wechat/index.js';
-import apple from './provider/apple';
+import alipay from './provider/alipay/index.js';
+import apple from './provider/apple/index.js';
 import share from './share';
 import Pay from './pay';
 
@@ -77,6 +78,7 @@ const load = () => {
 const useProvider = (_provider = '') => {
   if (_provider === '') _provider = provider;
   if (_provider === 'wechat') return wechat;
+  if (_provider === 'alipay') return alipay;
   if (_provider === 'apple') return apple;
 };
 

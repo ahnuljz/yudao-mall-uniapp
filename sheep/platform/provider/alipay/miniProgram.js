@@ -2,20 +2,20 @@ import AuthUtil from '@/sheep/api/member/auth';
 import SocialApi from '@/sheep/api/member/social';
 import UserApi from '@/sheep/api/member/user';
 
-const socialType = 34; // 社交类型 - 微信小程序
+const socialType = 44; // 社交类型 - 支付宝小程序
 
 let subscribeEventList = [];
 
-// 加载微信小程序
+// 加载支付宝小程序
 function load() {
   checkUpdate();
   getSubscribeTemplate();
 }
 
-// 微信小程序静默授权登陆
+// 支付宝小程序静默授权登陆
 const login = async () => {
   return new Promise(async (resolve, reject) => {
-    // 1. 获得微信 code
+    // 1. 获得支付宝 code
     const codeResult = await uni.login();
     if (codeResult.errMsg !== 'login:ok') {
       return resolve(false);
@@ -32,13 +32,13 @@ const login = async () => {
   });
 };
 
-// 微信小程序手机号授权登陆
+// 支付宝小程序手机号授权登陆
 const mobileLogin = async (e) => {
   return new Promise(async (resolve, reject) => {
     if (e.errMsg !== 'getPhoneNumber:ok') {
       return resolve(false);
     }
-    // 1. 获得微信 code
+    // 1. 获得支付宝 code
     const codeResult = await uni.login();
     if (codeResult.errMsg !== 'login:ok') {
       return resolve(false);
@@ -54,17 +54,17 @@ const mobileLogin = async (e) => {
   });
 };
 
-// 微信小程序绑定
+// 支付宝小程序绑定
 const bind = () => {
   return new Promise(async (resolve, reject) => {
-    // 1. 获得微信 code
+    // 1. 获得支付宝 code
     const codeResult = await uni.login();
     if (codeResult.errMsg !== 'login:ok') {
       return resolve(false);
     }
 
     // 2. 绑定账号
-    const bindResult = await SocialApi.socialBind(socialType, codeResult.code, 'default');
+    const bindResult = await SocialApi.socialBind(socialType, codeResult.code);
     if (bindResult.code === 0) {
       setOpenid(bindResult.data);
       return resolve(true);
@@ -74,7 +74,7 @@ const bind = () => {
   });
 };
 
-// 微信小程序解除绑定
+// 支付宝小程序解除绑定
 const unbind = async (openid) => {
   const { code } = await SocialApi.socialUnbind(socialType, openid);
   return code === 0;
